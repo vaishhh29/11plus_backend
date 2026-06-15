@@ -1,0 +1,113 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  TEACHER
+  PARENT
+  STUDENT
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  password  String
+  role      Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  teacherProfile TeacherProfile?
+  studentProfile StudentProfile?
+  parentProfile  ParentProfile?
+
+  @@map("users")
+}
+
+model TeacherProfile {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  teacherCode String   @unique // e.g. TCH-123456
+  subjects    String[] // e.g. ["Maths", "English"]
+  contactInfo String?
+  name        String
+  email       String
+
+  students         StudentTeacher[]
+  teacherRequests  TeacherRequest[]
+
+  @@map("teacher_profiles")
+}
+
+model StudentProfile {
+  id             Int      @id @default(autoincrement())
+  userId         Int      @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  studentCode    String   @unique // e.g. STD-123456
+  name           String
+  email          String
+  grade          String?  // e.g. "Year 5"
+  targetedSchool String?
+  parentId       Int?
+  parent         ParentProfile? @relation(fields: [parentId], references: [id], onDelete: SetNull)
+
+  teachers         StudentTeacher[]
+  teacherRequests  TeacherRequest[]
+
+  @@map("student_profiles")
+}
+
+model ParentProfile {
+  id          Int     @id @default(autoincrement())
+  userId      Int     @unique
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  email       String
+  contactInfo String?
+
+  students        StudentProfile[]
+  teacherRequests TeacherRequest[]
+
+  @@map("parent_profiles")
+}
+
+// Junction table for Student-Teacher relationship
+model StudentTeacher {
+  studentId Int
+  student   StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  teacherId Int
+  teacher   TeacherProfile @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  linkedAt  DateTime       @default(now())
+
+  @@id([studentId, teacherId])
+  @@map("student_teachers")
+}
+
+// Model for parent requesting a teacher
+model TeacherRequest {
+  id        Int           @id @default(autoincrement())
+  studentId Int
+  student   StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  teacherId Int
+  teacher   TeacherProfile @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  parentId  Int
+  parent    ParentProfile  @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  status    RequestStatus  @default(PENDING)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  @@map("teacher_requests")
+}
