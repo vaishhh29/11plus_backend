@@ -45,9 +45,18 @@ model TeacherProfile {
   contactInfo String?
   name        String
   email       String
+  
+  // Profile Extensions
+  address     String?
+  yearOfExp   Int?
+  degrees     String?
 
   students         StudentTeacher[]
   teacherRequests  TeacherRequest[]
+  parents          ParentTeacher[]
+  assignments      Assignment[]
+  tests            Test[]
+  reports          Report[]
 
   @@map("teacher_profiles")
 }
@@ -62,10 +71,19 @@ model StudentProfile {
   grade          String?  // e.g. "Year 5"
   targetedSchool String?
   parentId       Int?
+  parentName     String?  // Denormalized for quick access
   parent         ParentProfile? @relation(fields: [parentId], references: [id], onDelete: SetNull)
+  
+  // Profile Extensions
+  address        String?
+  dob            DateTime?
 
   teachers         StudentTeacher[]
   teacherRequests  TeacherRequest[]
+  assignments      Assignment[]
+  studentTests     StudentTest[]
+  progress         StudentSubjectProgress[]
+  reports          Report[]
 
   @@map("student_profiles")
 }
@@ -77,9 +95,13 @@ model ParentProfile {
   name        String
   email       String
   contactInfo String?
+  
+  // Profile Extensions
+  address     String?
 
   students        StudentProfile[]
   teacherRequests TeacherRequest[]
+  teachers        ParentTeacher[]
 
   @@map("parent_profiles")
 }
@@ -88,26 +110,250 @@ model ParentProfile {
 model StudentTeacher {
   studentId Int
   student   StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentName String? // Denormalized for quick access
+  grade String? // Student grade - denormalized
+  targetedSchool String? // Student targeted school - denormalized
+  
   teacherId Int
   teacher   TeacherProfile @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  teacherName String? // Denormalized for quick access
+  teacherEmail String? // Denormalized for quick access
+  
   linkedAt  DateTime       @default(now())
 
   @@id([studentId, teacherId])
   @@map("student_teachers")
 }
 
-// Model for parent requesting a teacher
-model TeacherRequest {
-  id        Int           @id @default(autoincrement())
-  studentId Int
-  student   StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  teacherId Int
-  teacher   TeacherProfile @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+// Auto-tracking table: Parent-Teacher connection
+model ParentTeacher {
   parentId  Int
   parent    ParentProfile  @relation(fields: [parentId], references: [id], onDelete: Cascade)
-  status    RequestStatus  @default(PENDING)
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
+  teacherId Int
+  teacher   TeacherProfile @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  linkedAt  DateTime       @default(now())
+
+  @@id([parentId, teacherId])
+  @@map("parent_teachers")
+}
+
+// Model for parent requesting a teacher
+model TeacherRequest {
+  id          Int            @id @default(autoincrement())
+  studentId   Int
+  student     StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentName String?        // Denormalized student name
+  grade       String?        // Denormalized student grade
+  parentId    Int
+  parent      ParentProfile  @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  parentName  String?        // Denormalized parent name
+  teacherId   Int
+  teacher     TeacherProfile @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  teacherName String?        // Denormalized teacher name
+  status      RequestStatus  @default(PENDING)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
 
   @@map("teacher_requests")
+}
+
+// ==========================================
+// MODULE 4 — Academic
+// ==========================================
+
+model Subject {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique // e.g., "Maths", "English", "VR", "NVR"
+  description String?
+  icon        String?
+  status      String    @default("ACTIVE")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  syllabus    Syllabus[]
+  questions   Question[]
+  assignments Assignment[]
+  tests       Test[]
+  progress    StudentSubjectProgress[]
+
+  @@map("subjects")
+}
+
+model Syllabus {
+  id                Int       @id @default(autoincrement())
+  subjectId         Int
+  subject           Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  topic             String    // e.g. "Number", "Algebra"
+  subTopic          String?   // e.g. "Factors", "Fractions"
+  description       String?
+  displayOrder      Int       @default(0)
+  estimatedDuration Int?      // Estimated minutes to complete
+  status            String    @default("ACTIVE")
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  questions         Question[]
+  assignments       Assignment[]
+
+  @@map("syllabus")
+}
+
+model Question {
+  id            Int       @id @default(autoincrement())
+  subjectId     Int
+  subject       Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  syllabusId    Int?
+  syllabus      Syllabus? @relation(fields: [syllabusId], references: [id], onDelete: SetNull)
+  questionType  String    // e.g. "TEXT", "DIAGRAM", "NVR", "MIXED"
+  questionText  String
+  questionImage String?   // URL path for NVR diagrams
+  options       Json?     // JSONB to hold options array/object
+  correctAnswer String
+  explanation   String?
+  difficulty    String?   // e.g. "EASY", "MEDIUM", "HARD"
+  marks         Int       @default(1)
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  testQuestions TestQuestion[]
+  answers       StudentTestAnswer[]
+
+  @@map("questions")
+}
+
+// ==========================================
+// MODULE 5 — Teacher Assignment
+// ==========================================
+
+model Assignment {
+  id             Int             @id @default(autoincrement())
+  teacherId      Int
+  teacher        TeacherProfile  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  studentId      Int
+  student        StudentProfile  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  subjectId      Int
+  subject        Subject         @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  syllabusId     Int?
+  syllabus       Syllabus?       @relation(fields: [syllabusId], references: [id], onDelete: SetNull)
+  assignmentType String?         // e.g., "WORKSHEET", "GAME"
+  dueDate        DateTime?
+  status         String          @default("ASSIGNED") // "ASSIGNED", "COMPLETED", "OVERDUE"
+  assignedAt     DateTime        @default(now())
+  completedAt    DateTime?
+
+  @@map("assignments")
+}
+
+// ==========================================
+// MODULE 6 — Tests
+// ==========================================
+
+model Test {
+  id           Int             @id @default(autoincrement())
+  teacherId    Int
+  teacher      TeacherProfile  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  subjectId    Int
+  subject      Subject         @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  title        String
+  type         String          // "DAILY", "WEEKLY", "TOPIC", "MOCK"
+  description  String?
+  duration     Int             // Duration in minutes
+  totalMarks   Int
+  status       String          @default("ACTIVE") // "ACTIVE", "DRAFT", "ARCHIVED"
+  assignedDate DateTime?
+  dueDate      DateTime?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  testQuestions TestQuestion[]
+  studentTests  StudentTest[]
+
+  @@map("tests")
+}
+
+model TestQuestion {
+  id            Int      @id @default(autoincrement())
+  testId        Int
+  test          Test     @relation(fields: [testId], references: [id], onDelete: Cascade)
+  questionId    Int
+  question      Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  questionOrder Int      @default(0)
+
+  @@unique([testId, questionId])
+  @@map("test_questions")
+}
+
+model StudentTest {
+  id            Int            @id @default(autoincrement())
+  studentId     Int
+  student       StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  testId        Int
+  test          Test           @relation(fields: [testId], references: [id], onDelete: Cascade)
+  startedAt     DateTime       @default(now())
+  submittedAt   DateTime?
+  obtainedMarks Int?
+  totalMarks    Int
+  percentage    Float?
+  grade         String?
+  status        String         @default("STARTED") // "STARTED", "SUBMITTED", "GRADED"
+
+  answers       StudentTestAnswer[]
+
+  @@map("student_tests")
+}
+
+model StudentTestAnswer {
+  id            Int         @id @default(autoincrement())
+  studentTestId Int
+  studentTest   StudentTest @relation(fields: [studentTestId], references: [id], onDelete: Cascade)
+  questionId    Int
+  question      Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  selectedAnswer String
+  isCorrect     Boolean
+  marksAwarded  Int         @default(0)
+  answeredAt    DateTime    @default(now())
+
+  @@map("student_test_answers")
+}
+
+// ==========================================
+// MODULE 7 — Student Progress
+// ==========================================
+
+model StudentSubjectProgress {
+  id                 Int            @id @default(autoincrement())
+  studentId          Int
+  student            StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  subjectId          Int
+  subject            Subject        @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  level              Int            @default(1)
+  progressPercentage Float          @default(0.0)
+  assignedQuestions  Int            @default(0)
+  completedQuestions Int            @default(0)
+  status             String         @default("IN_PROGRESS") // "IN_PROGRESS", "COMPLETED"
+  updatedAt          DateTime       @updatedAt
+
+  @@unique([studentId, subjectId])
+  @@map("student_subject_progress")
+}
+
+// ==========================================
+// MODULE 9 — Reports
+// ==========================================
+
+model Report {
+  id          Int             @id @default(autoincrement())
+  studentId   Int
+  student     StudentProfile  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  teacherId   Int?
+  teacher     TeacherProfile? @relation(fields: [teacherId], references: [id], onDelete: SetNull)
+  reportType  String          // "WEEKLY", "MONTHLY", "TEST", "FEEDBACK"
+  referenceId Int?            // e.g. studentTestId for test report
+  reportPath  String
+  generatedAt DateTime        @default(now())
+  emailed     Boolean         @default(false)
+  emailedAt   DateTime?
+
+  @@map("reports")
 }

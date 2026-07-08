@@ -107,4 +107,18 @@ export class ConnectionController {
       next(error);
     }
   }
+
+  static async getParentPendingRequests(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      if (!req.user) {
+        res.status(401).json({ message: 'Unauthorized' });
+        return;
+      }
+
+      const result = await ConnectionService.getParentPendingRequests(req.user.userId);
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
