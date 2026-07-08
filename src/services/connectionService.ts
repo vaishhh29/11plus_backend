@@ -40,11 +40,16 @@ export class ConnectionService {
       return { message: 'You are already linked to this teacher.' };
     }
 
-    // Connect
+    // Connect with denormalized data
     await prisma.studentTeacher.create({
       data: {
         studentId: student.id,
+        studentName: student.name,
+        grade: student.grade,
+        targetedSchool: student.targetedSchool,
         teacherId: teacher.id,
+        teacherName: teacher.name,
+        teacherEmail: teacher.email,
       },
     });
 
@@ -93,10 +98,13 @@ export class ConnectionService {
       throw error;
     }
 
-    // Connect child — updates the student's parentId (both DBs updated)
+    // Connect child — updates the student's parentId and parentName
     await prisma.studentProfile.update({
       where: { id: student.id },
-      data: { parentId: parent.id },
+      data: { 
+        parentId: parent.id,
+        parentName: parent.name,
+      },
     });
 
     // Re-fetch the parent profile with all linked children
@@ -193,12 +201,16 @@ export class ConnectionService {
       return { message: 'A pending request has already been sent to this teacher.' };
     }
 
-    // Create Request
+    // Create Request with denormalized data
     const request = await prisma.teacherRequest.create({
       data: {
         studentId,
-        teacherId,
+        studentName: student.name,
+        grade: student.grade,
         parentId: parent.id,
+        parentName: parent.name,
+        teacherId: teacher.id,
+        teacherName: teacher.name,
       },
     });
 
@@ -235,6 +247,8 @@ export class ConnectionService {
             email: true,
             studentCode: true,
             grade: true,
+            targetedSchool: true,
+            parentName: true,
           },
         },
         parent: {
@@ -244,10 +258,26 @@ export class ConnectionService {
             email: true,
           },
         },
+        teacher: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: 'desc',
       },
     });
 
-    return requests;
+    return requests.map((request) => ({
+      ...request,
+      studentName: request.student.name,
+      grade: request.student.grade,
+      parentName: request.parent.name,
+      teacherName: request.teacher.name,
+    }));
   }
 
   /**
@@ -288,13 +318,51 @@ export class ConnectionService {
       });
 
       if (status === 'ACCEPTED') {
-        // Create student-teacher connection
+        // Get student and teacher data for denormalization
+        const student = await tx.studentProfile.findUnique({
+          where: { id: request.studentId },
+          select: { 
+            name: true,
+            grade: true,
+            targetedSchool: true,
+            parentId: true 
+          },
+        });
+
+        const teacher = await tx.teacherProfile.findUnique({
+          where: { id: request.teacherId },
+          select: { name: true, email: true },
+        });
+
+        // Create student-teacher connection with denormalized data
         await tx.studentTeacher.create({
           data: {
             studentId: request.studentId,
+            studentName: student?.name,
+            grade: student?.grade,
+            targetedSchool: student?.targetedSchool,
             teacherId: request.teacherId,
+            teacherName: teacher?.name,
+            teacherEmail: teacher?.email,
           },
         });
+
+        // Auto-create parent-teacher link if student has a parent
+        if (student?.parentId) {
+          await tx.parentTeacher.upsert({
+            where: {
+              parentId_teacherId: {
+                parentId: student.parentId,
+                teacherId: request.teacherId,
+              },
+            },
+            update: {}, // No update needed, already exists
+            create: {
+              parentId: student.parentId,
+              teacherId: request.teacherId,
+            },
+          });
+        }
       }
 
       return updatedRequest;
@@ -320,5 +388,57 @@ export class ConnectionService {
         contactInfo: true,
       },
     });
+  }
+
+  /**
+   * Flow 4: Parent views their pending teacher requests
+   */
+  static async getParentPendingRequests(userId: number) {
+    const parent = await prisma.parentProfile.findUnique({
+      where: { userId },
+    });
+
+    if (!parent) {
+      const error: any = new Error('Parent profile not found.');
+      error.statusCode = 403;
+      throw error;
+    }
+
+    const requests = await prisma.teacherRequest.findMany({
+      where: {
+        parentId: parent.id,
+      },
+      include: {
+        student: {
+          select: {
+            id: true,
+            name: true,
+            studentCode: true,
+            grade: true,
+            targetedSchool: true,
+            parentName: true,
+          },
+        },
+        teacher: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            subjects: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return requests.map((request) => ({
+      ...request,
+      studentName: request.student.name,
+      grade: request.student.grade,
+      parentName: request.student.parentName || '',
+      teacherName: request.teacher.name,
+    }));
   }
 }

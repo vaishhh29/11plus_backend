@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
+  // 1. Seed Admin
   const adminEmail = 'adminofelevenplus@gmail.com';
   const adminPassword = 'elevenplusbydt';
 
@@ -12,14 +13,13 @@ async function main() {
     where: { email: 'admin@gmail.com' },
   });
 
-  // Check if correct admin already exists
-  const existingAdmin = await prisma.user.findUnique({
+  let adminUser = await prisma.user.findUnique({
     where: { email: adminEmail },
   });
 
-  if (!existingAdmin) {
+  if (!adminUser) {
     const hashedPassword = await bcrypt.hash(adminPassword, 10);
-    await prisma.user.create({
+    adminUser = await prisma.user.create({
       data: {
         email: adminEmail,
         name: 'System Admin',
@@ -28,9 +28,13 @@ async function main() {
       },
     });
     console.log(`Seeded default admin user successfully (${adminEmail} / ${adminPassword}).`);
-  } else {
-    console.log('Admin user already exists. Skipping seeding.');
   }
+
+  // Clear existing academic tables and restart their identity sequences from 1
+  await prisma.$executeRawUnsafe('TRUNCATE TABLE "questions" RESTART IDENTITY CASCADE;');
+  await prisma.$executeRawUnsafe('TRUNCATE TABLE "syllabus" RESTART IDENTITY CASCADE;');
+  await prisma.$executeRawUnsafe('TRUNCATE TABLE "subjects" RESTART IDENTITY CASCADE;');
+  console.log('Cleared all academic tables (questions, syllabus, subjects) and restarted identity sequences from 1.');
 }
 
 main()

@@ -202,23 +202,33 @@ export class AuthService {
 
         // Resolve parentId if parentEmail provided
         let resolvedParentId: number | null = null;
+        let resolvedParentName: string | null = null;
         if (data.parentEmail) {
           const parent = await tx.parentProfile.findFirst({
             where: { email: data.parentEmail },
-            select: { id: true },
+            select: { id: true, name: true },
           });
-          if (parent) resolvedParentId = parent.id;
+          if (parent) {
+            resolvedParentId = parent.id;
+            resolvedParentName = parent.name;
+          }
         }
 
         // Resolve teacherIds if teacherCodes provided
         const teacherIds: number[] = [];
+        const teacherData: any[] = [];
         if (data.teacherCodes && data.teacherCodes.length > 0) {
           const teachers = await tx.teacherProfile.findMany({
             where: { teacherCode: { in: data.teacherCodes } },
-            select: { id: true },
+            select: { id: true, name: true, email: true },
           });
           teacherIds.push(...teachers.map(t => t.id));
+          teacherData.push(...teachers);
         }
+
+        const studentName = user.name;
+        const studentGrade = grade || null;
+        const studentTargetedSchool = targetedSchool || null;
 
         profile = await tx.studentProfile.create({
           data: {
@@ -229,8 +239,16 @@ export class AuthService {
             grade: grade || null,
             targetedSchool: targetedSchool || null,
             parentId: resolvedParentId,
+            parentName: resolvedParentName,
             teachers: {
-              create: teacherIds.map(tid => ({ teacherId: tid })),
+              create: teacherData.map(t => ({ 
+                teacherId: t.id,
+                studentName,
+                grade: studentGrade,
+                targetedSchool: studentTargetedSchool,
+                teacherName: t.name,
+                teacherEmail: t.email,
+              })),
             },
           },
         });

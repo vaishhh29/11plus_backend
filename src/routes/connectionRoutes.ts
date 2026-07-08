@@ -10,6 +10,7 @@ router.use(authMiddleware as any);
 router.post('/student/join-teacher', ConnectionController.joinTeacher);
 router.post('/parent/link-child', ConnectionController.linkChild);
 router.post('/parent/request-teacher', ConnectionController.requestTeacher);
+router.get('/parent/pending-requests', ConnectionController.getParentPendingRequests);
 router.get('/teacher/requests', ConnectionController.getPendingRequests);
 router.post('/teacher/requests/:id/respond', ConnectionController.respondToRequest);
 router.get('/teachers', ConnectionController.getAllTeachers);

@@ -102,4 +102,70 @@ export class AdminController {
       next(error);
     }
   }
+
+  /**
+   * GET /api/admin/parent-teachers
+   * Returns parent-teacher connections auto-created from student-teacher links.
+   */
+  static async getParentTeachers(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const data = await AdminService.getParentTeachers();
+      res.status(200).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * POST /api/admin/questions/bulk
+   * Bulk uploads parsed questions into a subject.
+   */
+  static async bulkCreateQuestions(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { subject, questions } = req.body;
+      if (!subject || !Array.isArray(questions)) {
+        res.status(400).json({ message: 'Subject and questions array are required fields.' });
+        return;
+      }
+      const data = await AdminService.bulkCreateQuestions(subject, questions);
+      res.status(201).json({
+        message: `Successfully uploaded ${data.count} questions under ${subject}.`,
+        data
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * GET /api/admin/syllabus
+   * Returns subjects, their syllabus topics, and the count of questions per topic.
+   */
+  static async getSyllabusOverview(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const data = await AdminService.getSyllabusOverview();
+      res.status(200).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * GET /api/admin/questions/topic
+   * Fetches all questions for a specific topic and subject.
+   */
+  static async getQuestionsByTopic(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { topic, subject } = req.query;
+      if (!topic) {
+        res.status(400).json({ message: 'Topic query parameter is required.' });
+        return;
+      }
+      const data = await AdminService.getQuestionsByTopic(String(topic), subject ? String(subject) : undefined);
+      res.status(200).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
+
