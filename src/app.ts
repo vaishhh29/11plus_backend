@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import routes from './routes';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerDocument } from './swagger';
 import { errorHandler } from './middlewares/errorMiddleware';
 
 dotenv.config();
@@ -24,6 +26,9 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+// Swagger API Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // API Routes
 app.use('/api', routes);

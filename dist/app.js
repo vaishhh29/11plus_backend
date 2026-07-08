@@ -7,6 +7,8 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const routes_1 = __importDefault(require("./routes"));
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const swagger_1 = require("./swagger");
 const errorMiddleware_1 = require("./middlewares/errorMiddleware");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -25,6 +27,8 @@ app.use((req, res, next) => {
     }
     next();
 });
+// Swagger API Documentation
+app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.swaggerDocument));
 // API Routes
 app.use('/api', routes_1.default);
 // Base route
