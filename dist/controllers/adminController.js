@@ -126,8 +126,12 @@ class AdminController {
                 return;
             }
             const data = await adminService_1.AdminService.bulkCreateQuestions(subject, questions);
+            let message = `Successfully uploaded ${data.count} questions under ${subject}.`;
+            if (data.skippedCount > 0) {
+                message += ` ${data.skippedCount} duplicate question(s) were skipped.`;
+            }
             res.status(201).json({
-                message: `Successfully uploaded ${data.count} questions under ${subject}.`,
+                message,
                 data
             });
         }

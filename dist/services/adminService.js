@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminService = void 0;
 const database_1 = __importDefault(require("../config/database"));
+const subjectResolver_1 = require("../utils/subjectResolver");
 class AdminService {
     /**
      * Student-Parent table view.
@@ -65,8 +66,6 @@ class AdminService {
     }
     /**
      * Student-Teacher table view.
-     * Columns: student name, student grade, teacher name, teacher email, connected date.
-     * Returns one row per student-teacher link.
      */
     static async getStudentTeachers() {
         const links = await database_1.default.studentTeacher.findMany({
@@ -115,11 +114,17 @@ class AdminService {
     static async getAllStudents() {
         const students = await database_1.default.studentProfile.findMany({
             include: {
+                user: {
+                    select: {
+                        createdAt: true,
+                    },
+                },
                 parent: {
                     select: {
                         id: true,
                         name: true,
                         email: true,
+                        contactInfo: true,
                     },
                 },
                 teachers: {
@@ -130,6 +135,31 @@ class AdminService {
                                 name: true,
                                 email: true,
                                 teacherCode: true,
+                                subjects: true,
+                                contactInfo: true,
+                            },
+                        },
+                    },
+                },
+                progress: {
+                    include: {
+                        subject: {
+                            select: {
+                                id: true,
+                                name: true,
+                            },
+                        },
+                    },
+                },
+                studentTests: {
+                    include: {
+                        test: {
+                            select: {
+                                id: true,
+                                title: true,
+                                type: true,
+                                duration: true,
+                                totalMarks: true,
                             },
                         },
                     },
@@ -147,12 +177,40 @@ class AdminService {
             targetedSchool: s.targetedSchool,
             parentName: s.parent?.name || null,
             parentEmail: s.parent?.email || null,
+            parentPhone: s.parent?.contactInfo || null,
+            joinedDate: s.user?.createdAt || null,
             teachers: s.teachers.map((t) => ({
                 id: t.teacher.id,
                 name: t.teacher.name,
                 email: t.teacher.email,
                 teacherCode: t.teacher.teacherCode,
+                subjects: t.teacher.subjects,
+                contactInfo: t.teacher.contactInfo,
                 connectedAt: t.linkedAt,
+            })),
+            progress: s.progress.map((p) => ({
+                id: p.id,
+                subjectId: p.subjectId,
+                subjectName: p.subject.name,
+                level: p.level,
+                progressPercentage: p.progressPercentage,
+                assignedQuestions: p.assignedQuestions,
+                completedQuestions: p.completedQuestions,
+                status: p.status,
+                updatedAt: p.updatedAt,
+            })),
+            studentTests: s.studentTests.map((st) => ({
+                id: st.id,
+                testId: st.testId,
+                testTitle: st.test.title,
+                testType: st.test.type,
+                duration: st.test.duration,
+                obtainedMarks: st.obtainedMarks,
+                totalMarks: st.totalMarks,
+                percentage: st.percentage,
+                grade: st.grade,
+                status: st.status,
+                submittedAt: st.submittedAt,
             })),
         }));
     }
@@ -213,7 +271,6 @@ class AdminService {
     }
     /**
      * Parent-Teacher table view (auto-generated from student-teacher links).
-     * Columns: parent name, teacher name, child name, grade, subject, targeted school.
      */
     static async getParentTeachers() {
         const links = await database_1.default.parentTeacher.findMany({
@@ -239,7 +296,6 @@ class AdminService {
         });
         // Enrich with student details by querying student_teachers
         const enrichedLinks = await Promise.all(links.map(async (link) => {
-            // Get all students linked to both parent and teacher
             const studentTeachers = await database_1.default.studentTeacher.findMany({
                 where: {
                     teacherId: link.teacher.id,
@@ -258,7 +314,6 @@ class AdminService {
                     },
                 },
             });
-            // Return one row per student (could be multiple students per parent-teacher)
             return studentTeachers.map((st) => ({
                 parentId: link.parent.id,
                 parentName: link.parent.name,
@@ -276,28 +331,16 @@ class AdminService {
                 linkedAt: link.linkedAt,
             }));
         }));
-        // Flatten the array of arrays
         return enrichedLinks.flat();
     }
     /**
-     * Bulk upload parsed questions into a subject and syllabus category.
+     * Bulk upload parsed questions into a subject-specific question table.
+     * Routes to the correct table based on subject name.
      */
     static async bulkCreateQuestions(subjectName, questions) {
-        let mappedName = subjectName;
-        const lowerName = subjectName.toLowerCase();
-        if (['math', 'maths', 'mathematics'].includes(lowerName)) {
-            mappedName = 'Maths';
-        }
-        else if (['english'].includes(lowerName)) {
-            mappedName = 'English';
-        }
-        else if (['verbal', 'verbal reasoning', 'vr'].includes(lowerName)) {
-            mappedName = 'Verbal Reasoning';
-        }
-        else if (['non-verbal', 'non-verbal reasoning', 'nvr'].includes(lowerName)) {
-            mappedName = 'Non-Verbal Reasoning';
-        }
-        // Find the subject
+        const mappedName = (0, subjectResolver_1.resolveSubjectName)(subjectName);
+        const subjectId = (0, subjectResolver_1.resolveSubjectId)(subjectName);
+        // Ensure the subject registry entry exists
         let subject = await database_1.default.subject.findFirst({
             where: {
                 name: {
@@ -314,27 +357,31 @@ class AdminService {
                 }
             });
         }
+        const syllabusModel = (0, subjectResolver_1.getSyllabusModel)(subjectId);
+        const questionModel = (0, subjectResolver_1.getQuestionModel)(subjectId);
         const createdQuestions = [];
+        const skippedQuestions = [];
         for (const q of questions) {
             let syllabusId = null;
             if (q.topic) {
-                let syllabus = await database_1.default.syllabus.findFirst({
+                // Find or create syllabus entry in subject-specific table
+                let syllabus = await syllabusModel.findFirst({
                     where: {
-                        subjectId: subject.id,
                         topic: {
                             equals: q.topic,
                             mode: 'insensitive'
                         },
-                        subTopic: q.subTopic ? {
-                            equals: q.subTopic,
-                            mode: 'insensitive'
-                        } : null
+                        ...(q.subTopic ? {
+                            subTopic: {
+                                equals: q.subTopic,
+                                mode: 'insensitive'
+                            }
+                        } : { subTopic: null })
                     }
                 });
                 if (!syllabus) {
-                    syllabus = await database_1.default.syllabus.create({
+                    syllabus = await syllabusModel.create({
                         data: {
-                            subjectId: subject.id,
                             topic: q.topic,
                             subTopic: q.subTopic || null,
                             description: q.topicDescription || null
@@ -343,20 +390,43 @@ class AdminService {
                 }
                 syllabusId = syllabus.id;
             }
-            // Check if duplicate question exists under this subject
-            const existingQuestion = await database_1.default.question.findFirst({
+            // Duplicate check in subject-specific question table
+            const existingQuestions = await questionModel.findMany({
                 where: {
-                    subjectId: subject.id,
                     questionText: q.questionText
                 }
             });
-            if (existingQuestion) {
-                // Skip duplicate
+            let isDuplicate = false;
+            for (const eq of existingQuestions) {
+                if (eq.correctAnswer !== q.correctAnswer) {
+                    continue;
+                }
+                const eqOptions = Array.isArray(eq.options) ? eq.options : [];
+                const qOptions = Array.isArray(q.options) ? q.options : [];
+                if (eqOptions.length !== qOptions.length) {
+                    continue;
+                }
+                let optionsMatch = true;
+                for (let idx = 0; idx < eqOptions.length; idx++) {
+                    if (String(eqOptions[idx]) !== String(qOptions[idx])) {
+                        optionsMatch = false;
+                        break;
+                    }
+                }
+                if (optionsMatch) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (isDuplicate) {
+                skippedQuestions.push({
+                    questionText: q.questionText,
+                    correctAnswer: q.correctAnswer
+                });
                 continue;
             }
-            const created = await database_1.default.question.create({
+            const created = await questionModel.create({
                 data: {
-                    subjectId: subject.id,
                     syllabusId: syllabusId,
                     questionType: q.questionType || 'TEXT',
                     questionText: q.questionText,
@@ -374,68 +444,131 @@ class AdminService {
         return {
             subjectId: subject.id,
             count: createdQuestions.length,
-            questions: createdQuestions
+            questions: createdQuestions,
+            skippedCount: skippedQuestions.length,
+            skippedQuestions
         };
-    }
-    static async getSyllabusOverview() {
-        const lastQuestion = await database_1.default.question.findFirst({
-            orderBy: { updatedAt: 'desc' },
-            select: { updatedAt: true }
-        });
-        const lastReviseTime = lastQuestion ? lastQuestion.updatedAt : null;
-        const subjects = await database_1.default.subject.findMany({
-            include: {
-                syllabus: {
-                    include: {
-                        _count: {
-                            select: { questions: true }
-                        }
-                    },
-                    orderBy: { displayOrder: 'asc' }
-                }
-            },
-            orderBy: { id: 'asc' }
-        });
-        // Format to return structure
-        return subjects.map(subject => ({
-            id: subject.id,
-            name: subject.name,
-            description: subject.description,
-            lastReviseTime: lastReviseTime ? lastReviseTime.toISOString() : null,
-            topics: subject.syllabus.map(topic => ({
-                id: topic.id,
-                name: topic.topic,
-                subTopic: topic.subTopic,
-                description: topic.description,
-                dbCount: topic._count.questions
-            }))
-        }));
     }
     /**
-     * Get all questions for a topic.
+     * Get all subjects with their syllabus topics and question counts.
+     * Queries all 4 subject-specific syllabus/question tables and aggregates results.
      */
-    static async getQuestionsByTopic(topicName, subjectName) {
-        const whereClause = {
-            syllabus: {
-                topic: {
-                    equals: topicName,
-                    mode: 'insensitive'
-                }
-            }
-        };
-        if (subjectName) {
-            whereClause.subject = {
-                name: {
-                    equals: subjectName,
-                    mode: 'insensitive'
-                }
-            };
-        }
-        const questionRows = await database_1.default.question.findMany({
-            where: whereClause,
+    static async getSyllabusOverview() {
+        // Get all subjects from registry
+        const subjects = await database_1.default.subject.findMany({
             orderBy: { id: 'asc' }
         });
-        return questionRows;
+        const result = [];
+        for (const subject of subjects) {
+            const subjectId = subject.id;
+            let topics = [];
+            try {
+                const syllabusModel = (0, subjectResolver_1.getSyllabusModel)(subjectId);
+                const questionModel = (0, subjectResolver_1.getQuestionModel)(subjectId);
+                const syllabusEntries = await syllabusModel.findMany({
+                    orderBy: { displayOrder: 'asc' }
+                });
+                topics = await Promise.all(syllabusEntries.map(async (entry) => {
+                    const count = await questionModel.count({
+                        where: { syllabusId: entry.id }
+                    });
+                    return {
+                        id: entry.id,
+                        name: entry.topic,
+                        subTopic: entry.subTopic,
+                        description: entry.description,
+                        dbCount: count
+                    };
+                }));
+            }
+            catch (e) {
+                // If subjectId doesn't map to a known table (e.g. future subjects), skip
+                topics = [];
+            }
+            // Get last updated timestamp from questions
+            let lastReviseTime = null;
+            try {
+                const questionModel = (0, subjectResolver_1.getQuestionModel)(subjectId);
+                const lastQ = await questionModel.findFirst({
+                    orderBy: { updatedAt: 'desc' },
+                    select: { updatedAt: true }
+                });
+                lastReviseTime = lastQ ? lastQ.updatedAt.toISOString() : null;
+            }
+            catch (e) {
+                // ignore
+            }
+            result.push({
+                id: subject.id,
+                name: subject.name,
+                description: subject.description,
+                lastReviseTime,
+                topics
+            });
+        }
+        return result;
+    }
+    /**
+     * Get all questions for a topic from the correct subject-specific table.
+     */
+    static async getQuestionsByTopic(topicName, subjectName) {
+        // If subject is provided, query only that subject's table
+        if (subjectName) {
+            const subjectId = (0, subjectResolver_1.resolveSubjectId)(subjectName);
+            const questionModel = (0, subjectResolver_1.getQuestionModel)(subjectId);
+            const syllabusModel = (0, subjectResolver_1.getSyllabusModel)(subjectId);
+            // Find syllabus entry
+            const syllabus = await syllabusModel.findFirst({
+                where: {
+                    topic: {
+                        equals: topicName,
+                        mode: 'insensitive'
+                    }
+                }
+            });
+            if (!syllabus)
+                return [];
+            const questions = await questionModel.findMany({
+                where: { syllabusId: syllabus.id },
+                orderBy: { id: 'asc' }
+            });
+            return questions.map((q) => ({
+                ...q,
+                subjectId: subjectId,
+                topic: syllabus.topic
+            }));
+        }
+        // If no subject specified, search across all 4 tables
+        const allQuestions = [];
+        for (const sid of [subjectResolver_1.SUBJECT_IDS.MATHS, subjectResolver_1.SUBJECT_IDS.ENGLISH, subjectResolver_1.SUBJECT_IDS.VR, subjectResolver_1.SUBJECT_IDS.NVR]) {
+            try {
+                const syllabusModel = (0, subjectResolver_1.getSyllabusModel)(sid);
+                const questionModel = (0, subjectResolver_1.getQuestionModel)(sid);
+                const syllabus = await syllabusModel.findFirst({
+                    where: {
+                        topic: {
+                            equals: topicName,
+                            mode: 'insensitive'
+                        }
+                    }
+                });
+                if (syllabus) {
+                    const questions = await questionModel.findMany({
+                        where: { syllabusId: syllabus.id },
+                        orderBy: { id: 'asc' }
+                    });
+                    allQuestions.push(...questions.map((q) => ({
+                        ...q,
+                        subjectId: sid,
+                        topic: syllabus.topic
+                    })));
+                }
+            }
+            catch (e) {
+                // skip
+            }
+        }
+        return allQuestions;
     }
 }
 exports.AdminService = AdminService;

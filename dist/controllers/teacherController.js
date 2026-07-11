@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TeacherController = void 0;
 const database_1 = __importDefault(require("../config/database"));
 const adminService_1 = require("../services/adminService");
+const subjectResolver_1 = require("../utils/subjectResolver");
 class TeacherController {
     /**
      * Get students connected to the logged-in teacher.
@@ -58,6 +59,7 @@ class TeacherController {
     }
     /**
      * Get questions for test creator preview.
+     * Queries the subject-specific question table based on subjectId.
      */
     static async getQuestions(req, res, next) {
         try {
@@ -68,15 +70,13 @@ class TeacherController {
                 res.status(400).json({ message: 'subjectId is a required query parameter.' });
                 return;
             }
-            const questions = await database_1.default.question.findMany({
-                where: {
-                    subjectId,
-                    ...(syllabusId && { syllabusId }),
-                    isActive: true,
-                },
-                include: {
-                    syllabus: true,
-                },
+            const questionModel = (0, subjectResolver_1.getQuestionModel)(subjectId);
+            const where = { isActive: true };
+            if (syllabusId)
+                where.syllabusId = syllabusId;
+            const questions = await questionModel.findMany({
+                where,
+                include: { syllabus: true },
             });
             // Shuffle and take limit
             const shuffled = questions.sort(() => 0.5 - Math.random());
@@ -154,16 +154,16 @@ class TeacherController {
                         dueDate: dueDate ? new Date(dueDate) : null,
                     },
                 });
-                // Link questions
+                // Link questions with subjectId discriminator
                 await tx.testQuestion.createMany({
                     data: questionIds.map((qid, idx) => ({
                         testId: test.id,
                         questionId: qid,
+                        subjectId: subjectId,
                         questionOrder: idx,
                     })),
                 });
                 // Assign to students
-                // Loop through each student to create individual StudentTest assignments
                 const studentTests = [];
                 for (const sid of studentIds) {
                     const st = await tx.studentTest.create({
@@ -189,6 +189,7 @@ class TeacherController {
     }
     /**
      * Get tests created by the teacher.
+     * Resolves questions from subject-specific tables using the discriminator.
      */
     static async getTests(req, res, next) {
         try {
@@ -208,16 +209,7 @@ class TeacherController {
                 include: {
                     subject: true,
                     testQuestions: {
-                        include: {
-                            question: {
-                                include: {
-                                    syllabus: true,
-                                },
-                            },
-                        },
-                        orderBy: {
-                            questionOrder: 'asc'
-                        }
+                        orderBy: { questionOrder: 'asc' },
                     },
                     studentTests: {
                         include: {
@@ -231,25 +223,43 @@ class TeacherController {
             // Flatten to the format storage.getMockTests expects
             const flattenedAssigns = [];
             for (const t of tests) {
-                const topicName = t.testQuestions[0]?.question.syllabus?.topic || 'General';
-                const questionsList = t.testQuestions.map((tq) => ({
-                    id: String(tq.question.id),
-                    question: tq.question.questionText,
-                    questionText: tq.question.questionText,
-                    options: tq.question.options,
-                    answer: tq.question.correctAnswer,
-                    correctAnswer: tq.question.correctAnswer,
-                    topic: tq.question.syllabus?.topic || 'General',
-                    difficulty: tq.question.difficulty,
-                    marks: tq.question.marks,
-                }));
+                // Resolve actual question data from subject-specific tables
+                const subjectId = t.subjectId;
+                const questionIds = t.testQuestions.map((tq) => tq.questionId);
+                let questionsData = [];
+                try {
+                    questionsData = await (0, subjectResolver_1.getQuestionsByIds)(questionIds, subjectId);
+                }
+                catch (e) {
+                    console.error(`Failed to resolve questions for test ${t.id}:`, e);
+                }
+                // Build a lookup map: questionId -> question data
+                const questionMap = new Map();
+                for (const q of questionsData) {
+                    questionMap.set(q.id, q);
+                }
+                const topicName = questionsData[0]?.syllabus?.topic || 'General';
+                const questionsList = t.testQuestions.map((tq) => {
+                    const q = questionMap.get(tq.questionId);
+                    return {
+                        id: String(tq.questionId),
+                        question: q?.questionText || '',
+                        questionText: q?.questionText || '',
+                        options: q?.options || null,
+                        answer: q?.correctAnswer || '',
+                        correctAnswer: q?.correctAnswer || '',
+                        topic: q?.syllabus?.topic || 'General',
+                        difficulty: q?.difficulty || null,
+                        marks: q?.marks || 1,
+                    };
+                });
                 for (const st of t.studentTests) {
                     const answersMap = st.answers.reduce((acc, ans) => {
                         acc[String(ans.questionId)] = ans.selectedAnswer;
                         return acc;
                     }, {});
                     flattenedAssigns.push({
-                        id: String(st.id), // Use studentTest ID as the frontend test ID
+                        id: String(st.id),
                         testId: t.id,
                         title: t.title,
                         subject: t.subject.name,
