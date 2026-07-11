@@ -1,6 +1,7 @@
 import { Response, NextFunction } from 'express';
 import prisma from '../config/database';
 import { AuthenticatedRequest } from '../middlewares/authMiddleware';
+import { getQuestionModel, getQuestionsByIds, getQuestionById, findQuestions, getSyllabusModel, SUBJECT_IDS } from '../utils/subjectResolver';
 
 export class StudentController {
   /**
@@ -14,23 +15,94 @@ export class StudentController {
       const topic = req.query.topic as string | undefined;
       const limit = req.query.limit ? parseInt(req.query.limit as string, 10) : 5;
 
-      const where: any = { isActive: true };
-      if (subjectId) where.subjectId = subjectId;
-      if (syllabusId) where.syllabusId = syllabusId;
-      if (topic) {
-        where.syllabus = { topic: { contains: topic, mode: 'insensitive' } };
+      // If subjectId is provided, query that specific table
+      if (subjectId) {
+        const questionModel = getQuestionModel(subjectId);
+        const syllabusModel = getSyllabusModel(subjectId);
+
+        const where: any = { isActive: true };
+        if (syllabusId) where.syllabusId = syllabusId;
+        if (topic) {
+          // Find the syllabus entry first, then filter by its ID
+          const syllabusEntry = await syllabusModel.findFirst({
+            where: { topic: { contains: topic, mode: 'insensitive' } }
+          });
+          if (syllabusEntry) {
+            where.syllabusId = syllabusEntry.id;
+          }
+        }
+
+        const questions = await questionModel.findMany({
+          where,
+          include: { syllabus: true },
+        });
+
+        const shuffled = questions.sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, limit);
+
+        // Get subject name from registry
+        const subject = await prisma.subject.findUnique({ where: { id: subjectId } });
+
+        const mapped = selected.map((q: any) => ({
+          id: String(q.id),
+          question: q.questionText,
+          questionText: q.questionText,
+          options: q.options,
+          answer: q.correctAnswer,
+          correctAnswer: q.correctAnswer,
+          topic: q.syllabus?.topic || 'General',
+          subject: subject?.name || 'General',
+          difficulty: q.difficulty,
+          marks: q.marks,
+        }));
+
+        res.status(200).json(mapped);
+        return;
       }
 
-      const questions = await prisma.question.findMany({
-        where,
-        include: { syllabus: true, subject: true },
-      });
+      // If no subjectId, query all 4 tables and combine
+      const allQuestions: any[] = [];
+      const subjectNames: Record<number, string> = {};
 
-      // Shuffle and take limit
-      const shuffled = questions.sort(() => 0.5 - Math.random());
+      for (const sid of [SUBJECT_IDS.MATHS, SUBJECT_IDS.ENGLISH, SUBJECT_IDS.VR, SUBJECT_IDS.NVR]) {
+        try {
+          const questionModel = getQuestionModel(sid);
+          const where: any = { isActive: true };
+
+          if (topic) {
+            const syllabusModel = getSyllabusModel(sid);
+            const syllabusEntry = await syllabusModel.findFirst({
+              where: { topic: { contains: topic, mode: 'insensitive' } }
+            });
+            if (syllabusEntry) {
+              where.syllabusId = syllabusEntry.id;
+            } else {
+              continue; // No matching topic in this subject
+            }
+          }
+
+          const questions = await questionModel.findMany({
+            where,
+            include: { syllabus: true },
+          });
+
+          if (!subjectNames[sid]) {
+            const subject = await prisma.subject.findUnique({ where: { id: sid } });
+            subjectNames[sid] = subject?.name || 'General';
+          }
+
+          for (const q of questions) {
+            allQuestions.push({ ...q, _subjectId: sid, _subjectName: subjectNames[sid] });
+          }
+        } catch (e) {
+          // skip unknown subjects
+        }
+      }
+
+      const shuffled = allQuestions.sort(() => 0.5 - Math.random());
       const selected = shuffled.slice(0, limit);
 
-      const mapped = selected.map((q) => ({
+      const mapped = selected.map((q: any) => ({
         id: String(q.id),
         question: q.questionText,
         questionText: q.questionText,
@@ -38,7 +110,7 @@ export class StudentController {
         answer: q.correctAnswer,
         correctAnswer: q.correctAnswer,
         topic: q.syllabus?.topic || 'General',
-        subject: q.subject?.name || 'General',
+        subject: q._subjectName || 'General',
         difficulty: q.difficulty,
         marks: q.marks,
       }));
@@ -49,9 +121,9 @@ export class StudentController {
     }
   }
 
-
   /**
    * Get pending tests assigned to the logged-in student.
+   * Resolves questions from subject-specific tables.
    */
   static async getPendingTests(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
     try {
@@ -80,16 +152,7 @@ export class StudentController {
               subject: true,
               teacher: true,
               testQuestions: {
-                include: {
-                  question: {
-                    include: {
-                      syllabus: true,
-                    },
-                  },
-                },
-                orderBy: {
-                  questionOrder: 'asc'
-                }
+                orderBy: { questionOrder: 'asc' },
               },
             },
           },
@@ -97,39 +160,59 @@ export class StudentController {
         orderBy: { test: { createdAt: 'desc' } },
       });
 
-      const mapped = studentTests.map((st) => {
-        const topicName = st.test.testQuestions[0]?.question.syllabus?.topic || 'General';
-        const questionsList = st.test.testQuestions.map((tq) => ({
-          id: String(tq.question.id),
-          question: tq.question.questionText,
-          questionText: tq.question.questionText,
-          options: tq.question.options,
-          answer: tq.question.correctAnswer,
-          correctAnswer: tq.question.correctAnswer,
-          topic: tq.question.syllabus?.topic || 'General',
-          difficulty: tq.question.difficulty,
-          marks: tq.question.marks,
-        }));
+      const mapped = await Promise.all(
+        studentTests.map(async (st) => {
+          const subjectId = st.test.subjectId;
+          const questionIds = st.test.testQuestions.map((tq) => tq.questionId);
+          
+          let questionsData: any[] = [];
+          try {
+            questionsData = await getQuestionsByIds(questionIds, subjectId);
+          } catch (e) {
+            console.error(`Failed to resolve questions for test ${st.test.id}:`, e);
+          }
 
-        return {
-          id: String(st.id), // Use studentTest ID as the frontend test ID
-          testId: st.test.id,
-          title: st.test.title,
-          subject: st.test.subject.name,
-          topic: topicName,
-          duration: st.test.duration,
-          createdById: st.test.teacher.email,
-          assignedToId: studentProfile.email,
-          completed: false,
-          score: null,
-          timeTaken: null,
-          answers: null,
-          questions: questionsList,
-          postedAt: st.test.createdAt.toISOString(),
-          dueTime: st.test.dueDate ? st.test.dueDate.toISOString() : null,
-          completedAt: null,
-        };
-      });
+          const questionMap = new Map<number, any>();
+          for (const q of questionsData) {
+            questionMap.set(q.id, q);
+          }
+
+          const topicName = questionsData[0]?.syllabus?.topic || 'General';
+          const questionsList = st.test.testQuestions.map((tq) => {
+            const q = questionMap.get(tq.questionId);
+            return {
+              id: String(tq.questionId),
+              question: q?.questionText || '',
+              questionText: q?.questionText || '',
+              options: q?.options || null,
+              answer: q?.correctAnswer || '',
+              correctAnswer: q?.correctAnswer || '',
+              topic: q?.syllabus?.topic || 'General',
+              difficulty: q?.difficulty || null,
+              marks: q?.marks || 1,
+            };
+          });
+
+          return {
+            id: String(st.id),
+            testId: st.test.id,
+            title: st.test.title,
+            subject: st.test.subject.name,
+            topic: topicName,
+            duration: st.test.duration,
+            createdById: st.test.teacher.email,
+            assignedToId: studentProfile.email,
+            completed: false,
+            score: null,
+            timeTaken: null,
+            answers: null,
+            questions: questionsList,
+            postedAt: st.test.createdAt.toISOString(),
+            dueTime: st.test.dueDate ? st.test.dueDate.toISOString() : null,
+            completedAt: null,
+          };
+        })
+      );
 
       res.status(200).json(mapped);
     } catch (error) {
@@ -139,6 +222,7 @@ export class StudentController {
 
   /**
    * Get completed tests for the logged-in student.
+   * Resolves questions from subject-specific tables.
    */
   static async getCompletedTests(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
     try {
@@ -170,16 +254,7 @@ export class StudentController {
               subject: true,
               teacher: true,
               testQuestions: {
-                include: {
-                  question: {
-                    include: {
-                      syllabus: true,
-                    },
-                  },
-                },
-                orderBy: {
-                  questionOrder: 'asc'
-                }
+                orderBy: { questionOrder: 'asc' },
               },
             },
           },
@@ -187,44 +262,64 @@ export class StudentController {
         orderBy: { submittedAt: 'desc' },
       });
 
-      const mapped = studentTests.map((st) => {
-        const topicName = st.test.testQuestions[0]?.question.syllabus?.topic || 'General';
-        const questionsList = st.test.testQuestions.map((tq) => ({
-          id: String(tq.question.id),
-          question: tq.question.questionText,
-          questionText: tq.question.questionText,
-          options: tq.question.options,
-          answer: tq.question.correctAnswer,
-          correctAnswer: tq.question.correctAnswer,
-          topic: tq.question.syllabus?.topic || 'General',
-          difficulty: tq.question.difficulty,
-          marks: tq.question.marks,
-        }));
+      const mapped = await Promise.all(
+        studentTests.map(async (st) => {
+          const subjectId = st.test.subjectId;
+          const questionIds = st.test.testQuestions.map((tq) => tq.questionId);
+          
+          let questionsData: any[] = [];
+          try {
+            questionsData = await getQuestionsByIds(questionIds, subjectId);
+          } catch (e) {
+            console.error(`Failed to resolve questions for test ${st.test.id}:`, e);
+          }
 
-        const answersMap = st.answers.reduce((acc: any, ans) => {
-          acc[String(ans.questionId)] = ans.selectedAnswer;
-          return acc;
-        }, {});
+          const questionMap = new Map<number, any>();
+          for (const q of questionsData) {
+            questionMap.set(q.id, q);
+          }
 
-        return {
-          id: String(st.id), // Use studentTest ID as the frontend test ID
-          testId: st.test.id,
-          title: st.test.title,
-          subject: st.test.subject.name,
-          topic: topicName,
-          duration: st.test.duration,
-          createdById: st.test.teacher.email,
-          assignedToId: studentProfile.email,
-          completed: true,
-          score: st.percentage !== null ? Math.round(st.percentage) : null,
-          timeTaken: st.submittedAt ? Math.round((st.submittedAt.getTime() - st.startedAt.getTime()) / 60000) : null,
-          answers: answersMap,
-          questions: questionsList,
-          postedAt: st.test.createdAt.toISOString(),
-          dueTime: st.test.dueDate ? st.test.dueDate.toISOString() : null,
-          completedAt: st.submittedAt ? st.submittedAt.toISOString() : null,
-        };
-      });
+          const topicName = questionsData[0]?.syllabus?.topic || 'General';
+          const questionsList = st.test.testQuestions.map((tq) => {
+            const q = questionMap.get(tq.questionId);
+            return {
+              id: String(tq.questionId),
+              question: q?.questionText || '',
+              questionText: q?.questionText || '',
+              options: q?.options || null,
+              answer: q?.correctAnswer || '',
+              correctAnswer: q?.correctAnswer || '',
+              topic: q?.syllabus?.topic || 'General',
+              difficulty: q?.difficulty || null,
+              marks: q?.marks || 1,
+            };
+          });
+
+          const answersMap = st.answers.reduce((acc: any, ans) => {
+            acc[String(ans.questionId)] = ans.selectedAnswer;
+            return acc;
+          }, {});
+
+          return {
+            id: String(st.id),
+            testId: st.test.id,
+            title: st.test.title,
+            subject: st.test.subject.name,
+            topic: topicName,
+            duration: st.test.duration,
+            createdById: st.test.teacher.email,
+            assignedToId: studentProfile.email,
+            completed: true,
+            score: st.percentage !== null ? Math.round(st.percentage) : null,
+            timeTaken: st.submittedAt ? Math.round((st.submittedAt.getTime() - st.startedAt.getTime()) / 60000) : null,
+            answers: answersMap,
+            questions: questionsList,
+            postedAt: st.test.createdAt.toISOString(),
+            dueTime: st.test.dueDate ? st.test.dueDate.toISOString() : null,
+            completedAt: st.submittedAt ? st.submittedAt.toISOString() : null,
+          };
+        })
+      );
 
       res.status(200).json(mapped);
     } catch (error) {
@@ -234,6 +329,7 @@ export class StudentController {
 
   /**
    * Submit and auto-grade student's answers for a test.
+   * Resolves questions from subject-specific tables for grading.
    */
   static async submitTest(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
     try {
@@ -263,16 +359,13 @@ export class StudentController {
         return;
       }
 
+      // Get the student test with test questions (no deep question include since we'll resolve from subject tables)
       const studentTest = await prisma.studentTest.findUnique({
         where: { id: studentTestId },
         include: {
           test: {
             include: {
-              testQuestions: {
-                include: {
-                  question: true,
-                },
-              },
+              testQuestions: true,
             },
           },
         },
@@ -293,25 +386,38 @@ export class StudentController {
         return;
       }
 
+      // Resolve question data from subject-specific tables
+      const subjectId = studentTest.test.subjectId;
+      const questionIds = studentTest.test.testQuestions.map((tq) => tq.questionId);
+      const questionsData = await getQuestionsByIds(questionIds, subjectId);
+      
+      const questionMap = new Map<number, any>();
+      for (const q of questionsData) {
+        questionMap.set(q.id, q);
+      }
+
       let correctCount = 0;
       const testQuestions = studentTest.test.testQuestions;
       const answerRecords: {
         questionId: number;
+        subjectId: number;
         selectedAnswer: string;
         isCorrect: boolean;
         marksAwarded: number;
       }[] = [];
 
       for (const tq of testQuestions) {
-        const q = tq.question;
+        const q = questionMap.get(tq.questionId);
+        if (!q) continue;
+
         const studentSelected = answers[String(q.id)] || '';
-        // Exact match with correct answer
         const isCorrect = studentSelected.trim() === q.correctAnswer.trim();
         if (isCorrect) {
           correctCount += 1;
         }
         answerRecords.push({
           questionId: q.id,
+          subjectId: subjectId,
           selectedAnswer: studentSelected,
           isCorrect,
           marksAwarded: isCorrect ? q.marks : 0,
@@ -332,11 +438,12 @@ export class StudentController {
           },
         });
 
-        // 2. Create StudentTestAnswer records
+        // 2. Create StudentTestAnswer records with subjectId discriminator
         await tx.studentTestAnswer.createMany({
           data: answerRecords.map((r) => ({
             studentTestId: studentTest.id,
             questionId: r.questionId,
+            subjectId: r.subjectId,
             selectedAnswer: r.selectedAnswer,
             isCorrect: r.isCorrect,
             marksAwarded: r.marksAwarded,

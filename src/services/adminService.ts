@@ -1,4 +1,11 @@
 import prisma from '../config/database';
+import {
+  resolveSubjectId,
+  resolveSubjectName,
+  getSyllabusModel,
+  getQuestionModel,
+  SUBJECT_IDS,
+} from '../utils/subjectResolver';
 
 export class AdminService {
   /**
@@ -62,8 +69,6 @@ export class AdminService {
 
   /**
    * Student-Teacher table view.
-   * Columns: student name, student grade, teacher name, teacher email, connected date.
-   * Returns one row per student-teacher link.
    */
   static async getStudentTeachers() {
     const links = await prisma.studentTeacher.findMany({
@@ -217,7 +222,6 @@ export class AdminService {
 
   /**
    * Parent-Teacher table view (auto-generated from student-teacher links).
-   * Columns: parent name, teacher name, child name, grade, subject, targeted school.
    */
   static async getParentTeachers() {
     const links = await prisma.parentTeacher.findMany({
@@ -245,7 +249,6 @@ export class AdminService {
     // Enrich with student details by querying student_teachers
     const enrichedLinks = await Promise.all(
       links.map(async (link: any) => {
-        // Get all students linked to both parent and teacher
         const studentTeachers = await prisma.studentTeacher.findMany({
           where: {
             teacherId: link.teacher.id,
@@ -265,7 +268,6 @@ export class AdminService {
           },
         });
 
-        // Return one row per student (could be multiple students per parent-teacher)
         return studentTeachers.map((st) => ({
           parentId: link.parent.id,
           parentName: link.parent.name,
@@ -285,27 +287,18 @@ export class AdminService {
       })
     );
 
-    // Flatten the array of arrays
     return enrichedLinks.flat();
   }
 
   /**
-   * Bulk upload parsed questions into a subject and syllabus category.
+   * Bulk upload parsed questions into a subject-specific question table.
+   * Routes to the correct table based on subject name.
    */
   static async bulkCreateQuestions(subjectName: string, questions: any[]) {
-    let mappedName = subjectName;
-    const lowerName = subjectName.toLowerCase();
-    if (['math', 'maths', 'mathematics'].includes(lowerName)) {
-      mappedName = 'Maths';
-    } else if (['english'].includes(lowerName)) {
-      mappedName = 'English';
-    } else if (['verbal', 'verbal reasoning', 'vr'].includes(lowerName)) {
-      mappedName = 'Verbal Reasoning';
-    } else if (['non-verbal', 'non-verbal reasoning', 'nvr'].includes(lowerName)) {
-      mappedName = 'Non-Verbal Reasoning';
-    }
+    const mappedName = resolveSubjectName(subjectName);
+    const subjectId = resolveSubjectId(subjectName);
 
-    // Find the subject
+    // Ensure the subject registry entry exists
     let subject = await prisma.subject.findFirst({
       where: {
         name: {
@@ -324,28 +317,35 @@ export class AdminService {
       });
     }
 
+    const syllabusModel = getSyllabusModel(subjectId);
+    const questionModel = getQuestionModel(subjectId);
+
     const createdQuestions = [];
     const skippedQuestions = [];
+
     for (const q of questions) {
       let syllabusId: number | null = null;
+
       if (q.topic) {
-        let syllabus = await prisma.syllabus.findFirst({
+        // Find or create syllabus entry in subject-specific table
+        let syllabus = await syllabusModel.findFirst({
           where: {
-            subjectId: subject.id,
             topic: {
               equals: q.topic,
               mode: 'insensitive'
             },
-            subTopic: q.subTopic ? {
-              equals: q.subTopic,
-              mode: 'insensitive'
-            } : null
+            ...(q.subTopic ? {
+              subTopic: {
+                equals: q.subTopic,
+                mode: 'insensitive'
+              }
+            } : { subTopic: null })
           }
         });
+
         if (!syllabus) {
-          syllabus = await prisma.syllabus.create({
+          syllabus = await syllabusModel.create({
             data: {
-              subjectId: subject.id,
               topic: q.topic,
               subTopic: q.subTopic || null,
               description: q.topicDescription || null
@@ -355,10 +355,9 @@ export class AdminService {
         syllabusId = syllabus.id;
       }
 
-      // Check if duplicate question exists under this subject
-      const existingQuestions = await prisma.question.findMany({
+      // Duplicate check in subject-specific question table
+      const existingQuestions = await questionModel.findMany({
         where: {
-          subjectId: subject.id,
           questionText: q.questionText
         }
       });
@@ -390,7 +389,6 @@ export class AdminService {
       }
 
       if (isDuplicate) {
-        // Skip duplicate
         skippedQuestions.push({
           questionText: q.questionText,
           correctAnswer: q.correctAnswer
@@ -398,9 +396,8 @@ export class AdminService {
         continue;
       }
 
-      const created = await prisma.question.create({
+      const created = await questionModel.create({
         data: {
-          subjectId: subject.id,
           syllabusId: syllabusId,
           questionType: q.questionType || 'TEXT',
           questionText: q.questionText,
@@ -425,72 +422,141 @@ export class AdminService {
     };
   }
 
+  /**
+   * Get all subjects with their syllabus topics and question counts.
+   * Queries all 4 subject-specific syllabus/question tables and aggregates results.
+   */
   static async getSyllabusOverview() {
-    const lastQuestion = await prisma.question.findFirst({
-      orderBy: { updatedAt: 'desc' },
-      select: { updatedAt: true }
-    });
-
-    const lastReviseTime: Date | null = lastQuestion ? lastQuestion.updatedAt : null;
-
+    // Get all subjects from registry
     const subjects = await prisma.subject.findMany({
-      include: {
-        syllabus: {
-          include: {
-            _count: {
-              select: { questions: true }
-            }
-          },
-          orderBy: { displayOrder: 'asc' }
-        }
-      },
       orderBy: { id: 'asc' }
     });
 
-    // Format to return structure
-    return subjects.map(subject => ({
-      id: subject.id,
-      name: subject.name,
-      description: subject.description,
-      lastReviseTime: lastReviseTime ? lastReviseTime.toISOString() : null,
-      topics: subject.syllabus.map(topic => ({
-        id: topic.id,
-        name: topic.topic,
-        subTopic: topic.subTopic,
-        description: topic.description,
-        dbCount: topic._count.questions
-      }))
-    }));
+    const result = [];
+
+    for (const subject of subjects) {
+      const subjectId = subject.id;
+      let topics: any[] = [];
+
+      try {
+        const syllabusModel = getSyllabusModel(subjectId);
+        const questionModel = getQuestionModel(subjectId);
+
+        const syllabusEntries = await syllabusModel.findMany({
+          orderBy: { displayOrder: 'asc' }
+        });
+
+        topics = await Promise.all(
+          syllabusEntries.map(async (entry: any) => {
+            const count = await questionModel.count({
+              where: { syllabusId: entry.id }
+            });
+            return {
+              id: entry.id,
+              name: entry.topic,
+              subTopic: entry.subTopic,
+              description: entry.description,
+              dbCount: count
+            };
+          })
+        );
+      } catch (e) {
+        // If subjectId doesn't map to a known table (e.g. future subjects), skip
+        topics = [];
+      }
+
+      // Get last updated timestamp from questions
+      let lastReviseTime: string | null = null;
+      try {
+        const questionModel = getQuestionModel(subjectId);
+        const lastQ = await questionModel.findFirst({
+          orderBy: { updatedAt: 'desc' },
+          select: { updatedAt: true }
+        });
+        lastReviseTime = lastQ ? lastQ.updatedAt.toISOString() : null;
+      } catch (e) {
+        // ignore
+      }
+
+      result.push({
+        id: subject.id,
+        name: subject.name,
+        description: subject.description,
+        lastReviseTime,
+        topics
+      });
+    }
+
+    return result;
   }
 
   /**
-   * Get all questions for a topic.
+   * Get all questions for a topic from the correct subject-specific table.
    */
   static async getQuestionsByTopic(topicName: string, subjectName?: string) {
-    const whereClause: any = {
-      syllabus: {
-        topic: {
-          equals: topicName,
-          mode: 'insensitive'
-        }
-      }
-    };
-
+    // If subject is provided, query only that subject's table
     if (subjectName) {
-      whereClause.subject = {
-        name: {
-          equals: subjectName,
-          mode: 'insensitive'
+      const subjectId = resolveSubjectId(subjectName);
+      const questionModel = getQuestionModel(subjectId);
+      const syllabusModel = getSyllabusModel(subjectId);
+
+      // Find syllabus entry
+      const syllabus = await syllabusModel.findFirst({
+        where: {
+          topic: {
+            equals: topicName,
+            mode: 'insensitive'
+          }
         }
-      };
+      });
+
+      if (!syllabus) return [];
+
+      const questions = await questionModel.findMany({
+        where: { syllabusId: syllabus.id },
+        orderBy: { id: 'asc' }
+      });
+
+      return questions.map((q: any) => ({
+        ...q,
+        subjectId: subjectId,
+        topic: syllabus.topic
+      }));
     }
 
-    const questionRows = await prisma.question.findMany({
-      where: whereClause,
-      orderBy: { id: 'asc' }
-    });
+    // If no subject specified, search across all 4 tables
+    const allQuestions: any[] = [];
+    for (const sid of [SUBJECT_IDS.MATHS, SUBJECT_IDS.ENGLISH, SUBJECT_IDS.VR, SUBJECT_IDS.NVR]) {
+      try {
+        const syllabusModel = getSyllabusModel(sid);
+        const questionModel = getQuestionModel(sid);
 
-    return questionRows;
+        const syllabus = await syllabusModel.findFirst({
+          where: {
+            topic: {
+              equals: topicName,
+              mode: 'insensitive'
+            }
+          }
+        });
+
+        if (syllabus) {
+          const questions = await questionModel.findMany({
+            where: { syllabusId: syllabus.id },
+            orderBy: { id: 'asc' }
+          });
+
+          allQuestions.push(...questions.map((q: any) => ({
+            ...q,
+            subjectId: sid,
+            topic: syllabus.topic
+          })));
+        }
+      } catch (e) {
+        // skip
+      }
+    }
+
+    return allQuestions;
   }
 }
-

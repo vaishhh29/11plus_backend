@@ -158,20 +158,18 @@ model TeacherRequest {
 }
 
 // ==========================================
-// MODULE 4 — Academic
+// MODULE 4 — Academic (Subject Registry)
 // ==========================================
 
 model Subject {
   id          Int       @id @default(autoincrement())
-  name        String    @unique // e.g., "Maths", "English", "VR", "NVR"
+  name        String    @unique // e.g., "Maths", "English", "Verbal Reasoning", "Non-Verbal Reasoning"
   description String?
   icon        String?
   status      String    @default("ACTIVE")
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
-  syllabus    Syllabus[]
-  questions   Question[]
   assignments Assignment[]
   tests       Test[]
   progress    StudentSubjectProgress[]
@@ -179,47 +177,152 @@ model Subject {
   @@map("subjects")
 }
 
-model Syllabus {
+// ==========================================
+// MODULE 4A — Subject-Specific Syllabus Tables
+// ==========================================
+
+model MathsSyllabus {
   id                Int       @id @default(autoincrement())
-  subjectId         Int
-  subject           Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
-  topic             String    // e.g. "Number", "Algebra"
-  subTopic          String?   // e.g. "Factors", "Fractions"
+  topic             String    // e.g. "Fractions", "Algebra"
+  subTopic          String?
   description       String?
   displayOrder      Int       @default(0)
-  estimatedDuration Int?      // Estimated minutes to complete
+  estimatedDuration Int?
   status            String    @default("ACTIVE")
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
 
-  questions         Question[]
-  assignments       Assignment[]
+  questions         MathsQuestion[]
 
-  @@map("syllabus")
+  @@map("maths_syllabus")
 }
 
-model Question {
-  id            Int       @id @default(autoincrement())
-  subjectId     Int
-  subject       Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+model EnglishSyllabus {
+  id                Int       @id @default(autoincrement())
+  topic             String
+  subTopic          String?
+  description       String?
+  displayOrder      Int       @default(0)
+  estimatedDuration Int?
+  status            String    @default("ACTIVE")
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  questions         EnglishQuestion[]
+
+  @@map("english_syllabus")
+}
+
+model VRSyllabus {
+  id                Int       @id @default(autoincrement())
+  topic             String
+  subTopic          String?
+  description       String?
+  displayOrder      Int       @default(0)
+  estimatedDuration Int?
+  status            String    @default("ACTIVE")
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  questions         VRQuestion[]
+
+  @@map("vr_syllabus")
+}
+
+model NVRSyllabus {
+  id                Int       @id @default(autoincrement())
+  topic             String
+  subTopic          String?
+  description       String?
+  displayOrder      Int       @default(0)
+  estimatedDuration Int?
+  status            String    @default("ACTIVE")
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  questions         NVRQuestion[]
+
+  @@map("nvr_syllabus")
+}
+
+// ==========================================
+// MODULE 4B — Subject-Specific Question Tables
+// ==========================================
+
+model MathsQuestion {
+  id            Int            @id @default(autoincrement())
   syllabusId    Int?
-  syllabus      Syllabus? @relation(fields: [syllabusId], references: [id], onDelete: SetNull)
-  questionType  String    // e.g. "TEXT", "DIAGRAM", "NVR", "MIXED"
+  syllabus      MathsSyllabus? @relation(fields: [syllabusId], references: [id], onDelete: SetNull)
+  questionType  String         // e.g. "TEXT", "DIAGRAM", "MIXED"
   questionText  String
-  questionImage String?   // URL path for NVR diagrams
-  options       Json?     // JSONB to hold options array/object
+  questionImage String?
+  options       Json?
   correctAnswer String
   explanation   String?
-  difficulty    String?   // e.g. "EASY", "MEDIUM", "HARD"
-  marks         Int       @default(1)
-  isActive      Boolean   @default(true)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  difficulty    String?
+  marks         Int            @default(1)
+  isActive      Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 
-  testQuestions TestQuestion[]
-  answers       StudentTestAnswer[]
+  @@map("maths_questions")
+}
 
-  @@map("questions")
+model EnglishQuestion {
+  id            Int              @id @default(autoincrement())
+  syllabusId    Int?
+  syllabus      EnglishSyllabus? @relation(fields: [syllabusId], references: [id], onDelete: SetNull)
+  questionType  String
+  questionText  String
+  questionImage String?
+  options       Json?
+  correctAnswer String
+  explanation   String?
+  difficulty    String?
+  marks         Int              @default(1)
+  isActive      Boolean          @default(true)
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  @@map("english_questions")
+}
+
+model VRQuestion {
+  id            Int          @id @default(autoincrement())
+  syllabusId    Int?
+  syllabus      VRSyllabus?  @relation(fields: [syllabusId], references: [id], onDelete: SetNull)
+  questionType  String
+  questionText  String
+  questionImage String?
+  options       Json?
+  correctAnswer String
+  explanation   String?
+  difficulty    String?
+  marks         Int          @default(1)
+  isActive      Boolean      @default(true)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@map("vr_questions")
+}
+
+model NVRQuestion {
+  id            Int          @id @default(autoincrement())
+  syllabusId    Int?
+  syllabus      NVRSyllabus? @relation(fields: [syllabusId], references: [id], onDelete: SetNull)
+  questionType  String
+  questionText  String
+  questionImage String?
+  options       Json?
+  correctAnswer String
+  explanation   String?
+  difficulty    String?
+  marks         Int          @default(1)
+  isActive      Boolean      @default(true)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@map("nvr_questions")
 }
 
 // ==========================================
@@ -234,8 +337,7 @@ model Assignment {
   student        StudentProfile  @relation(fields: [studentId], references: [id], onDelete: Cascade)
   subjectId      Int
   subject        Subject         @relation(fields: [subjectId], references: [id], onDelete: Cascade)
-  syllabusId     Int?
-  syllabus       Syllabus?       @relation(fields: [syllabusId], references: [id], onDelete: SetNull)
+  syllabusId     Int?            // References the subject-specific syllabus table (resolved at runtime)
   assignmentType String?         // e.g., "WORKSHEET", "GAME"
   dueDate        DateTime?
   status         String          @default("ASSIGNED") // "ASSIGNED", "COMPLETED", "OVERDUE"
@@ -272,15 +374,18 @@ model Test {
   @@map("tests")
 }
 
+// Uses subjectId discriminator pattern: questionId + subjectId together identify
+// which subject-specific question table to query at runtime.
+// No Prisma-level FK constraint on the question tables (Option A from the plan).
 model TestQuestion {
   id            Int      @id @default(autoincrement())
   testId        Int
   test          Test     @relation(fields: [testId], references: [id], onDelete: Cascade)
-  questionId    Int
-  question      Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  questionId    Int      // ID within the subject-specific question table
+  subjectId     Int      @default(1) // Discriminator: 1=Maths, 2=English, 3=VR, 4=NVR
   questionOrder Int      @default(0)
 
-  @@unique([testId, questionId])
+  @@unique([testId, questionId, subjectId])
   @@map("test_questions")
 }
 
@@ -303,12 +408,14 @@ model StudentTest {
   @@map("student_tests")
 }
 
+// Uses subjectId discriminator pattern: questionId + subjectId together identify
+// which subject-specific question table to query at runtime.
 model StudentTestAnswer {
   id            Int         @id @default(autoincrement())
   studentTestId Int
   studentTest   StudentTest @relation(fields: [studentTestId], references: [id], onDelete: Cascade)
-  questionId    Int
-  question      Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  questionId    Int         // ID within the subject-specific question table
+  subjectId     Int         @default(1) // Discriminator: 1=Maths, 2=English, 3=VR, 4=NVR
   selectedAnswer String
   isCorrect     Boolean
   marksAwarded  Int         @default(0)

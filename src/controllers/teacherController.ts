@@ -2,6 +2,7 @@ import { Response, NextFunction } from 'express';
 import prisma from '../config/database';
 import { AuthenticatedRequest } from '../middlewares/authMiddleware';
 import { AdminService } from '../services/adminService';
+import { getQuestionModel, getQuestionsByIds, getSyllabusModel } from '../utils/subjectResolver';
 
 export class TeacherController {
   /**
@@ -60,6 +61,7 @@ export class TeacherController {
 
   /**
    * Get questions for test creator preview.
+   * Queries the subject-specific question table based on subjectId.
    */
   static async getQuestions(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
     try {
@@ -72,22 +74,21 @@ export class TeacherController {
         return;
       }
 
-      const questions = await prisma.question.findMany({
-        where: {
-          subjectId,
-          ...(syllabusId && { syllabusId }),
-          isActive: true,
-        },
-        include: {
-          syllabus: true,
-        },
+      const questionModel = getQuestionModel(subjectId);
+
+      const where: any = { isActive: true };
+      if (syllabusId) where.syllabusId = syllabusId;
+
+      const questions = await questionModel.findMany({
+        where,
+        include: { syllabus: true },
       });
 
       // Shuffle and take limit
       const shuffled = questions.sort(() => 0.5 - Math.random());
       const selected = shuffled.slice(0, limit);
 
-      const mapped = selected.map((q) => ({
+      const mapped = selected.map((q: any) => ({
         id: q.id,
         question: q.questionText,
         questionText: q.questionText,
@@ -167,17 +168,17 @@ export class TeacherController {
           },
         });
 
-        // Link questions
+        // Link questions with subjectId discriminator
         await tx.testQuestion.createMany({
-          data: questionIds.map((qid, idx) => ({
+          data: questionIds.map((qid: number, idx: number) => ({
             testId: test.id,
             questionId: qid,
+            subjectId: subjectId,
             questionOrder: idx,
           })),
         });
 
         // Assign to students
-        // Loop through each student to create individual StudentTest assignments
         const studentTests = [];
         for (const sid of studentIds) {
           const st = await tx.studentTest.create({
@@ -205,6 +206,7 @@ export class TeacherController {
 
   /**
    * Get tests created by the teacher.
+   * Resolves questions from subject-specific tables using the discriminator.
    */
   static async getTests(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
     try {
@@ -227,16 +229,7 @@ export class TeacherController {
         include: {
           subject: true,
           testQuestions: {
-            include: {
-              question: {
-                include: {
-                  syllabus: true,
-                },
-              },
-            },
-            orderBy: {
-              questionOrder: 'asc'
-            }
+            orderBy: { questionOrder: 'asc' },
           },
           studentTests: {
             include: {
@@ -252,18 +245,38 @@ export class TeacherController {
       const flattenedAssigns: any[] = [];
 
       for (const t of tests) {
-        const topicName = t.testQuestions[0]?.question.syllabus?.topic || 'General';
-        const questionsList = t.testQuestions.map((tq) => ({
-          id: String(tq.question.id),
-          question: tq.question.questionText,
-          questionText: tq.question.questionText,
-          options: tq.question.options,
-          answer: tq.question.correctAnswer,
-          correctAnswer: tq.question.correctAnswer,
-          topic: tq.question.syllabus?.topic || 'General',
-          difficulty: tq.question.difficulty,
-          marks: tq.question.marks,
-        }));
+        // Resolve actual question data from subject-specific tables
+        const subjectId = t.subjectId;
+        const questionIds = t.testQuestions.map((tq) => tq.questionId);
+        
+        let questionsData: any[] = [];
+        try {
+          questionsData = await getQuestionsByIds(questionIds, subjectId);
+        } catch (e) {
+          console.error(`Failed to resolve questions for test ${t.id}:`, e);
+        }
+
+        // Build a lookup map: questionId -> question data
+        const questionMap = new Map<number, any>();
+        for (const q of questionsData) {
+          questionMap.set(q.id, q);
+        }
+
+        const topicName = questionsData[0]?.syllabus?.topic || 'General';
+        const questionsList = t.testQuestions.map((tq) => {
+          const q = questionMap.get(tq.questionId);
+          return {
+            id: String(tq.questionId),
+            question: q?.questionText || '',
+            questionText: q?.questionText || '',
+            options: q?.options || null,
+            answer: q?.correctAnswer || '',
+            correctAnswer: q?.correctAnswer || '',
+            topic: q?.syllabus?.topic || 'General',
+            difficulty: q?.difficulty || null,
+            marks: q?.marks || 1,
+          };
+        });
 
         for (const st of t.studentTests) {
           const answersMap = st.answers.reduce((acc: any, ans) => {
@@ -272,7 +285,7 @@ export class TeacherController {
           }, {});
 
           flattenedAssigns.push({
-            id: String(st.id), // Use studentTest ID as the frontend test ID
+            id: String(st.id),
             testId: t.id,
             title: t.title,
             subject: t.subject.name,
