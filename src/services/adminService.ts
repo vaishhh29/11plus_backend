@@ -325,6 +325,7 @@ export class AdminService {
     }
 
     const createdQuestions = [];
+    const skippedQuestions = [];
     for (const q of questions) {
       let syllabusId: number | null = null;
       if (q.topic) {
@@ -390,6 +391,10 @@ export class AdminService {
 
       if (isDuplicate) {
         // Skip duplicate
+        skippedQuestions.push({
+          questionText: q.questionText,
+          correctAnswer: q.correctAnswer
+        });
         continue;
       }
 
@@ -414,7 +419,9 @@ export class AdminService {
     return {
       subjectId: subject.id,
       count: createdQuestions.length,
-      questions: createdQuestions
+      questions: createdQuestions,
+      skippedCount: skippedQuestions.length,
+      skippedQuestions
     };
   }
 
