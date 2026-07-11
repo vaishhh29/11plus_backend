@@ -334,7 +334,11 @@ export class AdminService {
             topic: {
               equals: q.topic,
               mode: 'insensitive'
-            }
+            },
+            subTopic: q.subTopic ? {
+              equals: q.subTopic,
+              mode: 'insensitive'
+            } : null
           }
         });
         if (!syllabus) {
@@ -345,11 +349,6 @@ export class AdminService {
               subTopic: q.subTopic || null,
               description: q.topicDescription || null
             }
-          });
-        } else if (q.subTopic && !syllabus.subTopic) {
-          syllabus = await prisma.syllabus.update({
-            where: { id: syllabus.id },
-            data: { subTopic: q.subTopic }
           });
         }
         syllabusId = syllabus.id;
@@ -393,10 +392,14 @@ export class AdminService {
     };
   }
 
-  /**
-   * Get all subjects with their syllabus topics and question counts.
-   */
   static async getSyllabusOverview() {
+    const lastQuestion = await prisma.question.findFirst({
+      orderBy: { updatedAt: 'desc' },
+      select: { updatedAt: true }
+    });
+
+    const lastReviseTime: Date | null = lastQuestion ? lastQuestion.updatedAt : null;
+
     const subjects = await prisma.subject.findMany({
       include: {
         syllabus: {
@@ -416,6 +419,7 @@ export class AdminService {
       id: subject.id,
       name: subject.name,
       description: subject.description,
+      lastReviseTime: lastReviseTime ? lastReviseTime.toISOString() : null,
       topics: subject.syllabus.map(topic => ({
         id: topic.id,
         name: topic.topic,
