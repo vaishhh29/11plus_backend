@@ -119,11 +119,17 @@ export class AdminService {
   static async getAllStudents() {
     const students = await prisma.studentProfile.findMany({
       include: {
+        user: {
+          select: {
+            createdAt: true,
+          },
+        },
         parent: {
           select: {
             id: true,
             name: true,
             email: true,
+            contactInfo: true,
           },
         },
         teachers: {
@@ -134,6 +140,31 @@ export class AdminService {
                 name: true,
                 email: true,
                 teacherCode: true,
+                subjects: true,
+                contactInfo: true,
+              },
+            },
+          },
+        },
+        progress: {
+          include: {
+            subject: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+        studentTests: {
+          include: {
+            test: {
+              select: {
+                id: true,
+                title: true,
+                type: true,
+                duration: true,
+                totalMarks: true,
               },
             },
           },
@@ -152,12 +183,40 @@ export class AdminService {
       targetedSchool: s.targetedSchool,
       parentName: s.parent?.name || null,
       parentEmail: s.parent?.email || null,
+      parentPhone: s.parent?.contactInfo || null,
+      joinedDate: s.user?.createdAt || null,
       teachers: s.teachers.map((t) => ({
         id: t.teacher.id,
         name: t.teacher.name,
         email: t.teacher.email,
         teacherCode: t.teacher.teacherCode,
+        subjects: t.teacher.subjects,
+        contactInfo: t.teacher.contactInfo,
         connectedAt: t.linkedAt,
+      })),
+      progress: s.progress.map((p) => ({
+        id: p.id,
+        subjectId: p.subjectId,
+        subjectName: p.subject.name,
+        level: p.level,
+        progressPercentage: p.progressPercentage,
+        assignedQuestions: p.assignedQuestions,
+        completedQuestions: p.completedQuestions,
+        status: p.status,
+        updatedAt: p.updatedAt,
+      })),
+      studentTests: s.studentTests.map((st) => ({
+        id: st.id,
+        testId: st.testId,
+        testTitle: st.test.title,
+        testType: st.test.type,
+        duration: st.test.duration,
+        obtainedMarks: st.obtainedMarks,
+        totalMarks: st.totalMarks,
+        percentage: st.percentage,
+        grade: st.grade,
+        status: st.status,
+        submittedAt: st.submittedAt,
       })),
     }));
   }

@@ -1,0 +1,122 @@
+[
+  {
+    "id": 9059,
+    "questionText": "Write the number 2,949 in Roman numerals.",
+    "correctAnswer": "A) MMCMXLIX",
+    "options": [
+      "MMCMXLIX",
+      "MMCMXLIX",
+      "MMCMXLVIIII",
+      "MMCMLIX"
+    ],
+    "createdAt": "2026-07-11T08:48:26.688Z"
+  },
+  {
+    "id": 9058,
+    "questionText": "What number is represented by \"MMDCCCLXIX\"?",
+    "correctAnswer": "A) 2,869",
+    "options": [
+      "2,869",
+      "2,879",
+      "2,869",
+      "2,859"
+    ],
+    "createdAt": "2026-07-11T08:48:26.526Z"
+  },
+  {
+    "id": 9057,
+    "questionText": "Write the year 1984 in Roman numerals.",
+    "correctAnswer": "A) MCMLXXXIV",
+    "options": [
+      "MCMLXXXIV",
+      "MCMLXXXV",
+      "MCMLXXXIV",
+      "MCMXCIV"
+    ],
+    "createdAt": "2026-07-11T08:48:26.310Z"
+  },
+  {
+    "id": 9056,
+    "questionText": "What is the value of \"M\" + \"M\" + \"M\" + \"D\" + \"C\" + \"C\" + \"C\" + \"L\" + \"X\" + \"X\" + \"X\" + \"V\" + \"I\" + \"I\" + \"I\" + \"I\" + \"I\" + \"I\" + \"I\" + \"I\"?",
+    "correctAnswer": "A) MMMDCCCLXXXVIII",
+    "options": [
+      "MMMDCCCLXXXVIII",
+      "MMMDCCCLXXXVIII",
+      "MMMDCCCLXXXVIII",
+      "MMMDCCCLXXXVIII"
+    ],
+    "createdAt": "2026-07-11T08:46:48.453Z"
+  },
+  {
+    "id": 9055,
+    "questionText": "What is the value of \"M\" + \"M\" + \"M\" + \"D\" + \"C\" + \"C\" + \"C\" + \"L\" + \"X\" + \"X\" + \"X\" + \"V\" + \"I\" + \"I\" + \"I\" + \"I\" + \"I\" + \"I\" + \"I\"?",
+    "correctAnswer": "A) MMMDCCCLXXXVII",
+    "options": [
+      "MMMDCCCLXXXVII",
+      "MMMDCCCLXXXVII",
+      "MMMDCCCLXXXVII",
+      "MMMDCCCLXXXVII"
+    ],
+    "createdAt": "2026-07-11T08:46:48.297Z"
+  },
+  {
+    "id": 9054,
+    "questionText": "What is the value of \"M\" + \"M\" + \"M\" + \"D\" + \"C\" + \"C\" + \"C\" + \"L\" + \"X\" + \"X\" + \"X\" + \"V\" + \"I\" + \"I\" + \"I\" + \"I\" + \"I\" + \"I\"?",
+    "correctAnswer": "A) MMMDCCCLXXXVI",
+    "options": [
+      "MMMDCCCLXXXVI",
+      "MMMDCCCLXXXVI",
+      "MMMDCCCLXXXVI",
+      "MMMDCCCLXXXVI"
+    ],
+    "createdAt": "2026-07-11T08:46:48.144Z"
+  },
+  {
+    "id": 9053,
+    "questionText": "What is the value of \"M\" + \"M\" + \"M\" + \"D\" + \"C\" + \"C\" + \"C\" + \"L\" + \"X\" + \"X\" + \"X\" + \"V\" + \"I\" + \"I\" + \"I\" + \"I\" + \"I\"?",
+    "correctAnswer": "A) MMMDCCCLXXXV",
+    "options": [
+      "MMMDCCCLXXXV",
+      "MMMDCCCLXXXV",
+      "MMMDCCCLXXXV",
+      "MMMDCCCLXXXV"
+    ],
+    "createdAt": "2026-07-11T08:46:47.990Z"
+  },
+  {
+    "id": 9052,
+    "questionText": "What is the value of \"M\" + \"M\" + \"M\" + \"D\" + \"C\" + \"C\" + \"C\" + \"L\" + \"X\" + \"X\" + \"X\" + \"V\" + \"I\" + \"I\" + \"I\" + \"I\"?",
+    "correctAnswer": "A) MMMDCCCLXXXIV",
+    "options": [
+      "MMMDCCCLXXXIV",
+      "MMMDCCCLXXXIV",
+      "MMMDCCCLXXXIV",
+      "MMMDCCCLXXXIV"
+    ],
+    "createdAt": "2026-07-11T08:46:47.836Z"
+  },
+  {
+    "id": 9051,
+    "questionText": "What is the value of \"M\" + \"M\" + \"M\" + \"D\" + \"C\" + \"C\" + \"C\" + \"L\" + \"X\" + \"X\" + \"X\" + \"V\" + \"I\" + \"I\" + \"I\"?",
+    "correctAnswer": "A) MMMDCCCLXXXIII",
+    "options": [
+      "MMMDCCCLXXXIII",
+      "MMMDCCCLXXXIII",
+      "MMMDCCCLXXXIII",
+      "MMMDCCCLXXXIII"
+    ],
+    "createdAt": "2026-07-11T08:46:47.683Z"
+  },
+  {
+    "id": 9050,
+    "questionText": "What is the value of \"M\" + \"M\" + \"M\" + \"D\" + \"C\" + \"C\" + \"L\" + \"X\" + \"X\" + \"V\" + \"I\" + \"I\" + \"I\"?",
+    "correctAnswer": "A) MMMDCLXXIII",
+    "options": [
+      "MMMDCLXXIII",
+      "MMMDCLXXIII",
+      "MMMDCLXXIII",
+      "MMMDCLXXIII"
+    ],
+    "createdAt": "2026-07-11T08:46:47.530Z"
+  }
+]
