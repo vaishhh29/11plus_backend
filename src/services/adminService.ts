@@ -355,14 +355,40 @@ export class AdminService {
       }
 
       // Check if duplicate question exists under this subject
-      const existingQuestion = await prisma.question.findFirst({
+      const existingQuestions = await prisma.question.findMany({
         where: {
           subjectId: subject.id,
           questionText: q.questionText
         }
       });
 
-      if (existingQuestion) {
+      let isDuplicate = false;
+      for (const eq of existingQuestions) {
+        if (eq.correctAnswer !== q.correctAnswer) {
+          continue;
+        }
+
+        const eqOptions = Array.isArray(eq.options) ? eq.options : [];
+        const qOptions = Array.isArray(q.options) ? q.options : [];
+        if (eqOptions.length !== qOptions.length) {
+          continue;
+        }
+
+        let optionsMatch = true;
+        for (let idx = 0; idx < eqOptions.length; idx++) {
+          if (String(eqOptions[idx]) !== String(qOptions[idx])) {
+            optionsMatch = false;
+            break;
+          }
+        }
+
+        if (optionsMatch) {
+          isDuplicate = true;
+          break;
+        }
+      }
+
+      if (isDuplicate) {
         // Skip duplicate
         continue;
       }
