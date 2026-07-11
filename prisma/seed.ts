@@ -30,11 +30,22 @@ async function main() {
     console.log(`Seeded default admin user successfully (${adminEmail} / ${adminPassword}).`);
   }
 
-  // Clear existing academic tables and restart their identity sequences from 1
-  await prisma.$executeRawUnsafe('TRUNCATE TABLE "questions" RESTART IDENTITY CASCADE;');
-  await prisma.$executeRawUnsafe('TRUNCATE TABLE "syllabus" RESTART IDENTITY CASCADE;');
-  await prisma.$executeRawUnsafe('TRUNCATE TABLE "subjects" RESTART IDENTITY CASCADE;');
-  console.log('Cleared all academic tables (questions, syllabus, subjects) and restarted identity sequences from 1.');
+  // Seed the 4 core subjects using upsert (safe to run multiple times)
+  const subjects = [
+    { id: 1, name: 'Maths', description: 'Mathematics - Number, Algebra, Geometry, Data Handling', icon: 'calculator' },
+    { id: 2, name: 'English', description: 'English Language - Reading Comprehension, Grammar, Writing', icon: 'book' },
+    { id: 3, name: 'Verbal Reasoning', description: 'Verbal Reasoning - Logic, Vocabulary, Pattern Recognition', icon: 'brain' },
+    { id: 4, name: 'Non-Verbal Reasoning', description: 'Non-Verbal Reasoning - Spatial, Abstract, Visual Patterns', icon: 'shapes' },
+  ];
+
+  for (const subj of subjects) {
+    await prisma.subject.upsert({
+      where: { name: subj.name },
+      update: { description: subj.description, icon: subj.icon },
+      create: subj,
+    });
+  }
+  console.log('Seeded 4 core subjects (Maths, English, Verbal Reasoning, Non-Verbal Reasoning).');
 }
 
 main()
