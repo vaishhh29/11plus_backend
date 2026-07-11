@@ -324,7 +324,11 @@ class AdminService {
                         topic: {
                             equals: q.topic,
                             mode: 'insensitive'
-                        }
+                        },
+                        subTopic: q.subTopic ? {
+                            equals: q.subTopic,
+                            mode: 'insensitive'
+                        } : null
                     }
                 });
                 if (!syllabus) {
@@ -335,12 +339,6 @@ class AdminService {
                             subTopic: q.subTopic || null,
                             description: q.topicDescription || null
                         }
-                    });
-                }
-                else if (q.subTopic && !syllabus.subTopic) {
-                    syllabus = await database_1.default.syllabus.update({
-                        where: { id: syllabus.id },
-                        data: { subTopic: q.subTopic }
                     });
                 }
                 syllabusId = syllabus.id;
@@ -379,10 +377,12 @@ class AdminService {
             questions: createdQuestions
         };
     }
-    /**
-     * Get all subjects with their syllabus topics and question counts.
-     */
     static async getSyllabusOverview() {
+        const lastQuestion = await database_1.default.question.findFirst({
+            orderBy: { updatedAt: 'desc' },
+            select: { updatedAt: true }
+        });
+        const lastReviseTime = lastQuestion ? lastQuestion.updatedAt : null;
         const subjects = await database_1.default.subject.findMany({
             include: {
                 syllabus: {
@@ -401,6 +401,7 @@ class AdminService {
             id: subject.id,
             name: subject.name,
             description: subject.description,
+            lastReviseTime: lastReviseTime ? lastReviseTime.toISOString() : null,
             topics: subject.syllabus.map(topic => ({
                 id: topic.id,
                 name: topic.topic,
