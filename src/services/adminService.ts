@@ -494,12 +494,29 @@ export class AdminService {
     const result = [];
 
     for (const subject of subjects) {
-      const subjectId = subject.id;
+      // IMPORTANT: Use resolveSubjectId by name, NOT subject.id from the DB.
+      // The DB auto-increment id may not match the hardcoded 1-4 constants
+      // that getSyllabusModel/getQuestionModel expect.
+      let resolvedId: number;
+      try {
+        resolvedId = resolveSubjectId(subject.name);
+      } catch (e) {
+        console.error(`[SyllabusOverview] Cannot resolve subject "${subject.name}", skipping.`, e);
+        result.push({
+          id: subject.id,
+          name: subject.name,
+          description: subject.description,
+          lastReviseTime: null,
+          topics: []
+        });
+        continue;
+      }
+
       let topics: any[] = [];
 
       try {
-        const syllabusModel = getSyllabusModel(subjectId);
-        const questionModel = getQuestionModel(subjectId);
+        const syllabusModel = getSyllabusModel(resolvedId);
+        const questionModel = getQuestionModel(resolvedId);
 
         const syllabusEntries = await syllabusModel.findMany({
           orderBy: { displayOrder: 'asc' }
@@ -520,21 +537,21 @@ export class AdminService {
           })
         );
       } catch (e) {
-        // If subjectId doesn't map to a known table (e.g. future subjects), skip
+        console.error(`[SyllabusOverview] Error fetching topics for "${subject.name}" (resolvedId=${resolvedId}):`, e);
         topics = [];
       }
 
       // Get last updated timestamp from questions
       let lastReviseTime: string | null = null;
       try {
-        const questionModel = getQuestionModel(subjectId);
+        const questionModel = getQuestionModel(resolvedId);
         const lastQ = await questionModel.findFirst({
           orderBy: { updatedAt: 'desc' },
           select: { updatedAt: true }
         });
         lastReviseTime = lastQ ? lastQ.updatedAt.toISOString() : null;
       } catch (e) {
-        // ignore
+        console.error(`[SyllabusOverview] Error fetching lastReviseTime for "${subject.name}":`, e);
       }
 
       result.push({
