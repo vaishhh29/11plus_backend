@@ -569,21 +569,37 @@ export class AdminService {
   /**
    * Get all questions for a topic from the correct subject-specific table.
    */
-  static async getQuestionsByTopic(topicName: string, subjectName?: string) {
+  static async getQuestionsByTopic(topicName: string, subjectName?: string, subTopicName?: string) {
+    const buildSyllabusWhere = () => {
+      const filter: any = {
+        topic: {
+          equals: topicName,
+          mode: 'insensitive'
+        }
+      };
+      if (subTopicName && subTopicName !== 'null') {
+        filter.subTopic = {
+          equals: subTopicName,
+          mode: 'insensitive'
+        };
+      } else {
+        filter.OR = [
+          { subTopic: null },
+          { subTopic: '' }
+        ];
+      }
+      return filter;
+    };
+
     // If subject is provided, query only that subject's table
     if (subjectName) {
       const subjectId = resolveSubjectId(subjectName);
       const questionModel = getQuestionModel(subjectId);
       const syllabusModel = getSyllabusModel(subjectId);
 
-      // Find syllabus entry
+      // Find syllabus entry matching both topic and subTopic
       const syllabus = await syllabusModel.findFirst({
-        where: {
-          topic: {
-            equals: topicName,
-            mode: 'insensitive'
-          }
-        }
+        where: buildSyllabusWhere()
       });
 
       if (!syllabus) return [];
@@ -596,7 +612,8 @@ export class AdminService {
       return questions.map((q: any) => ({
         ...q,
         subjectId: subjectId,
-        topic: syllabus.topic
+        topic: syllabus.topic,
+        subTopic: syllabus.subTopic
       }));
     }
 
@@ -608,12 +625,7 @@ export class AdminService {
         const questionModel = getQuestionModel(sid);
 
         const syllabus = await syllabusModel.findFirst({
-          where: {
-            topic: {
-              equals: topicName,
-              mode: 'insensitive'
-            }
-          }
+          where: buildSyllabusWhere()
         });
 
         if (syllabus) {
@@ -625,7 +637,8 @@ export class AdminService {
           allQuestions.push(...questions.map((q: any) => ({
             ...q,
             subjectId: sid,
-            topic: syllabus.topic
+            topic: syllabus.topic,
+            subTopic: syllabus.subTopic
           })));
         }
       } catch (e) {

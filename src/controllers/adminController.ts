@@ -160,12 +160,16 @@ export class AdminController {
    */
   static async getQuestionsByTopic(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { topic, subject } = req.query;
+      const { topic, subTopic, subject } = req.query;
       if (!topic) {
         res.status(400).json({ message: 'Topic query parameter is required.' });
         return;
       }
-      const data = await AdminService.getQuestionsByTopic(String(topic), subject ? String(subject) : undefined);
+      const data = await AdminService.getQuestionsByTopic(
+        String(topic),
+        subject ? String(subject) : undefined,
+        subTopic ? String(subTopic) : undefined
+      );
       res.status(200).json(data);
     } catch (error) {
       next(error);

@@ -528,20 +528,36 @@ class AdminService {
     /**
      * Get all questions for a topic from the correct subject-specific table.
      */
-    static async getQuestionsByTopic(topicName, subjectName) {
+    static async getQuestionsByTopic(topicName, subjectName, subTopicName) {
+        const buildSyllabusWhere = () => {
+            const filter = {
+                topic: {
+                    equals: topicName,
+                    mode: 'insensitive'
+                }
+            };
+            if (subTopicName && subTopicName !== 'null') {
+                filter.subTopic = {
+                    equals: subTopicName,
+                    mode: 'insensitive'
+                };
+            }
+            else {
+                filter.OR = [
+                    { subTopic: null },
+                    { subTopic: '' }
+                ];
+            }
+            return filter;
+        };
         // If subject is provided, query only that subject's table
         if (subjectName) {
             const subjectId = (0, subjectResolver_1.resolveSubjectId)(subjectName);
             const questionModel = (0, subjectResolver_1.getQuestionModel)(subjectId);
             const syllabusModel = (0, subjectResolver_1.getSyllabusModel)(subjectId);
-            // Find syllabus entry
+            // Find syllabus entry matching both topic and subTopic
             const syllabus = await syllabusModel.findFirst({
-                where: {
-                    topic: {
-                        equals: topicName,
-                        mode: 'insensitive'
-                    }
-                }
+                where: buildSyllabusWhere()
             });
             if (!syllabus)
                 return [];
@@ -552,7 +568,8 @@ class AdminService {
             return questions.map((q) => ({
                 ...q,
                 subjectId: subjectId,
-                topic: syllabus.topic
+                topic: syllabus.topic,
+                subTopic: syllabus.subTopic
             }));
         }
         // If no subject specified, search across all 4 tables
@@ -562,12 +579,7 @@ class AdminService {
                 const syllabusModel = (0, subjectResolver_1.getSyllabusModel)(sid);
                 const questionModel = (0, subjectResolver_1.getQuestionModel)(sid);
                 const syllabus = await syllabusModel.findFirst({
-                    where: {
-                        topic: {
-                            equals: topicName,
-                            mode: 'insensitive'
-                        }
-                    }
+                    where: buildSyllabusWhere()
                 });
                 if (syllabus) {
                     const questions = await questionModel.findMany({
@@ -577,7 +589,8 @@ class AdminService {
                     allQuestions.push(...questions.map((q) => ({
                         ...q,
                         subjectId: sid,
-                        topic: syllabus.topic
+                        topic: syllabus.topic,
+                        subTopic: syllabus.subTopic
                     })));
                 }
             }
