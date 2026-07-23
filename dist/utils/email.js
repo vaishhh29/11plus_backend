@@ -10,7 +10,7 @@ const transporter = process.env.SMTP_HOST ? nodemailer_1.default.createTransport
     port: parseInt(process.env.SMTP_PORT || '587'),
     auth: {
         user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        pass: process.env.SMTP_PASS ? process.env.SMTP_PASS.trim() : '',
     },
 }) : null;
 class EmailService {
@@ -23,8 +23,12 @@ class EmailService {
             console.log(`[EmailService] SMTP_HOST is not configured. Logging details to console fallback:\nTo: ${to}\nName: ${name}\nRole: ${role}\nUsername: ${username}\nTempPassword: ${temporaryPassword}`);
             return;
         }
+        const fromEmail = process.env.SMTP_USER || 'no-reply@tuition.com';
+        const fromField = process.env.EMAIL_FROM && process.env.EMAIL_FROM.includes('@')
+            ? process.env.EMAIL_FROM
+            : `"${(process.env.EMAIL_FROM || '11Plus Academy').replace(/"/g, '')}" <${fromEmail}>`;
         const mailOptions = {
-            from: process.env.EMAIL_FROM || '"Tuition Admin" <no-reply@tuition.com>',
+            from: fromField,
             to,
             subject: 'Welcome! Your Account Has Been Created',
             html: `
