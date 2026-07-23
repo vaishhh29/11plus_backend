@@ -9,3 +9,5 @@ seed_subjects.ts
 seed_syllabus_topics.ts
 test_server.*
 tmp*
+db_backup_dump.sql
+db_backup_dump.json
