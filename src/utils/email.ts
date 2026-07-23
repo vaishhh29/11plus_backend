@@ -50,14 +50,14 @@ export class EmailService {
               <div style="margin: 24px 0; background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px;">
                 <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 15px; color: #1E293B; border-bottom: 1px solid #E2E8F0; padding-bottom: 8px;">Login Credentials</h3>
                 
-                <table style="width: 100%; border-collapse: collapse;">
+                 <table style="width: 100%; border-collapse: collapse;">
                   <tr>
-                    <td style="padding: 6px 0; font-size: 13px; font-weight: bold; color: #64748B; width: 100px;">Username:</td>
-                    <td style="padding: 6px 0; font-size: 13px; font-family: monospace; color: #1E293B; font-weight: 600;">${username}</td>
+                    <td style="padding: 6px 0; font-size: 14px; font-weight: bold; color: #64748B; width: 100px;">Username:</td>
+                    <td style="padding: 6px 0; font-size: 14px; font-family: 'Times New Roman', Times, serif; color: #1E293B; font-weight: 600;">${username}</td>
                   </tr>
                   <tr>
-                    <td style="padding: 6px 0; font-size: 13px; font-weight: bold; color: #64748B;">Password:</td>
-                    <td style="padding: 6px 0; font-size: 13px; font-family: monospace; color: #1E293B; font-weight: 600;">${temporaryPassword}</td>
+                    <td style="padding: 6px 0; font-size: 14px; font-weight: bold; color: #64748B;">Password:</td>
+                    <td style="padding: 6px 0; font-size: 14px; font-family: 'Times New Roman', Times, serif; color: #1E293B; font-weight: 600;">${temporaryPassword}</td>
                   </tr>
                 </table>
               </div>
