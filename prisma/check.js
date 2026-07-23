@@ -16,12 +16,12 @@ async function main() {
   
   // Verify
   const users = await prisma.user.findMany({
-    select: { id: true, email: true, role: true, password: true }
+    select: { id: true, username: true, role: true, password: true }
   });
   
   for (const u of users) {
     const match = await bcrypt.compare('elevenplusbydt', u.password);
-    console.log(`  ${u.email} (${u.role}): password match = ${match}`);
+    console.log(`  ${u.username} (${u.role}): password match = ${match}`);
   }
 }
 

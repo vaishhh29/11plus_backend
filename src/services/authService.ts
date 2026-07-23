@@ -3,16 +3,17 @@ import prisma from '../config/database';
 import { generateToken } from '../utils/jwt';
 import { Role } from '@prisma/client';
 import { generateTeacherCode, generateStudentCode } from '../utils/codeGenerator';
+import { EmailService } from '../utils/email';
 
 export class AuthService {
   /**
    * Log in user and return JWT + user profile details including linking relations.
    */
   static async login(data: any) {
-    const { email, password } = data;
+    const { username, password } = data;
 
     const user = await prisma.user.findUnique({
-      where: { email },
+      where: { username },
       include: {
         teacherProfile: {
           include: {
@@ -42,7 +43,7 @@ export class AuthService {
     });
 
     if (!user) {
-      const error: any = new Error('Invalid email or password');
+      const error: any = new Error('Invalid username or password');
       error.statusCode = 401;
       throw error;
     }
@@ -50,14 +51,14 @@ export class AuthService {
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      const error: any = new Error('Invalid email or password');
+      const error: any = new Error('Invalid username or password');
       error.statusCode = 401;
       throw error;
     }
 
     const token = generateToken({
       userId: user.id,
-      email: user.email,
+      username: user.username,
       role: user.role,
     });
 
@@ -123,7 +124,7 @@ export class AuthService {
     return {
       user: {
         id: user.id,
-        email: user.email,
+        username: user.username,
         name: user.name,
         role: user.role,
         createdAt: user.createdAt,
@@ -138,7 +139,7 @@ export class AuthService {
    * Can optionally connect them upon account creation.
    */
   static async createUserByAdmin(data: any) {
-    const { email, password, name, role, grade, subjects, contactInfo, targetedSchool } = data;
+    const { username, email, password, name, role, grade, subjects, contactInfo, targetedSchool } = data;
 
     if (!Object.values(Role).includes(role)) {
       const error: any = new Error(`Invalid role. Must be one of: ${Object.values(Role).join(', ')}`);
@@ -147,11 +148,11 @@ export class AuthService {
     }
 
     const existingUser = await prisma.user.findUnique({
-      where: { email },
+      where: { username },
     });
 
     if (existingUser) {
-      const error: any = new Error('Email is already registered');
+      const error: any = new Error('Username is already registered');
       error.statusCode = 400;
       throw error;
     }
@@ -162,6 +163,7 @@ export class AuthService {
     const result = await prisma.$transaction(async (tx) => {
       const user = await tx.user.create({
         data: {
+          username,
           email,
           name,
           password: hashedPassword,
@@ -189,7 +191,7 @@ export class AuthService {
             userId: user.id,
             teacherCode,
             name: user.name,
-            email: user.email,
+            email: email,
             subjects: subjects || [],
             contactInfo: contactInfo || null,
             students: {
@@ -235,7 +237,7 @@ export class AuthService {
             userId: user.id,
             studentCode,
             name: user.name,
-            email: user.email,
+            email: email,
             grade: grade || null,
             targetedSchool: targetedSchool || null,
             parentId: resolvedParentId,
@@ -267,7 +269,7 @@ export class AuthService {
           data: {
             userId: user.id,
             name: user.name,
-            email: user.email,
+            email: email,
             contactInfo: contactInfo || null,
             students: {
               connect: studentIds.map(sid => ({ id: sid })),
@@ -279,9 +281,13 @@ export class AuthService {
       return { user, profile };
     });
 
+    // Send welcome email asynchronously to not block return
+    EmailService.sendWelcomeEmail(email, result.user.name, result.user.role, result.user.username, password)
+      .catch(err => console.error('Failed to send welcome email:', err));
+
     return {
       id: result.user.id,
-      email: result.user.email,
+      username: result.user.username,
       name: result.user.name,
       role: result.user.role,
       createdAt: result.user.createdAt,
@@ -390,7 +396,7 @@ export class AuthService {
 
     return {
       id: user.id,
-      email: user.email,
+      username: user.username,
       name: user.name,
       role: user.role,
       createdAt: user.createdAt,
@@ -404,7 +410,7 @@ export class AuthService {
    * and synchronizes data with the specific profile table.
    */
   static async updateUserProfile(userId: number, data: any) {
-    const { name, email, password, grade, targetedSchool, subjects, contactInfo } = data;
+    const { name, username, email, password, grade, targetedSchool, subjects, contactInfo } = data;
 
     // Get current user details
     const currentUser = await prisma.user.findUnique({
@@ -417,13 +423,13 @@ export class AuthService {
       throw error;
     }
 
-    // Validate email uniqueness if it's changing
-    if (email && email !== currentUser.email) {
-      const emailTaken = await prisma.user.findUnique({
-        where: { email },
+    // Validate username uniqueness if it's changing
+    if (username && username !== currentUser.username) {
+      const usernameTaken = await prisma.user.findUnique({
+        where: { username },
       });
-      if (emailTaken) {
-        const error: any = new Error('Email is already in use by another account');
+      if (usernameTaken) {
+        const error: any = new Error('Username is already in use by another account');
         error.statusCode = 400;
         throw error;
       }
@@ -432,7 +438,7 @@ export class AuthService {
     // Build user update object
     const userUpdateData: any = {};
     if (name) userUpdateData.name = name;
-    if (email) userUpdateData.email = email;
+    if (username) userUpdateData.username = username;
     if (password && password.trim() !== '') {
       userUpdateData.password = await bcrypt.hash(password, 10);
     }

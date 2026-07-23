@@ -9,12 +9,13 @@ class AdminController {
      */
     static async createUser(req, res, next) {
         try {
-            const { email, password, name, role, grade, subjects, contactInfo, targetedSchool, parentEmail, teacherCodes, studentCodes } = req.body;
-            if (!email || !password || !name || !role) {
-                res.status(400).json({ message: 'Email, password, name, and role are required fields.' });
+            const { username, email, password, name, role, grade, subjects, contactInfo, targetedSchool, parentEmail, teacherCodes, studentCodes } = req.body;
+            if (!username || !email || !password || !name || !role) {
+                res.status(400).json({ message: 'Username, email, password, name, and role are required fields.' });
                 return;
             }
             const result = await authService_1.AuthService.createUserByAdmin({
+                username,
                 email,
                 password,
                 name,

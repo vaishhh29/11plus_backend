@@ -8,12 +8,12 @@ class AuthController {
      */
     static async login(req, res, next) {
         try {
-            const { email, password } = req.body;
-            if (!email || !password) {
-                res.status(400).json({ message: 'Email and password are required' });
+            const { username, password } = req.body;
+            if (!username || !password) {
+                res.status(400).json({ message: 'Username and password are required' });
                 return;
             }
-            const result = await authService_1.AuthService.login({ email, password });
+            const result = await authService_1.AuthService.login({ username, password });
             res.status(200).json(result);
         }
         catch (error) {

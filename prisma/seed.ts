@@ -5,29 +5,30 @@ const prisma = new PrismaClient();
 
 async function main() {
   // 1. Seed Admin
-  const adminEmail = 'adminofelevenplus@gmail.com';
+  const adminUsername = 'adminofelevenplus@gmail.com';
   const adminPassword = 'elevenplusbydt';
 
   // Remove the old demo admin if it exists
   await prisma.user.deleteMany({
-    where: { email: 'admin@gmail.com' },
+    where: { username: 'admin@gmail.com' },
   });
 
   let adminUser = await prisma.user.findUnique({
-    where: { email: adminEmail },
+    where: { username: adminUsername },
   });
 
   if (!adminUser) {
     const hashedPassword = await bcrypt.hash(adminPassword, 10);
     adminUser = await prisma.user.create({
       data: {
-        email: adminEmail,
+        username: adminUsername,
+        email: adminUsername,
         name: 'System Admin',
         password: hashedPassword,
         role: Role.ADMIN,
       },
     });
-    console.log(`Seeded default admin user successfully (${adminEmail} / ${adminPassword}).`);
+    console.log(`Seeded default admin user successfully (${adminUsername} / ${adminPassword}).`);
   }
 
   // Seed the 4 core subjects using upsert (safe to run multiple times)

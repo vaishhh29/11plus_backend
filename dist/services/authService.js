@@ -9,14 +9,15 @@ const database_1 = __importDefault(require("../config/database"));
 const jwt_1 = require("../utils/jwt");
 const client_1 = require("@prisma/client");
 const codeGenerator_1 = require("../utils/codeGenerator");
+const email_1 = require("../utils/email");
 class AuthService {
     /**
      * Log in user and return JWT + user profile details including linking relations.
      */
     static async login(data) {
-        const { email, password } = data;
+        const { username, password } = data;
         const user = await database_1.default.user.findUnique({
-            where: { email },
+            where: { username },
             include: {
                 teacherProfile: {
                     include: {
@@ -45,19 +46,19 @@ class AuthService {
             },
         });
         if (!user) {
-            const error = new Error('Invalid email or password');
+            const error = new Error('Invalid username or password');
             error.statusCode = 401;
             throw error;
         }
         const isPasswordValid = await bcryptjs_1.default.compare(password, user.password);
         if (!isPasswordValid) {
-            const error = new Error('Invalid email or password');
+            const error = new Error('Invalid username or password');
             error.statusCode = 401;
             throw error;
         }
         const token = (0, jwt_1.generateToken)({
             userId: user.id,
-            email: user.email,
+            username: user.username,
             role: user.role,
         });
         let profile = null;
@@ -122,7 +123,7 @@ class AuthService {
         return {
             user: {
                 id: user.id,
-                email: user.email,
+                username: user.username,
                 name: user.name,
                 role: user.role,
                 createdAt: user.createdAt,
@@ -136,17 +137,17 @@ class AuthService {
      * Can optionally connect them upon account creation.
      */
     static async createUserByAdmin(data) {
-        const { email, password, name, role, grade, subjects, contactInfo, targetedSchool } = data;
+        const { username, email, password, name, role, grade, subjects, contactInfo, targetedSchool } = data;
         if (!Object.values(client_1.Role).includes(role)) {
             const error = new Error(`Invalid role. Must be one of: ${Object.values(client_1.Role).join(', ')}`);
             error.statusCode = 400;
             throw error;
         }
         const existingUser = await database_1.default.user.findUnique({
-            where: { email },
+            where: { username },
         });
         if (existingUser) {
-            const error = new Error('Email is already registered');
+            const error = new Error('Username is already registered');
             error.statusCode = 400;
             throw error;
         }
@@ -155,6 +156,7 @@ class AuthService {
         const result = await database_1.default.$transaction(async (tx) => {
             const user = await tx.user.create({
                 data: {
+                    username,
                     email,
                     name,
                     password: hashedPassword,
@@ -178,7 +180,7 @@ class AuthService {
                         userId: user.id,
                         teacherCode,
                         name: user.name,
-                        email: user.email,
+                        email: email,
                         subjects: subjects || [],
                         contactInfo: contactInfo || null,
                         students: {
@@ -221,7 +223,7 @@ class AuthService {
                         userId: user.id,
                         studentCode,
                         name: user.name,
-                        email: user.email,
+                        email: email,
                         grade: grade || null,
                         targetedSchool: targetedSchool || null,
                         parentId: resolvedParentId,
@@ -253,7 +255,7 @@ class AuthService {
                     data: {
                         userId: user.id,
                         name: user.name,
-                        email: user.email,
+                        email: email,
                         contactInfo: contactInfo || null,
                         students: {
                             connect: studentIds.map(sid => ({ id: sid })),
@@ -263,9 +265,12 @@ class AuthService {
             }
             return { user, profile };
         });
+        // Send welcome email asynchronously to not block return
+        email_1.EmailService.sendWelcomeEmail(email, result.user.name, result.user.role, result.user.username, password)
+            .catch(err => console.error('Failed to send welcome email:', err));
         return {
             id: result.user.id,
-            email: result.user.email,
+            username: result.user.username,
             name: result.user.name,
             role: result.user.role,
             createdAt: result.user.createdAt,
@@ -371,7 +376,7 @@ class AuthService {
         }
         return {
             id: user.id,
-            email: user.email,
+            username: user.username,
             name: user.name,
             role: user.role,
             createdAt: user.createdAt,
@@ -384,7 +389,7 @@ class AuthService {
      * and synchronizes data with the specific profile table.
      */
     static async updateUserProfile(userId, data) {
-        const { name, email, password, grade, targetedSchool, subjects, contactInfo } = data;
+        const { name, username, email, password, grade, targetedSchool, subjects, contactInfo } = data;
         // Get current user details
         const currentUser = await database_1.default.user.findUnique({
             where: { id: userId },
@@ -394,13 +399,13 @@ class AuthService {
             error.statusCode = 404;
             throw error;
         }
-        // Validate email uniqueness if it's changing
-        if (email && email !== currentUser.email) {
-            const emailTaken = await database_1.default.user.findUnique({
-                where: { email },
+        // Validate username uniqueness if it's changing
+        if (username && username !== currentUser.username) {
+            const usernameTaken = await database_1.default.user.findUnique({
+                where: { username },
             });
-            if (emailTaken) {
-                const error = new Error('Email is already in use by another account');
+            if (usernameTaken) {
+                const error = new Error('Username is already in use by another account');
                 error.statusCode = 400;
                 throw error;
             }
@@ -409,8 +414,8 @@ class AuthService {
         const userUpdateData = {};
         if (name)
             userUpdateData.name = name;
-        if (email)
-            userUpdateData.email = email;
+        if (username)
+            userUpdateData.username = username;
         if (password && password.trim() !== '') {
             userUpdateData.password = await bcryptjs_1.default.hash(password, 10);
         }
