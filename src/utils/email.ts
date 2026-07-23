@@ -1,12 +1,21 @@
 import nodemailer from 'nodemailer';
 
-const transporter = process.env.SMTP_HOST ? nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: parseInt(process.env.SMTP_PORT || '587'),
+const smtpHost = process.env.SMTP_HOST ? process.env.SMTP_HOST.trim() : '';
+const smtpPort = parseInt(process.env.SMTP_PORT || '587');
+const smtpUser = process.env.SMTP_USER ? process.env.SMTP_USER.trim() : '';
+const smtpPass = process.env.SMTP_PASS ? process.env.SMTP_PASS.trim() : '';
+
+const transporter = smtpHost ? nodemailer.createTransport({
+  host: smtpHost,
+  port: smtpPort,
+  secure: smtpPort === 465, // true for 465 (SSL), false for 587 (TLS)
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS ? process.env.SMTP_PASS.trim() : '',
+    user: smtpUser,
+    pass: smtpPass,
   },
+  connectionTimeout: 10000, // Prevent hanging requests if SMTP is blocked
+  greetingTimeout: 10000,
+  socketTimeout: 10000,
 }) : null;
 
 export class EmailService {
