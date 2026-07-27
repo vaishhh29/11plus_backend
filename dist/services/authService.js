@@ -151,6 +151,29 @@ class AuthService {
             error.statusCode = 400;
             throw error;
         }
+        // Role-specific email uniqueness validation (Teachers and Parents must be unique, Students can share)
+        if (email) {
+            if (role === client_1.Role.TEACHER) {
+                const existingEmail = await database_1.default.teacherProfile.findFirst({
+                    where: { email },
+                });
+                if (existingEmail) {
+                    const error = new Error('Email is already registered by another teacher');
+                    error.statusCode = 400;
+                    throw error;
+                }
+            }
+            else if (role === client_1.Role.PARENT) {
+                const existingEmail = await database_1.default.parentProfile.findFirst({
+                    where: { email },
+                });
+                if (existingEmail) {
+                    const error = new Error('Email is already registered by another parent');
+                    error.statusCode = 400;
+                    throw error;
+                }
+            }
+        }
         const hashedPassword = await bcryptjs_1.default.hash(password, 10);
         // Create user and associated profile in a transaction
         const result = await database_1.default.$transaction(async (tx) => {
@@ -416,12 +439,43 @@ class AuthService {
                 throw error;
             }
         }
+        // Validate email uniqueness if it's changing for TEACHER or PARENT (Students can duplicate emails)
+        if (email) {
+            if (currentUser.role === client_1.Role.TEACHER) {
+                const existingEmail = await database_1.default.teacherProfile.findFirst({
+                    where: {
+                        email,
+                        userId: { not: userId }
+                    },
+                });
+                if (existingEmail) {
+                    const error = new Error('Email is already registered by another teacher');
+                    error.statusCode = 400;
+                    throw error;
+                }
+            }
+            else if (currentUser.role === client_1.Role.PARENT) {
+                const existingEmail = await database_1.default.parentProfile.findFirst({
+                    where: {
+                        email,
+                        userId: { not: userId }
+                    },
+                });
+                if (existingEmail) {
+                    const error = new Error('Email is already registered by another parent');
+                    error.statusCode = 400;
+                    throw error;
+                }
+            }
+        }
         // Build user update object
         const userUpdateData = {};
         if (name)
             userUpdateData.name = name;
         if (username)
             userUpdateData.username = username;
+        if (email)
+            userUpdateData.email = email;
         if (password && password.trim() !== '') {
             userUpdateData.password = await bcryptjs_1.default.hash(password, 10);
         }

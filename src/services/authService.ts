@@ -157,6 +157,29 @@ export class AuthService {
       throw error;
     }
 
+    // Role-specific email uniqueness validation (Teachers and Parents must be unique, Students can share)
+    if (email) {
+      if (role === Role.TEACHER) {
+        const existingEmail = await prisma.teacherProfile.findFirst({
+          where: { email },
+        });
+        if (existingEmail) {
+          const error: any = new Error('Email is already registered by another teacher');
+          error.statusCode = 400;
+          throw error;
+        }
+      } else if (role === Role.PARENT) {
+        const existingEmail = await prisma.parentProfile.findFirst({
+          where: { email },
+        });
+        if (existingEmail) {
+          const error: any = new Error('Email is already registered by another parent');
+          error.statusCode = 400;
+          throw error;
+        }
+      }
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user and associated profile in a transaction
@@ -442,10 +465,40 @@ export class AuthService {
       }
     }
 
+    // Validate email uniqueness if it's changing for TEACHER or PARENT (Students can duplicate emails)
+    if (email) {
+      if (currentUser.role === Role.TEACHER) {
+        const existingEmail = await prisma.teacherProfile.findFirst({
+          where: { 
+            email,
+            userId: { not: userId }
+          },
+        });
+        if (existingEmail) {
+          const error: any = new Error('Email is already registered by another teacher');
+          error.statusCode = 400;
+          throw error;
+        }
+      } else if (currentUser.role === Role.PARENT) {
+        const existingEmail = await prisma.parentProfile.findFirst({
+          where: { 
+            email,
+            userId: { not: userId }
+          },
+        });
+        if (existingEmail) {
+          const error: any = new Error('Email is already registered by another parent');
+          error.statusCode = 400;
+          throw error;
+        }
+      }
+    }
+
     // Build user update object
     const userUpdateData: any = {};
     if (name) userUpdateData.name = name;
     if (username) userUpdateData.username = username;
+    if (email) userUpdateData.email = email;
     if (password && password.trim() !== '') {
       userUpdateData.password = await bcrypt.hash(password, 10);
     }
