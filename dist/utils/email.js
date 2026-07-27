@@ -9,6 +9,7 @@ const smtpHost = process.env.SMTP_HOST ? process.env.SMTP_HOST.trim() : '';
 const smtpPort = parseInt(process.env.SMTP_PORT || '587');
 const smtpUser = process.env.SMTP_USER ? process.env.SMTP_USER.trim() : '';
 const smtpPass = process.env.SMTP_PASS ? process.env.SMTP_PASS.trim() : '';
+const resendApiKey = process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.trim() : '';
 const transporter = smtpHost ? nodemailer_1.default.createTransport({
     host: smtpHost,
     port: smtpPort,
@@ -27,21 +28,9 @@ class EmailService {
      * Sends welcome email containing credentials to newly created user
      */
     static async sendWelcomeEmail(to, name, role, username, temporaryPassword) {
-        console.log(`[EmailService] Preparing welcome email for ${name} (${to}): Role=${role}, Username=${username}, temporaryPassword=${temporaryPassword}`);
-        if (!transporter) {
-            console.log(`[EmailService] SMTP_HOST is not configured. Logging details to console fallback:\nTo: ${to}\nName: ${name}\nRole: ${role}\nUsername: ${username}\nTempPassword: ${temporaryPassword}`);
-            return;
-        }
-        const fromEmail = process.env.SMTP_USER || 'no-reply@tuition.com';
-        const fromField = process.env.EMAIL_FROM && process.env.EMAIL_FROM.includes('@')
-            ? process.env.EMAIL_FROM
-            : `"${(process.env.EMAIL_FROM || '11Plus Academy').replace(/"/g, '')}" <${fromEmail}>`;
+        console.log(`[EmailService] Preparing welcome email for ${name} (${to}): Role=${role}, Username=${username}`);
         const loginUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/login`;
-        const mailOptions = {
-            from: fromField,
-            to,
-            subject: 'Welcome! Your Account Has Been Created',
-            html: `
+        const emailHtml = `
         <div style="background-color: #F3F4F6; padding: 40px 10px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; min-height: 100%;">
           <div style="max-width: 500px; margin: auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); border: 1px solid #E2E8F0;">
             
@@ -83,7 +72,54 @@ class EmailService {
 
           </div>
         </div>
-      `,
+      `;
+        // 1. Send via Resend HTTP API if key is present
+        if (resendApiKey) {
+            console.log(`[EmailService] Attempting delivery via Resend HTTP API...`);
+            let fromField = '';
+            const configuredFrom = process.env.EMAIL_FROM || '';
+            // Resend requires verified domain, or 'onboarding@resend.dev' for testing
+            if (configuredFrom.includes('@') && !configuredFrom.endsWith('@gmail.com')) {
+                fromField = configuredFrom;
+            }
+            else {
+                fromField = '11Plus Academy <onboarding@resend.dev>';
+            }
+            const response = await fetch('https://api.resend.com/emails', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${resendApiKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    from: fromField,
+                    to: [to],
+                    subject: 'Welcome! Your Account Has Been Created',
+                    html: emailHtml
+                })
+            });
+            const responseData = await response.json();
+            if (!response.ok) {
+                throw new Error(`Resend API Error details: ${JSON.stringify(responseData)}`);
+            }
+            console.log(`[EmailService] Resend HTTP delivery succeeded for: ${to}. Email ID: ${responseData.id}`);
+            return;
+        }
+        // 2. SMTP fallback
+        if (!transporter) {
+            console.log(`[EmailService] Logging fallback credentials to console (No Resend key or SMTP configured):\nTo: ${to}\nUsername: ${username}`);
+            return;
+        }
+        console.log(`[EmailService] Resend key not found, falling back to SMTP...`);
+        const fromEmail = process.env.SMTP_USER || 'no-reply@tuition.com';
+        const fromField = process.env.EMAIL_FROM && process.env.EMAIL_FROM.includes('@')
+            ? process.env.EMAIL_FROM
+            : `"${(process.env.EMAIL_FROM || '11Plus Academy').replace(/"/g, '')}" <${fromEmail}>`;
+        const mailOptions = {
+            from: fromField,
+            to,
+            subject: 'Welcome! Your Account Has Been Created',
+            html: emailHtml
         };
         await transporter.sendMail(mailOptions);
         console.log(`[EmailService] SMTP raw delivery succeeded for: ${to}`);
