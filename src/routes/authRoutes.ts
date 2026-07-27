@@ -27,6 +27,7 @@ router.get('/test-smtp', async (req, res) => {
       code: error?.code,
       stack: error?.stack,
       env: {
+        VERSION: "v2-ipv4",
         SMTP_HOST: process.env.SMTP_HOST ? `configured (${process.env.SMTP_HOST.trim()})` : "missing",
         SMTP_PORT: process.env.SMTP_PORT,
         SMTP_USER: process.env.SMTP_USER ? `configured (${process.env.SMTP_USER.trim()})` : "missing",
