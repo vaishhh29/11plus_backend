@@ -34,6 +34,7 @@ export class EmailService {
     
     const resendApiKey = process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.trim() : '';
     const loginUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/login`;
+
     const emailHtml = `
         <div style="background-color: #F3F4F6; padding: 40px 10px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; min-height: 100%;">
           <div style="max-width: 500px; margin: auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); border: 1px solid #E2E8F0;">
@@ -142,4 +143,3 @@ export class EmailService {
     console.log(`[EmailService] SMTP raw delivery succeeded for: ${to}`);
   }
 }
-
