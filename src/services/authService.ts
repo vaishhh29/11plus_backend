@@ -134,6 +134,77 @@ export class AuthService {
     };
   }
 
+  private static async validateEmailForRole(email: string, role: Role, currentUserId?: number) {
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // 1. Check Teacher Profiles
+    const teacherWithEmail = await prisma.teacherProfile.findFirst({
+      where: {
+        email: { equals: normalizedEmail, mode: 'insensitive' },
+        ...(currentUserId ? { userId: { not: currentUserId } } : {})
+      }
+    });
+    if (teacherWithEmail) {
+      const error: any = new Error('Email is already registered by a teacher');
+      error.statusCode = 400;
+      throw error;
+    }
+
+    if (role === Role.TEACHER) {
+      // Teachers cannot share email with anyone
+      const parentWithEmail = await prisma.parentProfile.findFirst({
+        where: { email: { equals: normalizedEmail, mode: 'insensitive' } }
+      });
+      if (parentWithEmail) {
+        const error: any = new Error('Email is already registered by a parent');
+        error.statusCode = 400;
+        throw error;
+      }
+
+      const studentWithEmail = await prisma.studentProfile.findFirst({
+        where: { email: { equals: normalizedEmail, mode: 'insensitive' } }
+      });
+      if (studentWithEmail) {
+        const error: any = new Error('Email is already registered by a student');
+        error.statusCode = 400;
+        throw error;
+      }
+    } else if (role === Role.PARENT) {
+      // Parents cannot share email with another parent
+      const parentWithEmail = await prisma.parentProfile.findFirst({
+        where: {
+          email: { equals: normalizedEmail, mode: 'insensitive' },
+          ...(currentUserId ? { userId: { not: currentUserId } } : {})
+        }
+      });
+      if (parentWithEmail) {
+        const error: any = new Error('Email is already registered by another parent');
+        error.statusCode = 400;
+        throw error;
+      }
+    } else if (role === Role.STUDENT) {
+      // Students can share email with their parent, but not with other students of different parents
+      const parentWithEmail = await prisma.parentProfile.findFirst({
+        where: { email: { equals: normalizedEmail, mode: 'insensitive' } }
+      });
+
+      if (!parentWithEmail) {
+        // If there is no parent owning this email, it must be unique among student profiles
+        const studentWithEmail = await prisma.studentProfile.findFirst({
+          where: {
+            email: { equals: normalizedEmail, mode: 'insensitive' },
+            ...(currentUserId ? { userId: { not: currentUserId } } : {})
+          }
+        });
+        if (studentWithEmail) {
+          const error: any = new Error('Email is already registered by another student');
+          error.statusCode = 400;
+          throw error;
+        }
+      }
+    }
+  }
+
   /**
    * Admin creating user accounts for Teacher, Student, Parent, or another Admin.
    * Can optionally connect them upon account creation.
@@ -157,27 +228,9 @@ export class AuthService {
       throw error;
     }
 
-    // Role-specific email uniqueness validation (Teachers and Parents must be unique, Students can share)
+    // Role-specific email uniqueness validation
     if (email) {
-      if (role === Role.TEACHER) {
-        const existingEmail = await prisma.teacherProfile.findFirst({
-          where: { email },
-        });
-        if (existingEmail) {
-          const error: any = new Error('Email is already registered by another teacher');
-          error.statusCode = 400;
-          throw error;
-        }
-      } else if (role === Role.PARENT) {
-        const existingEmail = await prisma.parentProfile.findFirst({
-          where: { email },
-        });
-        if (existingEmail) {
-          const error: any = new Error('Email is already registered by another parent');
-          error.statusCode = 400;
-          throw error;
-        }
-      }
+      await this.validateEmailForRole(email, role as Role);
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -465,33 +518,9 @@ export class AuthService {
       }
     }
 
-    // Validate email uniqueness if it's changing for TEACHER or PARENT (Students can duplicate emails)
+    // Validate email according to the user's role on profile update
     if (email) {
-      if (currentUser.role === Role.TEACHER) {
-        const existingEmail = await prisma.teacherProfile.findFirst({
-          where: { 
-            email,
-            userId: { not: userId }
-          },
-        });
-        if (existingEmail) {
-          const error: any = new Error('Email is already registered by another teacher');
-          error.statusCode = 400;
-          throw error;
-        }
-      } else if (currentUser.role === Role.PARENT) {
-        const existingEmail = await prisma.parentProfile.findFirst({
-          where: { 
-            email,
-            userId: { not: userId }
-          },
-        });
-        if (existingEmail) {
-          const error: any = new Error('Email is already registered by another parent');
-          error.statusCode = 400;
-          throw error;
-        }
-      }
+      await this.validateEmailForRole(email, currentUser.role, userId);
     }
 
     // Build user update object
