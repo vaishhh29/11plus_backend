@@ -13,10 +13,11 @@ const transporter = smtpHost ? nodemailer.createTransport({
     user: smtpUser,
     pass: smtpPass,
   },
+  family: 4, // Force IPv4 to prevent ENETUNREACH on IPv6 unsupported environments (Render)
   connectionTimeout: 10000, // Prevent hanging requests if SMTP is blocked
   greetingTimeout: 10000,
   socketTimeout: 10000,
-}) : null;
+} as any) : null;
 
 export class EmailService {
   /**
