@@ -1,32 +1,38 @@
 import nodemailer from 'nodemailer';
 
-const smtpHost = process.env.SMTP_HOST ? process.env.SMTP_HOST.trim() : '';
-const smtpPort = parseInt(process.env.SMTP_PORT || '587');
-const smtpUser = process.env.SMTP_USER ? process.env.SMTP_USER.trim() : '';
-const smtpPass = process.env.SMTP_PASS ? process.env.SMTP_PASS.trim() : '';
-const resendApiKey = process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.trim() : '';
+function getTransporter(): nodemailer.Transporter | null {
+  const smtpHost = process.env.SMTP_HOST ? process.env.SMTP_HOST.trim() : '';
+  const smtpPort = parseInt(process.env.SMTP_PORT || '587');
+  const smtpUser = process.env.SMTP_USER ? process.env.SMTP_USER.trim() : '';
+  const smtpPass = process.env.SMTP_PASS ? process.env.SMTP_PASS.trim() : '';
 
-const transporter = smtpHost ? nodemailer.createTransport({
-  host: smtpHost,
-  port: smtpPort,
-  secure: smtpPort === 465, // true for 465 (SSL), false for 587 (TLS)
-  auth: {
-    user: smtpUser,
-    pass: smtpPass,
-  },
-  family: 4, // Force IPv4 to prevent ENETUNREACH on IPv6 unsupported environments (Render)
-  connectionTimeout: 10000, // Prevent hanging requests if SMTP is blocked
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
-} as any) : null;
+  if (!smtpHost) {
+    return null;
+  }
+
+  return nodemailer.createTransport({
+    host: smtpHost,
+    port: smtpPort,
+    secure: smtpPort === 465, // true for 465 (SSL), false for 587 (TLS)
+    auth: {
+      user: smtpUser,
+      pass: smtpPass,
+    },
+    family: 4, // Force IPv4 to prevent ENETUNREACH on IPv6 unsupported environments (Render)
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+  } as any);
+}
 
 export class EmailService {
   /**
    * Sends welcome email containing credentials to newly created user
    */
   static async sendWelcomeEmail(to: string, name: string, role: string, username: string, temporaryPassword: string): Promise<void> {
-    console.log(`[EmailService] Preparing welcome email for ${name} (${to}): Role=${role}, Username=${username}`);
+    console.log(`[EmailService] Preparing welcome email for ${name} (${to}): Role=${role}, Username=${username}, temporaryPassword=${temporaryPassword}`);
     
+    const resendApiKey = process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.trim() : '';
     const loginUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/login`;
     const emailHtml = `
         <div style="background-color: #F3F4F6; padding: 40px 10px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; min-height: 100%;">
@@ -72,7 +78,7 @@ export class EmailService {
         </div>
       `;
 
-    // 1. Send via Resend HTTP API if key is present
+    // 1. Try Resend HTTP API first if key is present
     if (resendApiKey) {
       console.log(`[EmailService] Attempting delivery via Resend HTTP API...`);
       let fromField = '';
@@ -85,35 +91,41 @@ export class EmailService {
         fromField = '11Plus Academy <onboarding@resend.dev>';
       }
 
-      const response = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${resendApiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          from: fromField,
-          to: [to],
-          subject: 'Welcome! Your Account Has Been Created',
-          html: emailHtml
-        })
-      });
+      try {
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            from: fromField,
+            to: [to],
+            subject: 'Welcome! Your Account Has Been Created',
+            html: emailHtml
+          })
+        });
 
-      const responseData = await response.json() as any;
-      if (!response.ok) {
-        throw new Error(`Resend API Error details: ${JSON.stringify(responseData)}`);
+        const responseData = await response.json() as any;
+        if (response.ok) {
+          console.log(`[EmailService] Resend HTTP delivery succeeded for: ${to}. Email ID: ${responseData.id}`);
+          return;
+        } else {
+          console.warn(`[EmailService] Resend API failed: ${JSON.stringify(responseData)}. Falling back to SMTP...`);
+        }
+      } catch (err: any) {
+        console.warn(`[EmailService] Resend API error: ${err?.message || err}. Falling back to SMTP...`);
       }
-      console.log(`[EmailService] Resend HTTP delivery succeeded for: ${to}. Email ID: ${responseData.id}`);
-      return;
     }
 
-    // 2. SMTP fallback
+    // 2. Try SMTP fallback
+    const transporter = getTransporter();
     if (!transporter) {
-      console.log(`[EmailService] Logging fallback credentials to console (No Resend key or SMTP configured):\nTo: ${to}\nUsername: ${username}`);
+      console.log(`[EmailService] Neither Resend nor SMTP is configured. Fallback logging credentials to console:\nTo: ${to}\nUsername: ${username}`);
       return;
     }
 
-    console.log(`[EmailService] Resend key not found, falling back to SMTP...`);
+    console.log(`[EmailService] Falling back to SMTP connection...`);
     const fromEmail = process.env.SMTP_USER || 'no-reply@tuition.com';
     const fromField = process.env.EMAIL_FROM && process.env.EMAIL_FROM.includes('@')
       ? process.env.EMAIL_FROM
@@ -130,3 +142,4 @@ export class EmailService {
     console.log(`[EmailService] SMTP raw delivery succeeded for: ${to}`);
   }
 }
+
