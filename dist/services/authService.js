@@ -265,9 +265,15 @@ class AuthService {
             }
             return { user, profile };
         });
+        console.log(`[AuthService] Successfully created user "${result.user.username}" (${result.user.role}) in database.`);
         // Send welcome email asynchronously to not block return
         email_1.EmailService.sendWelcomeEmail(email, result.user.name, result.user.role, result.user.username, password)
-            .catch(err => console.error('Failed to send welcome email:', err));
+            .then(() => {
+            console.log(`[EmailService] Welcome email validation & delivery succeeded for parent/student: ${email}`);
+        })
+            .catch(err => {
+            console.error(`[EmailService] Failed to send welcome email to ${email}:`, err);
+        });
         return {
             id: result.user.id,
             username: result.user.username,
