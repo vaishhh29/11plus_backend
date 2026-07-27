@@ -87,5 +87,6 @@ export class EmailService {
     };
 
     await transporter.sendMail(mailOptions);
+    console.log(`[EmailService] SMTP raw delivery succeeded for: ${to}`);
   }
 }
