@@ -2,7 +2,8 @@
   "user": [
     {
       "id": 1,
-      "email": "adminofelevenplus@gmail.com",
+      "username": "adminofelevenplus@gmail.com",
+      "email": null,
       "name": "System Admin",
       "password": "$2a$10$9N5rBfxPdVbMjVqKxaBsdOrAqbnJK6JzaG5auDyryf7/DJKoPgFG2",
       "role": "ADMIN",
@@ -11,7 +12,8 @@
     },
     {
       "id": 4,
-      "email": "parent@gmail.com",
+      "username": "parent@gmail.com",
+      "email": null,
       "name": "parent",
       "password": "$2a$10$9N5rBfxPdVbMjVqKxaBsdOrAqbnJK6JzaG5auDyryf7/DJKoPgFG2",
       "role": "PARENT",
@@ -20,7 +22,8 @@
     },
     {
       "id": 7,
-      "email": "ps@gmail.com",
+      "username": "ps@gmail.com",
+      "email": null,
       "name": "parentofsam",
       "password": "$2a$10$9N5rBfxPdVbMjVqKxaBsdOrAqbnJK6JzaG5auDyryf7/DJKoPgFG2",
       "role": "PARENT",
@@ -29,7 +32,8 @@
     },
     {
       "id": 2,
-      "email": "jenny@gmail.com",
+      "username": "jenny@gmail.com",
+      "email": null,
       "name": "jenny",
       "password": "$2a$10$9N5rBfxPdVbMjVqKxaBsdOrAqbnJK6JzaG5auDyryf7/DJKoPgFG2",
       "role": "STUDENT",
@@ -38,7 +42,8 @@
     },
     {
       "id": 3,
-      "email": "sara@gmail.com",
+      "username": "sara@gmail.com",
+      "email": null,
       "name": "sara",
       "password": "$2a$10$9N5rBfxPdVbMjVqKxaBsdOrAqbnJK6JzaG5auDyryf7/DJKoPgFG2",
       "role": "TEACHER",
@@ -47,7 +52,8 @@
     },
     {
       "id": 5,
-      "email": "alex@gmail.com",
+      "username": "alex@gmail.com",
+      "email": null,
       "name": "alex",
       "password": "$2a$10$9N5rBfxPdVbMjVqKxaBsdOrAqbnJK6JzaG5auDyryf7/DJKoPgFG2",
       "role": "TEACHER",
@@ -56,7 +62,8 @@
     },
     {
       "id": 6,
-      "email": "sam@gmail.com",
+      "username": "sam@gmail.com",
+      "email": null,
       "name": "sam",
       "password": "$2a$10$9N5rBfxPdVbMjVqKxaBsdOrAqbnJK6JzaG5auDyryf7/DJKoPgFG2",
       "role": "STUDENT",
@@ -65,7 +72,8 @@
     },
     {
       "id": 8,
-      "email": "teacher@11plus.com",
+      "username": "teacher@11plus.com",
+      "email": null,
       "name": "Doctor Sarah",
       "password": "$2a$10$9N5rBfxPdVbMjVqKxaBsdOrAqbnJK6JzaG5auDyryf7/DJKoPgFG2",
       "role": "TEACHER",
@@ -74,12 +82,73 @@
     },
     {
       "id": 9,
-      "email": "jennytest@student.com",
+      "username": "jennytest@student.com",
+      "email": null,
       "name": "Jenny Test",
       "password": "$2a$10$cfLlwKJ9mJ2llBUZ91hCZ.11CG5AA6OsVUqh4B.FSYjuFd63p4alu",
       "role": "STUDENT",
       "createdAt": "2026-07-11T14:56:00.342Z",
       "updatedAt": "2026-07-11T14:56:00.342Z"
+    },
+    {
+      "id": 21,
+      "username": "staff",
+      "email": "vaishuravi29@gmail.com",
+      "name": "staff",
+      "password": "$2a$10$Noo4.syNFIKBkklf1CEpjOqqEArHxV2xEQITPgjs1dziuXs7/eMgu",
+      "role": "TEACHER",
+      "createdAt": "2026-07-23T11:27:31.400Z",
+      "updatedAt": "2026-07-23T11:27:31.400Z"
+    },
+    {
+      "id": 22,
+      "username": "parent",
+      "email": "vaishuravi29@gmail.com",
+      "name": "parent",
+      "password": "$2a$10$qD3tA8JFC.FFqwIritj0G.0hQbcjmzz4tIJnTEzVdkRFWY8MWBYYS",
+      "role": "PARENT",
+      "createdAt": "2026-07-23T11:36:20.910Z",
+      "updatedAt": "2026-07-23T11:36:20.910Z"
+    },
+    {
+      "id": 23,
+      "username": "connor",
+      "email": "vaishuravi29@gmail.com",
+      "name": "connor",
+      "password": "$2a$10$wdKbSJzc5yvIpqMhcmpBee/lWaHr67/e5j.GBU2Krltr/n1Pc.Uba",
+      "role": "PARENT",
+      "createdAt": "2026-07-23T11:38:08.803Z",
+      "updatedAt": "2026-07-23T11:38:08.803Z"
+    },
+    {
+      "id": 24,
+      "username": "prof",
+      "email": "vaishuravi2903@gmail.com",
+      "name": "prof",
+      "password": "$2a$10$zX6JFhMppD5y9vpjvFDtXuarFXyAvG5PA7ZY24Q4RB/5WjY5ZbHMi",
+      "role": "TEACHER",
+      "createdAt": "2026-07-23T11:39:22.619Z",
+      "updatedAt": "2026-07-23T11:39:22.619Z"
+    },
+    {
+      "id": 25,
+      "username": "prf",
+      "email": "vaishuravi29@gmail.com",
+      "name": "prf",
+      "password": "$2a$10$J6wtN9jRTPs/5Ze1KlucsuXaJgO5LXmpY0Ng8p1fsKE/Jx3T3iwcC",
+      "role": "TEACHER",
+      "createdAt": "2026-07-23T11:40:01.419Z",
+      "updatedAt": "2026-07-23T11:40:01.419Z"
+    },
+    {
+      "id": 26,
+      "username": "abc",
+      "email": "vaishuravi2903@gmail.com",
+      "name": "abc",
+      "password": "$2a$10$TpFRMF0mFb.jn/ks1..LTOLsnYSzLbY0ykF8AdX/a00GYpwWJUvOa",
+      "role": "PARENT",
+      "createdAt": "2026-07-23T11:40:42.931Z",
+      "updatedAt": "2026-07-23T11:40:42.931Z"
     }
   ],
   "teacherProfile": [
@@ -125,6 +194,48 @@
       "contactInfo": "+44 7700 900088",
       "name": "Doctor Sarah",
       "email": "teacher@11plus.com",
+      "address": null,
+      "yearOfExp": null,
+      "degrees": null
+    },
+    {
+      "id": 11,
+      "userId": 21,
+      "teacherCode": "TCH-791705",
+      "subjects": [
+        "Verbal Reasoning"
+      ],
+      "contactInfo": null,
+      "name": "staff",
+      "email": "vaishuravi29@gmail.com",
+      "address": null,
+      "yearOfExp": null,
+      "degrees": null
+    },
+    {
+      "id": 12,
+      "userId": 24,
+      "teacherCode": "TCH-729844",
+      "subjects": [
+        "Verbal Reasoning"
+      ],
+      "contactInfo": null,
+      "name": "prof",
+      "email": "vaishuravi2903@gmail.com",
+      "address": null,
+      "yearOfExp": null,
+      "degrees": null
+    },
+    {
+      "id": 13,
+      "userId": 25,
+      "teacherCode": "TCH-999836",
+      "subjects": [
+        "Verbal Reasoning"
+      ],
+      "contactInfo": null,
+      "name": "prf",
+      "email": "vaishuravi29@gmail.com",
       "address": null,
       "yearOfExp": null,
       "degrees": null
@@ -185,6 +296,30 @@
       "userId": 7,
       "name": "parentofsam",
       "email": "ps@gmail.com",
+      "contactInfo": null,
+      "address": null
+    },
+    {
+      "id": 4,
+      "userId": 22,
+      "name": "parent",
+      "email": "vaishuravi29@gmail.com",
+      "contactInfo": null,
+      "address": null
+    },
+    {
+      "id": 5,
+      "userId": 23,
+      "name": "connor",
+      "email": "vaishuravi29@gmail.com",
+      "contactInfo": null,
+      "address": null
+    },
+    {
+      "id": 6,
+      "userId": 26,
+      "name": "abc",
+      "email": "vaishuravi2903@gmail.com",
       "contactInfo": null,
       "address": null
     }
@@ -16671,6 +16806,26 @@
       "updatedAt": "2026-07-18T06:27:14.577Z"
     },
     {
+      "id": 3344,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, multiply it by 3, and then subtract 116. The result is -86. What is my starting number?",
+      "questionImage": null,
+      "options": [
+        "10",
+        "9",
+        "12",
+        "11"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Add 116 to get 30, then divide by 3 to get 10.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:41.854Z"
+    },
+    {
       "id": 770,
       "syllabusId": 15,
       "questionType": "TEXT",
@@ -17409,6 +17564,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:25.213Z",
       "updatedAt": "2026-07-18T06:27:16.608Z"
+    },
+    {
+      "id": 3888,
+      "syllabusId": 14,
+      "questionType": "TEXT",
+      "questionText": "Find 5/6 of £180",
+      "questionImage": null,
+      "options": [
+        "£140",
+        "£150",
+        "£180",
+        "£160"
+      ],
+      "correctAnswer": "£150",
+      "explanation": "Divide £180 by 6 and multiply by 5 = £150.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:51.179Z"
     },
     {
       "id": 805,
@@ -19909,6 +20084,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:25.213Z",
       "updatedAt": "2026-07-18T06:27:13.514Z"
+    },
+    {
+      "id": 3349,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, multiply it by 3, and then subtract 121. The result is -91. What is my starting number?",
+      "questionImage": null,
+      "options": [
+        "9",
+        "11",
+        "12",
+        "10"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Add 121 to get 30, then divide by 3 to get 10.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:41.855Z"
     },
     {
       "id": 930,
@@ -26609,6 +26804,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:25.213Z",
       "updatedAt": "2026-07-18T06:27:15.592Z"
+    },
+    {
+      "id": 5608,
+      "syllabusId": 14,
+      "questionType": "TEXT",
+      "questionText": "Calculate 2/3 of £180. (Variation: 180)",
+      "questionImage": null,
+      "options": [
+        "£110",
+        "£180",
+        "£130",
+        "£120"
+      ],
+      "correctAnswer": "£120",
+      "explanation": "Divide £180 by 3 and multiply by 2 = £120.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:51.180Z"
     },
     {
       "id": 1266,
@@ -43599,6 +43814,46 @@
       "updatedAt": "2026-07-11T13:34:27.139Z"
     },
     {
+      "id": 3353,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, multiply it by 3, and then subtract 125. The result is -95. What is my starting number?",
+      "questionImage": null,
+      "options": [
+        "10",
+        "11",
+        "12",
+        "9"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Add 125 to get 30, then divide by 3 to get 10.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:41.855Z"
+    },
+    {
+      "id": 3364,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, double it, add 136, and then divide by 2. The result is 78. Starting number?",
+      "questionImage": null,
+      "options": [
+        "11",
+        "7",
+        "13",
+        "10"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Multiply by 2, subtract 136, then divide by 2. The original number is 10.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:41.856Z"
+    },
+    {
       "id": 2247,
       "syllabusId": 29,
       "questionType": "TEXT",
@@ -43817,6 +44072,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:27.139Z",
       "updatedAt": "2026-07-18T06:20:57.173Z"
+    },
+    {
+      "id": 4430,
+      "syllabusId": 13,
+      "questionType": "TEXT",
+      "questionText": "Decrease £590 by 15%.",
+      "questionImage": null,
+      "options": [
+        "£531.00",
+        "£590",
+        "£501.50",
+        "£472.00"
+      ],
+      "correctAnswer": "£501.50",
+      "explanation": "15% of £590 is £88.5. Subtracting gives £501.50.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:30.140Z",
+      "updatedAt": "2026-07-18T06:20:54.815Z"
     },
     {
       "id": 2257,
@@ -44277,6 +44552,46 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:27.139Z",
       "updatedAt": "2026-07-11T13:34:27.139Z"
+    },
+    {
+      "id": 3387,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, double it, add 159, and then divide by 2. The result is 89.5. Starting number?",
+      "questionImage": null,
+      "options": [
+        "13",
+        "11",
+        "7",
+        "10"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Multiply by 2, subtract 159, then divide by 2. The original number is 10.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:42.833Z"
+    },
+    {
+      "id": 3,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "True or False: A square has 4 equal sides.",
+      "questionImage": null,
+      "options": [
+        "Never",
+        "Sometimes",
+        "False",
+        "True"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:17:16.575Z",
+      "updatedAt": "2026-07-18T06:20:42.834Z"
     },
     {
       "id": 2274,
@@ -51256,6 +51571,26 @@
       "updatedAt": "2026-07-11T13:34:27.139Z"
     },
     {
+      "id": 74,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "True or False: A quadrilateral always has 4 right angles.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True",
+        "Always",
+        "Sometimes"
+      ],
+      "correctAnswer": "False",
+      "explanation": null,
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:17:57.489Z",
+      "updatedAt": "2026-07-18T06:20:42.835Z"
+    },
+    {
       "id": 2607,
       "syllabusId": 7,
       "questionType": "TEXT",
@@ -51756,6 +52091,26 @@
       "updatedAt": "2026-07-11T13:34:27.139Z"
     },
     {
+      "id": 70,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "True or False: The LCM of 4 and 6 is 12.",
+      "questionImage": null,
+      "options": [
+        "LCM is 10",
+        "False",
+        "LCM is 24",
+        "True"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:17:55.181Z",
+      "updatedAt": "2026-07-18T06:20:42.835Z"
+    },
+    {
       "id": 2633,
       "syllabusId": 7,
       "questionType": "TEXT",
@@ -52236,6 +52591,26 @@
       "updatedAt": "2026-07-18T06:27:22.932Z"
     },
     {
+      "id": 1295,
+      "syllabusId": 30,
+      "questionType": "TEXT",
+      "questionText": "If the 1st of a month falls on a Sunday, what day of the week is the 9th of that month?",
+      "questionImage": null,
+      "options": [
+        "Monday",
+        "Tuesday",
+        "Sunday",
+        "Saturday"
+      ],
+      "correctAnswer": "Monday",
+      "explanation": null,
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:54.816Z"
+    },
+    {
       "id": 2654,
       "syllabusId": 7,
       "questionType": "TEXT",
@@ -52714,6 +53089,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:27.139Z",
       "updatedAt": "2026-07-11T13:34:27.139Z"
+    },
+    {
+      "id": 141,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "True or False: A number with digit sum divisible by 9 is itself divisible by 9.",
+      "questionImage": null,
+      "options": [
+        "Only for even numbers",
+        "False",
+        "True",
+        "Only for 3-digit numbers"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:20:02.976Z",
+      "updatedAt": "2026-07-18T06:20:42.835Z"
     },
     {
       "id": 2676,
@@ -53716,6 +54111,42 @@
       "updatedAt": "2026-07-11T13:34:27.139Z"
     },
     {
+      "id": 1394,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "Half of 18 is 8.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "False",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:42.836Z"
+    },
+    {
+      "id": 1399,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "50 + 50 = 100.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:42.836Z"
+    },
+    {
       "id": 2721,
       "syllabusId": 7,
       "questionType": "TEXT",
@@ -54174,6 +54605,42 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:34.473Z",
       "updatedAt": "2026-07-18T06:27:22.932Z"
+    },
+    {
+      "id": 1402,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "The number 1 is a prime number.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "False",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:42.836Z"
+    },
+    {
+      "id": 1433,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "5 × 5 = 25.",
+      "questionImage": null,
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:43.822Z"
     },
     {
       "id": 2742,
@@ -57316,6 +57783,24 @@
       "updatedAt": "2026-07-11T13:34:27.139Z"
     },
     {
+      "id": 1430,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "A right angle is 90 degrees.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:43.822Z"
+    },
+    {
       "id": 2903,
       "syllabusId": 6,
       "questionType": "TEXT",
@@ -58156,6 +58641,24 @@
       "updatedAt": "2026-07-11T13:34:27.139Z"
     },
     {
+      "id": 1437,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "A straight angle is 180 degrees.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:43.824Z"
+    },
+    {
       "id": 2948,
       "syllabusId": 6,
       "questionType": "TEXT",
@@ -58876,6 +59379,24 @@
       "updatedAt": "2026-07-11T13:34:28.841Z"
     },
     {
+      "id": 1449,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "The LCM of 4 and 6 is 12.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:43.825Z"
+    },
+    {
       "id": 2979,
       "syllabusId": 26,
       "questionType": "TEXT",
@@ -59474,6 +59995,24 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:28.841Z",
       "updatedAt": "2026-07-11T13:34:28.841Z"
+    },
+    {
+      "id": 1487,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "The number 0.6 is less than 3/5.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "False",
+      "explanation": null,
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:43.826Z"
     },
     {
       "id": 3005,
@@ -60996,6 +61535,24 @@
       "updatedAt": "2026-07-11T13:34:28.841Z"
     },
     {
+      "id": 1530,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "The mean of 5, 5, 5, 5 is 5.",
+      "questionImage": null,
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:44.886Z"
+    },
+    {
       "id": 3087,
       "syllabusId": 12,
       "questionType": "TEXT",
@@ -61814,6 +62371,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:28.841Z",
       "updatedAt": "2026-07-11T13:34:28.841Z"
+    },
+    {
+      "id": 14119,
+      "syllabusId": 72,
+      "questionType": "TEXT",
+      "questionText": "What is 8 ÷ 2?",
+      "questionImage": null,
+      "options": [
+        "4",
+        "5",
+        "2",
+        "1"
+      ],
+      "correctAnswer": "4",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-18T06:14:03.453Z",
+      "updatedAt": "2026-07-18T06:20:44.889Z"
     },
     {
       "id": 7263,
@@ -63331,6 +63908,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:28.841Z",
       "updatedAt": "2026-07-11T13:34:28.841Z"
+    },
+    {
+      "id": 6207,
+      "syllabusId": 24,
+      "questionType": "TEXT",
+      "questionText": "Calculate the cube of 2: (Variation: 139)",
+      "questionImage": null,
+      "options": [
+        "100",
+        "-7",
+        "23",
+        "8"
+      ],
+      "correctAnswer": "8",
+      "explanation": "2³ = 8.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:33.244Z",
+      "updatedAt": "2026-07-18T06:20:48.950Z"
     },
     {
       "id": 3196,
@@ -67631,6 +68228,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:28.841Z",
       "updatedAt": "2026-07-18T06:20:42.836Z"
+    },
+    {
+      "id": 3172,
+      "syllabusId": 12,
+      "questionType": "TEXT",
+      "questionText": "If 15% of a number is 1812, what is 100% of the number?",
+      "questionImage": null,
+      "options": [
+        "12130",
+        "12080",
+        "12030",
+        "11980"
+      ],
+      "correctAnswer": "12080",
+      "explanation": "Since 15% is 1812, 1% is 120.8. Thus 100% is 12080 = 12080.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:53.293Z"
     },
     {
       "id": 3382,
@@ -74213,6 +74830,26 @@
       "updatedAt": "2026-07-11T13:34:28.841Z"
     },
     {
+      "id": 5563,
+      "syllabusId": 11,
+      "questionType": "TEXT",
+      "questionText": "Perform the division: 4.8 ÷ 0.08. (Variation: 198)",
+      "questionImage": null,
+      "options": [
+        "60",
+        "30",
+        "6",
+        "120"
+      ],
+      "correctAnswer": "60",
+      "explanation": "4.8 ÷ 0.08 is equivalent to 480 ÷ 8 = 60.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:52.277Z"
+    },
+    {
       "id": 3720,
       "syllabusId": 31,
       "questionType": "TEXT",
@@ -74891,6 +75528,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:28.841Z",
       "updatedAt": "2026-07-11T13:34:28.841Z"
+    },
+    {
+      "id": 3068,
+      "syllabusId": 12,
+      "questionType": "TEXT",
+      "questionText": "Find 10% of £940",
+      "questionImage": null,
+      "options": [
+        "£94",
+        "£47",
+        "£188",
+        "£141"
+      ],
+      "correctAnswer": "£94",
+      "explanation": "10% of £940 is 10/100 × 940 = £94.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:52.279Z"
     },
     {
       "id": 3750,
@@ -76271,6 +76928,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:28.841Z",
       "updatedAt": "2026-07-11T13:34:28.841Z"
+    },
+    {
+      "id": 5294,
+      "syllabusId": 10,
+      "questionType": "TEXT",
+      "questionText": "Evaluate: 60% of 80 + 0.30 of 200 - 1/4 of 40",
+      "questionImage": null,
+      "options": [
+        "102",
+        "108",
+        "93",
+        "98"
+      ],
+      "correctAnswer": "98",
+      "explanation": "60% of 80 = 48. 0.30 of 200 = 60. 1/4 of 40 = 10. Combining gives 48 + 60 - 10 = 98.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:53.297Z"
     },
     {
       "id": 3814,
@@ -80998,6 +81675,26 @@
       "updatedAt": "2026-07-18T06:20:36.734Z"
     },
     {
+      "id": 3117,
+      "syllabusId": 12,
+      "questionType": "TEXT",
+      "questionText": "Find 35% of £1920",
+      "questionImage": null,
+      "options": [
+        "£672",
+        "£768",
+        "£576",
+        "£480"
+      ],
+      "correctAnswer": "£672",
+      "explanation": "35% of £1920 is 35/100 × 1920 = £672.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:53.291Z"
+    },
+    {
       "id": 4029,
       "syllabusId": 17,
       "questionType": "TEXT",
@@ -82923,6 +83620,26 @@
       "updatedAt": "2026-07-18T06:27:36.205Z"
     },
     {
+      "id": 4418,
+      "syllabusId": 13,
+      "questionType": "TEXT",
+      "questionText": "Decrease £530 by 15%.",
+      "questionImage": null,
+      "options": [
+        "£477.00",
+        "£450.50",
+        "£530",
+        "£424.00"
+      ],
+      "correctAnswer": "£450.50",
+      "explanation": "15% of £530 is £79.5. Subtracting gives £450.50.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:30.140Z",
+      "updatedAt": "2026-07-18T06:20:54.815Z"
+    },
+    {
       "id": 4137,
       "syllabusId": 28,
       "questionType": "TEXT",
@@ -84263,6 +84980,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:30.140Z",
       "updatedAt": "2026-07-18T06:20:58.347Z"
+    },
+    {
+      "id": 5678,
+      "syllabusId": 20,
+      "questionType": "TEXT",
+      "questionText": "Which of the following is a factor of 52? (Variation: 100)",
+      "questionImage": null,
+      "options": [
+        "5",
+        "7",
+        "4",
+        "9"
+      ],
+      "correctAnswer": "4",
+      "explanation": "52 divides perfectly by 4.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:45.969Z"
     },
     {
       "id": 4189,
@@ -89950,6 +90687,26 @@
       "updatedAt": "2026-07-11T13:34:30.140Z"
     },
     {
+      "id": 4990,
+      "syllabusId": 11,
+      "questionType": "TEXT",
+      "questionText": "Calculate: 3.3 + 1.55",
+      "questionImage": null,
+      "options": [
+        "4.85",
+        "4.75",
+        "5.85",
+        "4.949999999999999"
+      ],
+      "correctAnswer": "4.85",
+      "explanation": "Aligning decimal points: 3.3 + 1.55 = 4.85.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:52.275Z"
+    },
+    {
       "id": 4479,
       "syllabusId": 13,
       "questionType": "TEXT",
@@ -90608,6 +91365,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:30.140Z",
       "updatedAt": "2026-07-18T06:20:54.815Z"
+    },
+    {
+      "id": 5021,
+      "syllabusId": 11,
+      "questionType": "TEXT",
+      "questionText": "Calculate: 6.4 + 3.10",
+      "questionImage": null,
+      "options": [
+        "9.5",
+        "9.6",
+        "9.4",
+        "10.5"
+      ],
+      "correctAnswer": "9.5",
+      "explanation": "Aligning decimal points: 6.4 + 3.10 = 9.5.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:52.275Z"
     },
     {
       "id": 4489,
@@ -97530,6 +98307,26 @@
       "updatedAt": "2026-07-11T13:34:30.140Z"
     },
     {
+      "id": 4084,
+      "syllabusId": 17,
+      "questionType": "TEXT",
+      "questionText": "A number n when divided by 5 leaves a remainder of 3. What is the remainder when 3n is divided by 5?",
+      "questionImage": null,
+      "options": [
+        "0",
+        "1",
+        "4",
+        "2"
+      ],
+      "correctAnswer": "4",
+      "explanation": "The remainder of 3n modulo 5 is equivalent to (3 × 3) modulo 5 = 4.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:30.140Z",
+      "updatedAt": "2026-07-18T06:20:40.667Z"
+    },
+    {
       "id": 4853,
       "syllabusId": 27,
       "questionType": "TEXT",
@@ -100001,6 +100798,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:31.832Z",
       "updatedAt": "2026-07-18T06:20:46.961Z"
+    },
+    {
+      "id": 3284,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, add 56, and get 66. What is the number?",
+      "questionImage": null,
+      "options": [
+        "14",
+        "12",
+        "10",
+        "8"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Subtracting 56 from 66 gives 10.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:41.849Z"
     },
     {
       "id": 4962,
@@ -105698,6 +106515,26 @@
       "updatedAt": "2026-07-18T06:20:53.296Z"
     },
     {
+      "id": 3320,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, multiply it by 3, and then subtract 92. The result is -62. What is my starting number?",
+      "questionImage": null,
+      "options": [
+        "12",
+        "9",
+        "11",
+        "10"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Add 92 to get 30, then divide by 3 to get 10.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:41.853Z"
+    },
+    {
       "id": 5257,
       "syllabusId": 10,
       "questionType": "TEXT",
@@ -106250,6 +107087,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:31.832Z",
       "updatedAt": "2026-07-18T06:20:53.296Z"
+    },
+    {
+      "id": 136,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "True or False: 0.999... (recurring) is equal to 1.",
+      "questionImage": null,
+      "options": [
+        "True",
+        "False",
+        "It depends on the context",
+        "It is approximately 1"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:20:00.084Z",
+      "updatedAt": "2026-07-18T06:20:42.835Z"
     },
     {
       "id": 5266,
@@ -106841,6 +107698,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:31.832Z",
       "updatedAt": "2026-07-18T06:20:53.297Z"
+    },
+    {
+      "id": 14107,
+      "syllabusId": 72,
+      "questionType": "TEXT",
+      "questionText": "What is 70 ÷ 7?",
+      "questionImage": null,
+      "options": [
+        "10",
+        "7",
+        "8",
+        "12"
+      ],
+      "correctAnswer": "10",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-18T06:14:03.453Z",
+      "updatedAt": "2026-07-18T06:20:44.888Z"
     },
     {
       "id": 5306,
@@ -108151,6 +109028,26 @@
       "updatedAt": "2026-07-18T06:20:53.298Z"
     },
     {
+      "id": 14151,
+      "syllabusId": 72,
+      "questionType": "TEXT",
+      "questionText": "What is 54 ÷ 9?",
+      "questionImage": null,
+      "options": [
+        "6",
+        "8",
+        "7",
+        "9"
+      ],
+      "correctAnswer": "6",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-18T06:14:04.428Z",
+      "updatedAt": "2026-07-18T06:20:44.889Z"
+    },
+    {
       "id": 5381,
       "syllabusId": 10,
       "questionType": "TEXT",
@@ -108597,6 +109494,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:31.832Z",
       "updatedAt": "2026-07-18T06:20:54.810Z"
+    },
+    {
+      "id": 3366,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, double it, add 138, and then divide by 2. The result is 79. Starting number?",
+      "questionImage": null,
+      "options": [
+        "10",
+        "7",
+        "13",
+        "11"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Multiply by 2, subtract 138, then divide by 2. The original number is 10.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:41.856Z"
     },
     {
       "id": 12284,
@@ -112923,6 +113840,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:31.832Z",
       "updatedAt": "2026-07-11T13:34:31.832Z"
+    },
+    {
+      "id": 3037,
+      "syllabusId": 12,
+      "questionType": "TEXT",
+      "questionText": "Find 10% of £320",
+      "questionImage": null,
+      "options": [
+        "£64",
+        "£16",
+        "£48",
+        "£32"
+      ],
+      "correctAnswer": "£32",
+      "explanation": "10% of £320 is 10/100 × 320 = £32.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:52.278Z"
     },
     {
       "id": 5649,
@@ -118935,6 +119872,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:31.832Z",
       "updatedAt": "2026-07-18T06:20:46.959Z"
+    },
+    {
+      "id": 999,
+      "syllabusId": 20,
+      "questionType": "TEXT",
+      "questionText": "The nth triangular number is n(n+1)/2. Find n if the nth triangular number is 105.",
+      "questionImage": null,
+      "options": [
+        "13",
+        "14",
+        "15",
+        "21"
+      ],
+      "correctAnswer": "14",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:45.965Z"
     },
     {
       "id": 5919,
@@ -138596,6 +139553,26 @@
       "updatedAt": "2026-07-18T06:27:23.934Z"
     },
     {
+      "id": 3379,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, double it, add 151, and then divide by 2. The result is 85.5. Starting number?",
+      "questionImage": null,
+      "options": [
+        "10",
+        "11",
+        "7",
+        "13"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Multiply by 2, subtract 151, then divide by 2. The original number is 10.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:42.833Z"
+    },
+    {
       "id": 7083,
       "syllabusId": 35,
       "questionType": "TEXT",
@@ -139394,6 +140371,24 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:34.473Z",
       "updatedAt": "2026-07-18T06:27:23.935Z"
+    },
+    {
+      "id": 1418,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "7 + 8 = 14.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "False",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:43.820Z"
     },
     {
       "id": 7120,
@@ -145034,6 +146029,24 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:34.473Z",
       "updatedAt": "2026-07-18T06:27:28.506Z"
+    },
+    {
+      "id": 1436,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "The number 100 has three digits.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "False",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:43.824Z"
     },
     {
       "id": 7494,
@@ -173667,6 +174680,24 @@
       "updatedAt": "2026-07-18T06:27:50.935Z"
     },
     {
+      "id": 1506,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "A point at coordinates (3, −2) is in the fourth quadrant.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:43.827Z"
+    },
+    {
       "id": 9525,
       "syllabusId": 47,
       "questionType": "TEXT",
@@ -174445,6 +175476,24 @@
       "isActive": true,
       "createdAt": "2026-07-13T06:09:20.212Z",
       "updatedAt": "2026-07-18T06:27:50.935Z"
+    },
+    {
+      "id": 1535,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "The mode is always equal to the mean.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "False",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:44.887Z"
     },
     {
       "id": 9557,
@@ -210128,6 +211177,24 @@
       "updatedAt": "2026-07-18T06:28:15.945Z"
     },
     {
+      "id": 1524,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "If speed is 80 mph and time is 30 minutes, distance is 40 miles.",
+      "questionImage": null,
+      "options": [
+        "False",
+        "True"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:44.885Z"
+    },
+    {
       "id": 11778,
       "syllabusId": 58,
       "questionType": "TEXT",
@@ -211965,6 +213032,26 @@
       "updatedAt": "2026-07-18T06:27:47.744Z"
     },
     {
+      "id": 14148,
+      "syllabusId": 72,
+      "questionType": "TEXT",
+      "questionText": "What is 50 ÷ 5?",
+      "questionImage": null,
+      "options": [
+        "7",
+        "11",
+        "10",
+        "12"
+      ],
+      "correctAnswer": "10",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-18T06:14:04.428Z",
+      "updatedAt": "2026-07-18T06:20:44.889Z"
+    },
+    {
       "id": 9326,
       "syllabusId": 46,
       "questionType": "TEXT",
@@ -213699,6 +214786,26 @@
       "updatedAt": "2026-07-18T06:28:15.947Z"
     },
     {
+      "id": 14174,
+      "syllabusId": 72,
+      "questionType": "TEXT",
+      "questionText": "Calculate: 648 ÷ 9",
+      "questionImage": null,
+      "options": [
+        "69",
+        "74",
+        "72",
+        "71"
+      ],
+      "correctAnswer": "72",
+      "explanation": null,
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-18T06:14:04.428Z",
+      "updatedAt": "2026-07-18T06:20:44.889Z"
+    },
+    {
       "id": 12415,
       "syllabusId": 62,
       "questionType": "TEXT",
@@ -215393,6 +216500,26 @@
       "updatedAt": "2026-07-18T06:28:16.969Z"
     },
     {
+      "id": 14256,
+      "syllabusId": 72,
+      "questionType": "TEXT",
+      "questionText": "Find the value of: 176 ÷ 16",
+      "questionImage": null,
+      "options": [
+        "11",
+        "14",
+        "12",
+        "7"
+      ],
+      "correctAnswer": "11",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-18T06:14:06.377Z",
+      "updatedAt": "2026-07-18T06:20:44.889Z"
+    },
+    {
       "id": 12573,
       "syllabusId": 63,
       "questionType": "TEXT",
@@ -216931,6 +218058,26 @@
       "isActive": true,
       "createdAt": "2026-07-12T15:53:40.258Z",
       "updatedAt": "2026-07-18T06:27:49.765Z"
+    },
+    {
+      "id": 924,
+      "syllabusId": 20,
+      "questionType": "TEXT",
+      "questionText": "Find the 10th triangular number.",
+      "questionImage": null,
+      "options": [
+        "100",
+        "45",
+        "55",
+        "50"
+      ],
+      "correctAnswer": "55",
+      "explanation": null,
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:27:36.347Z",
+      "updatedAt": "2026-07-18T06:20:44.890Z"
     },
     {
       "id": 9527,
@@ -223987,6 +225134,26 @@
       "updatedAt": "2026-07-18T06:27:49.764Z"
     },
     {
+      "id": 4279,
+      "syllabusId": 20,
+      "questionType": "TEXT",
+      "questionText": "Which of the following is a factor of 28?",
+      "questionImage": null,
+      "options": [
+        "9",
+        "5",
+        "4",
+        "7"
+      ],
+      "correctAnswer": "4",
+      "explanation": "28 divides perfectly by 4.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:30.140Z",
+      "updatedAt": "2026-07-18T06:20:45.966Z"
+    },
+    {
       "id": 9597,
       "syllabusId": 47,
       "questionType": "TEXT",
@@ -229055,6 +230222,26 @@
       "isActive": true,
       "createdAt": "2026-07-18T06:10:38.435Z",
       "updatedAt": "2026-07-18T06:14:02.468Z"
+    },
+    {
+      "id": 4284,
+      "syllabusId": 20,
+      "questionType": "TEXT",
+      "questionText": "Which of the following is a factor of 48?",
+      "questionImage": null,
+      "options": [
+        "7",
+        "4",
+        "5",
+        "9"
+      ],
+      "correctAnswer": "4",
+      "explanation": "48 divides perfectly by 4.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:30.140Z",
+      "updatedAt": "2026-07-18T06:20:45.967Z"
     },
     {
       "id": 14017,
@@ -237257,6 +238444,26 @@
       "updatedAt": "2026-07-18T06:20:40.664Z"
     },
     {
+      "id": 5721,
+      "syllabusId": 20,
+      "questionType": "TEXT",
+      "questionText": "Determine the total number of factors of 44. (Variation: 143)",
+      "questionImage": null,
+      "options": [
+        "4",
+        "10",
+        "6",
+        "8"
+      ],
+      "correctAnswer": "6",
+      "explanation": "Factors of 44 are: 1, 2, 4, 11, 22, 44. Total is 6.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:45.970Z"
+    },
+    {
       "id": 4041,
       "syllabusId": 17,
       "questionType": "TEXT",
@@ -238547,6 +239754,726 @@
       "updatedAt": "2026-07-18T06:20:59.347Z"
     },
     {
+      "id": 5733,
+      "syllabusId": 20,
+      "questionType": "TEXT",
+      "questionText": "Determine the total number of factors of 32. (Variation: 155)",
+      "questionImage": null,
+      "options": [
+        "6",
+        "8",
+        "10",
+        "4"
+      ],
+      "correctAnswer": "6",
+      "explanation": "Factors of 32 are: 1, 2, 4, 8, 16, 32. Total is 6.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:45.971Z"
+    },
+    {
+      "id": 4913,
+      "syllabusId": 23,
+      "questionType": "TEXT",
+      "questionText": "Find the product of prime factors of 148.",
+      "questionImage": null,
+      "options": [
+        "2 × 2 × 37",
+        "5 × 5",
+        "2 × 3 × 3",
+        "2 × 2 × 2 × 5"
+      ],
+      "correctAnswer": "2 × 2 × 37",
+      "explanation": "148 factored into primes is 2 × 2 × 37.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:30.140Z",
+      "updatedAt": "2026-07-18T06:20:46.960Z"
+    },
+    {
+      "id": 4935,
+      "syllabusId": 23,
+      "questionType": "TEXT",
+      "questionText": "Express 114 as a product of prime factors in index notation format.",
+      "questionImage": null,
+      "options": [
+        "2 × 3 × 19",
+        "2³ × 5",
+        "2² × 3²",
+        "3² × 5"
+      ],
+      "correctAnswer": "2 × 3 × 19",
+      "explanation": "In index notation, repeated factors are expressed as exponents: 2 × 3 × 19.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:30.140Z",
+      "updatedAt": "2026-07-18T06:20:46.961Z"
+    },
+    {
+      "id": 6135,
+      "syllabusId": 23,
+      "questionType": "TEXT",
+      "questionText": "Express the number 172 as a product of prime factors using index notation. (Variation: 194)",
+      "questionImage": null,
+      "options": [
+        "2² × 3²",
+        "2^2 × 43",
+        "2³ × 5",
+        "3² × 5"
+      ],
+      "correctAnswer": "2^2 × 43",
+      "explanation": "Exponents represent repeated factors: 2^2 × 43.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:33.244Z",
+      "updatedAt": "2026-07-18T06:20:47.931Z"
+    },
+    {
+      "id": 5859,
+      "syllabusId": 21,
+      "questionType": "TEXT",
+      "questionText": "What is the Highest Common Factor (HCF) of 12 and 18? (Variation: 132)",
+      "questionImage": null,
+      "options": [
+        "8",
+        "6",
+        "5",
+        "12"
+      ],
+      "correctAnswer": "6",
+      "explanation": "HCF of 12 and 18 is 6.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:47.933Z"
+    },
+    {
+      "id": 5915,
+      "syllabusId": 21,
+      "questionType": "TEXT",
+      "questionText": "Two alarm systems trigger: Alarm A every 6 minutes and Alarm B every 8 minutes. If they trigger simultaneously at 9:00 AM, when is next occurrence? (Variation: 188)",
+      "questionImage": null,
+      "options": [
+        "9:30 AM",
+        "9:24 AM",
+        "9:45 AM",
+        "10:15 AM"
+      ],
+      "correctAnswer": "9:24 AM",
+      "explanation": "LCM is 24 minutes. 9:00 AM + 24 minutes is 9:24 AM.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:47.933Z"
+    },
+    {
+      "id": 5921,
+      "syllabusId": 21,
+      "questionType": "TEXT",
+      "questionText": "Two alarm systems trigger: Alarm A every 6 minutes and Alarm B every 8 minutes. If they trigger simultaneously at 9:00 AM, when is next occurrence? (Variation: 194)",
+      "questionImage": null,
+      "options": [
+        "10:15 AM",
+        "9:30 AM",
+        "9:24 AM",
+        "9:45 AM"
+      ],
+      "correctAnswer": "9:24 AM",
+      "explanation": "LCM is 24 minutes. 9:00 AM + 24 minutes is 9:24 AM.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:47.933Z"
+    },
+    {
+      "id": 6189,
+      "syllabusId": 24,
+      "questionType": "TEXT",
+      "questionText": "Calculate the cube of 2: (Variation: 121)",
+      "questionImage": null,
+      "options": [
+        "100",
+        "23",
+        "8",
+        "-7"
+      ],
+      "correctAnswer": "8",
+      "explanation": "2³ = 8.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:33.244Z",
+      "updatedAt": "2026-07-18T06:20:48.949Z"
+    },
+    {
+      "id": 387,
+      "syllabusId": 8,
+      "questionType": "TEXT",
+      "questionText": "A sequence has nth term 2n² - n. Find the 4th term.",
+      "questionImage": null,
+      "options": [
+        "32",
+        "28",
+        "24",
+        "30"
+      ],
+      "correctAnswer": "28",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:22:26.747Z",
+      "updatedAt": "2026-07-18T06:20:48.952Z"
+    },
+    {
+      "id": 448,
+      "syllabusId": 9,
+      "questionType": "TEXT",
+      "questionText": "Calculate 4.8 - 2.3.",
+      "questionImage": null,
+      "options": [
+        "2.4",
+        "2.6",
+        "2.5",
+        "7.1"
+      ],
+      "correctAnswer": "2.5",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:23:02.793Z",
+      "updatedAt": "2026-07-18T06:20:50.154Z"
+    },
+    {
+      "id": 5182,
+      "syllabusId": 8,
+      "questionType": "TEXT",
+      "questionText": "If the nth term of a sequence is 6n + 135, what is the 10th term?",
+      "questionImage": null,
+      "options": [
+        "200",
+        "195",
+        "190",
+        "50"
+      ],
+      "correctAnswer": "195",
+      "explanation": "Substitute n = 10 into the formula: 6(10) + 135 = 195.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:50.153Z"
+    },
+    {
+      "id": 555,
+      "syllabusId": 9,
+      "questionType": "TEXT",
+      "questionText": "Calculate 5/9 + 1/6 - 1/3.",
+      "questionImage": null,
+      "options": [
+        "11/18",
+        "7/18",
+        "5/18",
+        "1/2"
+      ],
+      "correctAnswer": "7/18",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:24:02.594Z",
+      "updatedAt": "2026-07-18T06:20:50.156Z"
+    },
+    {
+      "id": 5407,
+      "syllabusId": 9,
+      "questionType": "TEXT",
+      "questionText": "Simplify the fraction 4/8 to its simplest form. (Variation: 141)",
+      "questionImage": null,
+      "options": [
+        "3/8",
+        "2/7",
+        "1/5",
+        "1/2"
+      ],
+      "correctAnswer": "1/2",
+      "explanation": "Dividing numerator and denominator by their HCF gives 1/2.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:50.156Z"
+    },
+    {
+      "id": 3876,
+      "syllabusId": 14,
+      "questionType": "TEXT",
+      "questionText": "Find 3/4 of £280",
+      "questionImage": null,
+      "options": [
+        "£210",
+        "£200",
+        "£280",
+        "£220"
+      ],
+      "correctAnswer": "£210",
+      "explanation": "Divide £280 by 4 and multiply by 3 = £210.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:51.179Z"
+    },
+    {
+      "id": 3922,
+      "syllabusId": 14,
+      "questionType": "TEXT",
+      "questionText": "If 4/6 of a container of liquid is 80 liters, how many liters does the full container hold?",
+      "questionImage": null,
+      "options": [
+        "120",
+        "100",
+        "140",
+        "170"
+      ],
+      "correctAnswer": "120",
+      "explanation": "80 ÷ 4 × 6 gives the total capacity: 120 liters.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:51.179Z"
+    },
+    {
+      "id": 5590,
+      "syllabusId": 14,
+      "questionType": "TEXT",
+      "questionText": "Calculate 1/5 of £200. (Variation: 162)",
+      "questionImage": null,
+      "options": [
+        "£80",
+        "£45",
+        "£35",
+        "£40"
+      ],
+      "correctAnswer": "£40",
+      "explanation": "Divide £200 by 5 to get £40.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:51.180Z"
+    },
+    {
+      "id": 4983,
+      "syllabusId": 11,
+      "questionType": "TEXT",
+      "questionText": "Calculate: 2.6 + 1.20",
+      "questionImage": null,
+      "options": [
+        "3.9",
+        "4.8",
+        "3.8",
+        "3.6999999999999997"
+      ],
+      "correctAnswer": "3.8",
+      "explanation": "Aligning decimal points: 2.6 + 1.20 = 3.8.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:52.274Z"
+    },
+    {
+      "id": 5475,
+      "syllabusId": 11,
+      "questionType": "TEXT",
+      "questionText": "Calculate the product: 0.3 × 0.6. (Variation: 110)",
+      "questionImage": null,
+      "options": [
+        "0.28",
+        "0.18",
+        "1.7999999999999998",
+        "0.12"
+      ],
+      "correctAnswer": "0.18",
+      "explanation": "0.3 × 0.6 equals 0.18.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:52.276Z"
+    },
+    {
+      "id": 5546,
+      "syllabusId": 11,
+      "questionType": "TEXT",
+      "questionText": "Perform the division: 3.2 ÷ 0.08. (Variation: 181)",
+      "questionImage": null,
+      "options": [
+        "80",
+        "30",
+        "40",
+        "4"
+      ],
+      "correctAnswer": "40",
+      "explanation": "3.2 ÷ 0.08 is equivalent to 320 ÷ 8 = 40.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:52.278Z"
+    },
+    {
+      "id": 3238,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, add 10, and get 20. What is the number?",
+      "questionImage": null,
+      "options": [
+        "14",
+        "12",
+        "10",
+        "8"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Subtracting 10 from 20 gives 10.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:40.671Z"
+    },
+    {
+      "id": 3277,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, add 49, and get 59. What is the number?",
+      "questionImage": null,
+      "options": [
+        "12",
+        "10",
+        "14",
+        "8"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Subtracting 49 from 59 gives 10.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:41.851Z"
+    },
+    {
+      "id": 3355,
+      "syllabusId": 19,
+      "questionType": "TEXT",
+      "questionText": "I think of a number, multiply it by 3, and then subtract 127. The result is -97. What is my starting number?",
+      "questionImage": null,
+      "options": [
+        "9",
+        "10",
+        "12",
+        "11"
+      ],
+      "correctAnswer": "10",
+      "explanation": "Add 127 to get 30, then divide by 3 to get 10.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:28.841Z",
+      "updatedAt": "2026-07-18T06:20:41.855Z"
+    },
+    {
+      "id": 9,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "True or False: The number 1 is a prime number.",
+      "questionImage": null,
+      "options": [
+        "It depends",
+        "True",
+        "Sometimes",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:17:19.852Z",
+      "updatedAt": "2026-07-18T06:20:42.834Z"
+    },
+    {
+      "id": 76,
+      "syllabusId": 1,
+      "questionType": "TEXT",
+      "questionText": "True or False: 3/5 is greater than 0.5.",
+      "questionImage": null,
+      "options": [
+        "True",
+        "They are equal",
+        "False",
+        "Cannot compare"
+      ],
+      "correctAnswer": "True",
+      "explanation": null,
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:17:58.661Z",
+      "updatedAt": "2026-07-18T06:20:42.835Z"
+    },
+    {
+      "id": 14120,
+      "syllabusId": 72,
+      "questionType": "TEXT",
+      "questionText": "What is 66 ÷ 6?",
+      "questionImage": null,
+      "options": [
+        "13",
+        "12",
+        "11",
+        "8"
+      ],
+      "correctAnswer": "11",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-18T06:14:03.453Z",
+      "updatedAt": "2026-07-18T06:20:44.889Z"
+    },
+    {
+      "id": 14281,
+      "syllabusId": 72,
+      "questionType": "TEXT",
+      "questionText": "Ava has 64 sweets to distribute equally among 4 friends. How many sweets does each friend receive?",
+      "questionImage": null,
+      "options": [
+        "17",
+        "16",
+        "18",
+        "15"
+      ],
+      "correctAnswer": "16",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-18T06:14:06.377Z",
+      "updatedAt": "2026-07-18T06:20:44.890Z"
+    },
+    {
+      "id": 4287,
+      "syllabusId": 20,
+      "questionType": "TEXT",
+      "questionText": "Which of the following is a factor of 60?",
+      "questionImage": null,
+      "options": [
+        "7",
+        "4",
+        "9",
+        "5"
+      ],
+      "correctAnswer": "4",
+      "explanation": "60 divides perfectly by 4.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:30.140Z",
+      "updatedAt": "2026-07-18T06:20:45.967Z"
+    },
+    {
+      "id": 5689,
+      "syllabusId": 20,
+      "questionType": "TEXT",
+      "questionText": "Which of the following is a factor of 36? (Variation: 111)",
+      "questionImage": null,
+      "options": [
+        "4",
+        "7",
+        "9",
+        "5"
+      ],
+      "correctAnswer": "4",
+      "explanation": "36 divides perfectly by 4.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:45.969Z"
+    },
+    {
+      "id": 5761,
+      "syllabusId": 20,
+      "questionType": "TEXT",
+      "questionText": "Find the sum of all factors of 24. (Variation: 183)",
+      "questionImage": null,
+      "options": [
+        "50",
+        "40",
+        "70",
+        "60"
+      ],
+      "correctAnswer": "60",
+      "explanation": "Factors are all integers dividing 24. Their sum is 60.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:45.972Z"
+    },
+    {
+      "id": 5984,
+      "syllabusId": 22,
+      "questionType": "TEXT",
+      "questionText": "Identify the prime number from the following choices. (Variation: 109)",
+      "questionImage": null,
+      "options": [
+        "8",
+        "29",
+        "4",
+        "6"
+      ],
+      "correctAnswer": "29",
+      "explanation": "A prime number has exactly two factors: 1 and itself. 29 is prime.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:33.244Z",
+      "updatedAt": "2026-07-18T06:20:46.957Z"
+    },
+    {
+      "id": 4920,
+      "syllabusId": 23,
+      "questionType": "TEXT",
+      "questionText": "Find the product of prime factors of 140.",
+      "questionImage": null,
+      "options": [
+        "5 × 5",
+        "2 × 2 × 5 × 7",
+        "2 × 3 × 3",
+        "2 × 2 × 2 × 5"
+      ],
+      "correctAnswer": "2 × 2 × 5 × 7",
+      "explanation": "140 factored into primes is 2 × 2 × 5 × 7.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:30.140Z",
+      "updatedAt": "2026-07-18T06:20:46.960Z"
+    },
+    {
+      "id": 969,
+      "syllabusId": 24,
+      "questionType": "TEXT",
+      "questionText": "Two numbers have prime factorisations 2³×3² and 2²×3×5. Find their LCM and HCF.",
+      "questionImage": null,
+      "options": [
+        "HCF=6; LCM=360",
+        "HCF=12; LCM=360",
+        "HCF=12; LCM=180",
+        "HCF=24; LCM=720"
+      ],
+      "correctAnswer": "HCF=12; LCM=360",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:25.213Z",
+      "updatedAt": "2026-07-18T06:20:47.934Z"
+    },
+    {
+      "id": 6197,
+      "syllabusId": 24,
+      "questionType": "TEXT",
+      "questionText": "Calculate the cube of 4: (Variation: 129)",
+      "questionImage": null,
+      "options": [
+        "64",
+        "100",
+        "49",
+        "79"
+      ],
+      "correctAnswer": "64",
+      "explanation": "4³ = 64.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:33.244Z",
+      "updatedAt": "2026-07-18T06:20:48.950Z"
+    },
+    {
+      "id": 479,
+      "syllabusId": 9,
+      "questionType": "TEXT",
+      "questionText": "Order from smallest to largest: 1/3, 2/5, 3/8.",
+      "questionImage": null,
+      "options": [
+        "2/5, 1/3, 3/8",
+        "1/3, 3/8, 2/5",
+        "1/3, 2/5, 3/8",
+        "3/8, 1/3, 2/5"
+      ],
+      "correctAnswer": "1/3, 3/8, 2/5",
+      "explanation": null,
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:23:20.199Z",
+      "updatedAt": "2026-07-18T06:20:50.154Z"
+    },
+    {
+      "id": 549,
+      "syllabusId": 9,
+      "questionType": "TEXT",
+      "questionText": "Subtract 1 3/8 from 4 1/4, giving your answer in its simplest form.",
+      "questionImage": null,
+      "options": [
+        "2 1/8",
+        "2 7/8",
+        "3 1/8",
+        "3 7/8"
+      ],
+      "correctAnswer": "2 7/8",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:23:59.418Z",
+      "updatedAt": "2026-07-18T06:20:50.156Z"
+    },
+    {
+      "id": 5419,
+      "syllabusId": 9,
+      "questionType": "TEXT",
+      "questionText": "Simplify the fraction 8/16 to its simplest form. (Variation: 153)",
+      "questionImage": null,
+      "options": [
+        "1/2",
+        "3/8",
+        "2/7",
+        "1/5"
+      ],
+      "correctAnswer": "1/2",
+      "explanation": "Dividing numerator and denominator by their HCF gives 1/2.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:51.177Z"
+    },
+    {
       "id": 4045,
       "syllabusId": 17,
       "questionType": "TEXT",
@@ -238905,388 +240832,6 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:28.841Z",
       "updatedAt": "2026-07-18T06:20:41.853Z"
-    },
-    {
-      "id": 3344,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, multiply it by 3, and then subtract 116. The result is -86. What is my starting number?",
-      "questionImage": null,
-      "options": [
-        "10",
-        "9",
-        "12",
-        "11"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Add 116 to get 30, then divide by 3 to get 10.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:41.854Z"
-    },
-    {
-      "id": 3349,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, multiply it by 3, and then subtract 121. The result is -91. What is my starting number?",
-      "questionImage": null,
-      "options": [
-        "9",
-        "11",
-        "12",
-        "10"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Add 121 to get 30, then divide by 3 to get 10.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:41.855Z"
-    },
-    {
-      "id": 3353,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, multiply it by 3, and then subtract 125. The result is -95. What is my starting number?",
-      "questionImage": null,
-      "options": [
-        "10",
-        "11",
-        "12",
-        "9"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Add 125 to get 30, then divide by 3 to get 10.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:41.855Z"
-    },
-    {
-      "id": 3364,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, double it, add 136, and then divide by 2. The result is 78. Starting number?",
-      "questionImage": null,
-      "options": [
-        "11",
-        "7",
-        "13",
-        "10"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Multiply by 2, subtract 136, then divide by 2. The original number is 10.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:41.856Z"
-    },
-    {
-      "id": 3387,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, double it, add 159, and then divide by 2. The result is 89.5. Starting number?",
-      "questionImage": null,
-      "options": [
-        "13",
-        "11",
-        "7",
-        "10"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Multiply by 2, subtract 159, then divide by 2. The original number is 10.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:42.833Z"
-    },
-    {
-      "id": 3,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "True or False: A square has 4 equal sides.",
-      "questionImage": null,
-      "options": [
-        "Never",
-        "Sometimes",
-        "False",
-        "True"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:17:16.575Z",
-      "updatedAt": "2026-07-18T06:20:42.834Z"
-    },
-    {
-      "id": 74,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "True or False: A quadrilateral always has 4 right angles.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True",
-        "Always",
-        "Sometimes"
-      ],
-      "correctAnswer": "False",
-      "explanation": null,
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:17:57.489Z",
-      "updatedAt": "2026-07-18T06:20:42.835Z"
-    },
-    {
-      "id": 70,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "True or False: The LCM of 4 and 6 is 12.",
-      "questionImage": null,
-      "options": [
-        "LCM is 10",
-        "False",
-        "LCM is 24",
-        "True"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:17:55.181Z",
-      "updatedAt": "2026-07-18T06:20:42.835Z"
-    },
-    {
-      "id": 141,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "True or False: A number with digit sum divisible by 9 is itself divisible by 9.",
-      "questionImage": null,
-      "options": [
-        "Only for even numbers",
-        "False",
-        "True",
-        "Only for 3-digit numbers"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:20:02.976Z",
-      "updatedAt": "2026-07-18T06:20:42.835Z"
-    },
-    {
-      "id": 1394,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "Half of 18 is 8.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "False",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:42.836Z"
-    },
-    {
-      "id": 1399,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "50 + 50 = 100.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:42.836Z"
-    },
-    {
-      "id": 1402,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "The number 1 is a prime number.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "False",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:42.836Z"
-    },
-    {
-      "id": 1433,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "5 × 5 = 25.",
-      "questionImage": null,
-      "options": [
-        "True",
-        "False"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:43.822Z"
-    },
-    {
-      "id": 1430,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "A right angle is 90 degrees.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:43.822Z"
-    },
-    {
-      "id": 1437,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "A straight angle is 180 degrees.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:43.824Z"
-    },
-    {
-      "id": 1449,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "The LCM of 4 and 6 is 12.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:43.825Z"
-    },
-    {
-      "id": 1487,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "The number 0.6 is less than 3/5.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "False",
-      "explanation": null,
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:43.826Z"
-    },
-    {
-      "id": 1530,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "The mean of 5, 5, 5, 5 is 5.",
-      "questionImage": null,
-      "options": [
-        "True",
-        "False"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:44.886Z"
-    },
-    {
-      "id": 14119,
-      "syllabusId": 72,
-      "questionType": "TEXT",
-      "questionText": "What is 8 ÷ 2?",
-      "questionImage": null,
-      "options": [
-        "4",
-        "5",
-        "2",
-        "1"
-      ],
-      "correctAnswer": "4",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-18T06:14:03.453Z",
-      "updatedAt": "2026-07-18T06:20:44.889Z"
-    },
-    {
-      "id": 4084,
-      "syllabusId": 17,
-      "questionType": "TEXT",
-      "questionText": "A number n when divided by 5 leaves a remainder of 3. What is the remainder when 3n is divided by 5?",
-      "questionImage": null,
-      "options": [
-        "0",
-        "1",
-        "4",
-        "2"
-      ],
-      "correctAnswer": "4",
-      "explanation": "The remainder of 3n modulo 5 is equivalent to (3 × 3) modulo 5 = 4.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:30.140Z",
-      "updatedAt": "2026-07-18T06:20:40.667Z"
     },
     {
       "id": 5634,
@@ -240083,106 +241628,6 @@
       "updatedAt": "2026-07-18T06:20:40.667Z"
     },
     {
-      "id": 3284,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, add 56, and get 66. What is the number?",
-      "questionImage": null,
-      "options": [
-        "14",
-        "12",
-        "10",
-        "8"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Subtracting 56 from 66 gives 10.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:41.849Z"
-    },
-    {
-      "id": 3320,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, multiply it by 3, and then subtract 92. The result is -62. What is my starting number?",
-      "questionImage": null,
-      "options": [
-        "12",
-        "9",
-        "11",
-        "10"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Add 92 to get 30, then divide by 3 to get 10.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:41.853Z"
-    },
-    {
-      "id": 136,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "True or False: 0.999... (recurring) is equal to 1.",
-      "questionImage": null,
-      "options": [
-        "True",
-        "False",
-        "It depends on the context",
-        "It is approximately 1"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:20:00.084Z",
-      "updatedAt": "2026-07-18T06:20:42.835Z"
-    },
-    {
-      "id": 14107,
-      "syllabusId": 72,
-      "questionType": "TEXT",
-      "questionText": "What is 70 ÷ 7?",
-      "questionImage": null,
-      "options": [
-        "10",
-        "7",
-        "8",
-        "12"
-      ],
-      "correctAnswer": "10",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-18T06:14:03.453Z",
-      "updatedAt": "2026-07-18T06:20:44.888Z"
-    },
-    {
-      "id": 14151,
-      "syllabusId": 72,
-      "questionType": "TEXT",
-      "questionText": "What is 54 ÷ 9?",
-      "questionImage": null,
-      "options": [
-        "6",
-        "8",
-        "7",
-        "9"
-      ],
-      "correctAnswer": "6",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-18T06:14:04.428Z",
-      "updatedAt": "2026-07-18T06:20:44.889Z"
-    },
-    {
       "id": 868,
       "syllabusId": 20,
       "questionType": "TEXT",
@@ -240821,1096 +242266,6 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:28.841Z",
       "updatedAt": "2026-07-18T06:20:41.853Z"
-    },
-    {
-      "id": 3366,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, double it, add 138, and then divide by 2. The result is 79. Starting number?",
-      "questionImage": null,
-      "options": [
-        "10",
-        "7",
-        "13",
-        "11"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Multiply by 2, subtract 138, then divide by 2. The original number is 10.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:41.856Z"
-    },
-    {
-      "id": 3379,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, double it, add 151, and then divide by 2. The result is 85.5. Starting number?",
-      "questionImage": null,
-      "options": [
-        "10",
-        "11",
-        "7",
-        "13"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Multiply by 2, subtract 151, then divide by 2. The original number is 10.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:42.833Z"
-    },
-    {
-      "id": 1418,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "7 + 8 = 14.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "False",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:43.820Z"
-    },
-    {
-      "id": 1436,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "The number 100 has three digits.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "False",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:43.824Z"
-    },
-    {
-      "id": 1506,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "A point at coordinates (3, −2) is in the fourth quadrant.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:43.827Z"
-    },
-    {
-      "id": 1535,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "The mode is always equal to the mean.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "False",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:44.887Z"
-    },
-    {
-      "id": 1524,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "If speed is 80 mph and time is 30 minutes, distance is 40 miles.",
-      "questionImage": null,
-      "options": [
-        "False",
-        "True"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:44.885Z"
-    },
-    {
-      "id": 14148,
-      "syllabusId": 72,
-      "questionType": "TEXT",
-      "questionText": "What is 50 ÷ 5?",
-      "questionImage": null,
-      "options": [
-        "7",
-        "11",
-        "10",
-        "12"
-      ],
-      "correctAnswer": "10",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-18T06:14:04.428Z",
-      "updatedAt": "2026-07-18T06:20:44.889Z"
-    },
-    {
-      "id": 14174,
-      "syllabusId": 72,
-      "questionType": "TEXT",
-      "questionText": "Calculate: 648 ÷ 9",
-      "questionImage": null,
-      "options": [
-        "69",
-        "74",
-        "72",
-        "71"
-      ],
-      "correctAnswer": "72",
-      "explanation": null,
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-18T06:14:04.428Z",
-      "updatedAt": "2026-07-18T06:20:44.889Z"
-    },
-    {
-      "id": 14256,
-      "syllabusId": 72,
-      "questionType": "TEXT",
-      "questionText": "Find the value of: 176 ÷ 16",
-      "questionImage": null,
-      "options": [
-        "11",
-        "14",
-        "12",
-        "7"
-      ],
-      "correctAnswer": "11",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-18T06:14:06.377Z",
-      "updatedAt": "2026-07-18T06:20:44.889Z"
-    },
-    {
-      "id": 924,
-      "syllabusId": 20,
-      "questionType": "TEXT",
-      "questionText": "Find the 10th triangular number.",
-      "questionImage": null,
-      "options": [
-        "100",
-        "45",
-        "55",
-        "50"
-      ],
-      "correctAnswer": "55",
-      "explanation": null,
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:27:36.347Z",
-      "updatedAt": "2026-07-18T06:20:44.890Z"
-    },
-    {
-      "id": 4279,
-      "syllabusId": 20,
-      "questionType": "TEXT",
-      "questionText": "Which of the following is a factor of 28?",
-      "questionImage": null,
-      "options": [
-        "9",
-        "5",
-        "4",
-        "7"
-      ],
-      "correctAnswer": "4",
-      "explanation": "28 divides perfectly by 4.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:30.140Z",
-      "updatedAt": "2026-07-18T06:20:45.966Z"
-    },
-    {
-      "id": 4284,
-      "syllabusId": 20,
-      "questionType": "TEXT",
-      "questionText": "Which of the following is a factor of 48?",
-      "questionImage": null,
-      "options": [
-        "7",
-        "4",
-        "5",
-        "9"
-      ],
-      "correctAnswer": "4",
-      "explanation": "48 divides perfectly by 4.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:30.140Z",
-      "updatedAt": "2026-07-18T06:20:45.967Z"
-    },
-    {
-      "id": 5721,
-      "syllabusId": 20,
-      "questionType": "TEXT",
-      "questionText": "Determine the total number of factors of 44. (Variation: 143)",
-      "questionImage": null,
-      "options": [
-        "4",
-        "10",
-        "6",
-        "8"
-      ],
-      "correctAnswer": "6",
-      "explanation": "Factors of 44 are: 1, 2, 4, 11, 22, 44. Total is 6.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:45.970Z"
-    },
-    {
-      "id": 5733,
-      "syllabusId": 20,
-      "questionType": "TEXT",
-      "questionText": "Determine the total number of factors of 32. (Variation: 155)",
-      "questionImage": null,
-      "options": [
-        "6",
-        "8",
-        "10",
-        "4"
-      ],
-      "correctAnswer": "6",
-      "explanation": "Factors of 32 are: 1, 2, 4, 8, 16, 32. Total is 6.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:45.971Z"
-    },
-    {
-      "id": 4913,
-      "syllabusId": 23,
-      "questionType": "TEXT",
-      "questionText": "Find the product of prime factors of 148.",
-      "questionImage": null,
-      "options": [
-        "2 × 2 × 37",
-        "5 × 5",
-        "2 × 3 × 3",
-        "2 × 2 × 2 × 5"
-      ],
-      "correctAnswer": "2 × 2 × 37",
-      "explanation": "148 factored into primes is 2 × 2 × 37.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:30.140Z",
-      "updatedAt": "2026-07-18T06:20:46.960Z"
-    },
-    {
-      "id": 4935,
-      "syllabusId": 23,
-      "questionType": "TEXT",
-      "questionText": "Express 114 as a product of prime factors in index notation format.",
-      "questionImage": null,
-      "options": [
-        "2 × 3 × 19",
-        "2³ × 5",
-        "2² × 3²",
-        "3² × 5"
-      ],
-      "correctAnswer": "2 × 3 × 19",
-      "explanation": "In index notation, repeated factors are expressed as exponents: 2 × 3 × 19.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:30.140Z",
-      "updatedAt": "2026-07-18T06:20:46.961Z"
-    },
-    {
-      "id": 6135,
-      "syllabusId": 23,
-      "questionType": "TEXT",
-      "questionText": "Express the number 172 as a product of prime factors using index notation. (Variation: 194)",
-      "questionImage": null,
-      "options": [
-        "2² × 3²",
-        "2^2 × 43",
-        "2³ × 5",
-        "3² × 5"
-      ],
-      "correctAnswer": "2^2 × 43",
-      "explanation": "Exponents represent repeated factors: 2^2 × 43.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:33.244Z",
-      "updatedAt": "2026-07-18T06:20:47.931Z"
-    },
-    {
-      "id": 5859,
-      "syllabusId": 21,
-      "questionType": "TEXT",
-      "questionText": "What is the Highest Common Factor (HCF) of 12 and 18? (Variation: 132)",
-      "questionImage": null,
-      "options": [
-        "8",
-        "6",
-        "5",
-        "12"
-      ],
-      "correctAnswer": "6",
-      "explanation": "HCF of 12 and 18 is 6.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:47.933Z"
-    },
-    {
-      "id": 5915,
-      "syllabusId": 21,
-      "questionType": "TEXT",
-      "questionText": "Two alarm systems trigger: Alarm A every 6 minutes and Alarm B every 8 minutes. If they trigger simultaneously at 9:00 AM, when is next occurrence? (Variation: 188)",
-      "questionImage": null,
-      "options": [
-        "9:30 AM",
-        "9:24 AM",
-        "9:45 AM",
-        "10:15 AM"
-      ],
-      "correctAnswer": "9:24 AM",
-      "explanation": "LCM is 24 minutes. 9:00 AM + 24 minutes is 9:24 AM.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:47.933Z"
-    },
-    {
-      "id": 5921,
-      "syllabusId": 21,
-      "questionType": "TEXT",
-      "questionText": "Two alarm systems trigger: Alarm A every 6 minutes and Alarm B every 8 minutes. If they trigger simultaneously at 9:00 AM, when is next occurrence? (Variation: 194)",
-      "questionImage": null,
-      "options": [
-        "10:15 AM",
-        "9:30 AM",
-        "9:24 AM",
-        "9:45 AM"
-      ],
-      "correctAnswer": "9:24 AM",
-      "explanation": "LCM is 24 minutes. 9:00 AM + 24 minutes is 9:24 AM.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:47.933Z"
-    },
-    {
-      "id": 6189,
-      "syllabusId": 24,
-      "questionType": "TEXT",
-      "questionText": "Calculate the cube of 2: (Variation: 121)",
-      "questionImage": null,
-      "options": [
-        "100",
-        "23",
-        "8",
-        "-7"
-      ],
-      "correctAnswer": "8",
-      "explanation": "2³ = 8.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:33.244Z",
-      "updatedAt": "2026-07-18T06:20:48.949Z"
-    },
-    {
-      "id": 387,
-      "syllabusId": 8,
-      "questionType": "TEXT",
-      "questionText": "A sequence has nth term 2n² - n. Find the 4th term.",
-      "questionImage": null,
-      "options": [
-        "32",
-        "28",
-        "24",
-        "30"
-      ],
-      "correctAnswer": "28",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:22:26.747Z",
-      "updatedAt": "2026-07-18T06:20:48.952Z"
-    },
-    {
-      "id": 448,
-      "syllabusId": 9,
-      "questionType": "TEXT",
-      "questionText": "Calculate 4.8 - 2.3.",
-      "questionImage": null,
-      "options": [
-        "2.4",
-        "2.6",
-        "2.5",
-        "7.1"
-      ],
-      "correctAnswer": "2.5",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:23:02.793Z",
-      "updatedAt": "2026-07-18T06:20:50.154Z"
-    },
-    {
-      "id": 5182,
-      "syllabusId": 8,
-      "questionType": "TEXT",
-      "questionText": "If the nth term of a sequence is 6n + 135, what is the 10th term?",
-      "questionImage": null,
-      "options": [
-        "200",
-        "195",
-        "190",
-        "50"
-      ],
-      "correctAnswer": "195",
-      "explanation": "Substitute n = 10 into the formula: 6(10) + 135 = 195.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:50.153Z"
-    },
-    {
-      "id": 555,
-      "syllabusId": 9,
-      "questionType": "TEXT",
-      "questionText": "Calculate 5/9 + 1/6 - 1/3.",
-      "questionImage": null,
-      "options": [
-        "11/18",
-        "7/18",
-        "5/18",
-        "1/2"
-      ],
-      "correctAnswer": "7/18",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:24:02.594Z",
-      "updatedAt": "2026-07-18T06:20:50.156Z"
-    },
-    {
-      "id": 5407,
-      "syllabusId": 9,
-      "questionType": "TEXT",
-      "questionText": "Simplify the fraction 4/8 to its simplest form. (Variation: 141)",
-      "questionImage": null,
-      "options": [
-        "3/8",
-        "2/7",
-        "1/5",
-        "1/2"
-      ],
-      "correctAnswer": "1/2",
-      "explanation": "Dividing numerator and denominator by their HCF gives 1/2.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:50.156Z"
-    },
-    {
-      "id": 3876,
-      "syllabusId": 14,
-      "questionType": "TEXT",
-      "questionText": "Find 3/4 of £280",
-      "questionImage": null,
-      "options": [
-        "£210",
-        "£200",
-        "£280",
-        "£220"
-      ],
-      "correctAnswer": "£210",
-      "explanation": "Divide £280 by 4 and multiply by 3 = £210.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:51.179Z"
-    },
-    {
-      "id": 3922,
-      "syllabusId": 14,
-      "questionType": "TEXT",
-      "questionText": "If 4/6 of a container of liquid is 80 liters, how many liters does the full container hold?",
-      "questionImage": null,
-      "options": [
-        "120",
-        "100",
-        "140",
-        "170"
-      ],
-      "correctAnswer": "120",
-      "explanation": "80 ÷ 4 × 6 gives the total capacity: 120 liters.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:51.179Z"
-    },
-    {
-      "id": 5590,
-      "syllabusId": 14,
-      "questionType": "TEXT",
-      "questionText": "Calculate 1/5 of £200. (Variation: 162)",
-      "questionImage": null,
-      "options": [
-        "£80",
-        "£45",
-        "£35",
-        "£40"
-      ],
-      "correctAnswer": "£40",
-      "explanation": "Divide £200 by 5 to get £40.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:51.180Z"
-    },
-    {
-      "id": 4983,
-      "syllabusId": 11,
-      "questionType": "TEXT",
-      "questionText": "Calculate: 2.6 + 1.20",
-      "questionImage": null,
-      "options": [
-        "3.9",
-        "4.8",
-        "3.8",
-        "3.6999999999999997"
-      ],
-      "correctAnswer": "3.8",
-      "explanation": "Aligning decimal points: 2.6 + 1.20 = 3.8.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:52.274Z"
-    },
-    {
-      "id": 5475,
-      "syllabusId": 11,
-      "questionType": "TEXT",
-      "questionText": "Calculate the product: 0.3 × 0.6. (Variation: 110)",
-      "questionImage": null,
-      "options": [
-        "0.28",
-        "0.18",
-        "1.7999999999999998",
-        "0.12"
-      ],
-      "correctAnswer": "0.18",
-      "explanation": "0.3 × 0.6 equals 0.18.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:52.276Z"
-    },
-    {
-      "id": 5546,
-      "syllabusId": 11,
-      "questionType": "TEXT",
-      "questionText": "Perform the division: 3.2 ÷ 0.08. (Variation: 181)",
-      "questionImage": null,
-      "options": [
-        "80",
-        "30",
-        "40",
-        "4"
-      ],
-      "correctAnswer": "40",
-      "explanation": "3.2 ÷ 0.08 is equivalent to 320 ÷ 8 = 40.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:52.278Z"
-    },
-    {
-      "id": 3238,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, add 10, and get 20. What is the number?",
-      "questionImage": null,
-      "options": [
-        "14",
-        "12",
-        "10",
-        "8"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Subtracting 10 from 20 gives 10.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:40.671Z"
-    },
-    {
-      "id": 3277,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, add 49, and get 59. What is the number?",
-      "questionImage": null,
-      "options": [
-        "12",
-        "10",
-        "14",
-        "8"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Subtracting 49 from 59 gives 10.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:41.851Z"
-    },
-    {
-      "id": 3355,
-      "syllabusId": 19,
-      "questionType": "TEXT",
-      "questionText": "I think of a number, multiply it by 3, and then subtract 127. The result is -97. What is my starting number?",
-      "questionImage": null,
-      "options": [
-        "9",
-        "10",
-        "12",
-        "11"
-      ],
-      "correctAnswer": "10",
-      "explanation": "Add 127 to get 30, then divide by 3 to get 10.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:41.855Z"
-    },
-    {
-      "id": 9,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "True or False: The number 1 is a prime number.",
-      "questionImage": null,
-      "options": [
-        "It depends",
-        "True",
-        "Sometimes",
-        "False"
-      ],
-      "correctAnswer": "False",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:17:19.852Z",
-      "updatedAt": "2026-07-18T06:20:42.834Z"
-    },
-    {
-      "id": 76,
-      "syllabusId": 1,
-      "questionType": "TEXT",
-      "questionText": "True or False: 3/5 is greater than 0.5.",
-      "questionImage": null,
-      "options": [
-        "True",
-        "They are equal",
-        "False",
-        "Cannot compare"
-      ],
-      "correctAnswer": "True",
-      "explanation": null,
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:17:58.661Z",
-      "updatedAt": "2026-07-18T06:20:42.835Z"
-    },
-    {
-      "id": 14120,
-      "syllabusId": 72,
-      "questionType": "TEXT",
-      "questionText": "What is 66 ÷ 6?",
-      "questionImage": null,
-      "options": [
-        "13",
-        "12",
-        "11",
-        "8"
-      ],
-      "correctAnswer": "11",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-18T06:14:03.453Z",
-      "updatedAt": "2026-07-18T06:20:44.889Z"
-    },
-    {
-      "id": 14281,
-      "syllabusId": 72,
-      "questionType": "TEXT",
-      "questionText": "Ava has 64 sweets to distribute equally among 4 friends. How many sweets does each friend receive?",
-      "questionImage": null,
-      "options": [
-        "17",
-        "16",
-        "18",
-        "15"
-      ],
-      "correctAnswer": "16",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-18T06:14:06.377Z",
-      "updatedAt": "2026-07-18T06:20:44.890Z"
-    },
-    {
-      "id": 4287,
-      "syllabusId": 20,
-      "questionType": "TEXT",
-      "questionText": "Which of the following is a factor of 60?",
-      "questionImage": null,
-      "options": [
-        "7",
-        "4",
-        "9",
-        "5"
-      ],
-      "correctAnswer": "4",
-      "explanation": "60 divides perfectly by 4.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:30.140Z",
-      "updatedAt": "2026-07-18T06:20:45.967Z"
-    },
-    {
-      "id": 5689,
-      "syllabusId": 20,
-      "questionType": "TEXT",
-      "questionText": "Which of the following is a factor of 36? (Variation: 111)",
-      "questionImage": null,
-      "options": [
-        "4",
-        "7",
-        "9",
-        "5"
-      ],
-      "correctAnswer": "4",
-      "explanation": "36 divides perfectly by 4.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:45.969Z"
-    },
-    {
-      "id": 5761,
-      "syllabusId": 20,
-      "questionType": "TEXT",
-      "questionText": "Find the sum of all factors of 24. (Variation: 183)",
-      "questionImage": null,
-      "options": [
-        "50",
-        "40",
-        "70",
-        "60"
-      ],
-      "correctAnswer": "60",
-      "explanation": "Factors are all integers dividing 24. Their sum is 60.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:45.972Z"
-    },
-    {
-      "id": 5984,
-      "syllabusId": 22,
-      "questionType": "TEXT",
-      "questionText": "Identify the prime number from the following choices. (Variation: 109)",
-      "questionImage": null,
-      "options": [
-        "8",
-        "29",
-        "4",
-        "6"
-      ],
-      "correctAnswer": "29",
-      "explanation": "A prime number has exactly two factors: 1 and itself. 29 is prime.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:33.244Z",
-      "updatedAt": "2026-07-18T06:20:46.957Z"
-    },
-    {
-      "id": 4920,
-      "syllabusId": 23,
-      "questionType": "TEXT",
-      "questionText": "Find the product of prime factors of 140.",
-      "questionImage": null,
-      "options": [
-        "5 × 5",
-        "2 × 2 × 5 × 7",
-        "2 × 3 × 3",
-        "2 × 2 × 2 × 5"
-      ],
-      "correctAnswer": "2 × 2 × 5 × 7",
-      "explanation": "140 factored into primes is 2 × 2 × 5 × 7.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:30.140Z",
-      "updatedAt": "2026-07-18T06:20:46.960Z"
-    },
-    {
-      "id": 969,
-      "syllabusId": 24,
-      "questionType": "TEXT",
-      "questionText": "Two numbers have prime factorisations 2³×3² and 2²×3×5. Find their LCM and HCF.",
-      "questionImage": null,
-      "options": [
-        "HCF=6; LCM=360",
-        "HCF=12; LCM=360",
-        "HCF=12; LCM=180",
-        "HCF=24; LCM=720"
-      ],
-      "correctAnswer": "HCF=12; LCM=360",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:47.934Z"
-    },
-    {
-      "id": 6197,
-      "syllabusId": 24,
-      "questionType": "TEXT",
-      "questionText": "Calculate the cube of 4: (Variation: 129)",
-      "questionImage": null,
-      "options": [
-        "64",
-        "100",
-        "49",
-        "79"
-      ],
-      "correctAnswer": "64",
-      "explanation": "4³ = 64.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:33.244Z",
-      "updatedAt": "2026-07-18T06:20:48.950Z"
-    },
-    {
-      "id": 479,
-      "syllabusId": 9,
-      "questionType": "TEXT",
-      "questionText": "Order from smallest to largest: 1/3, 2/5, 3/8.",
-      "questionImage": null,
-      "options": [
-        "2/5, 1/3, 3/8",
-        "1/3, 3/8, 2/5",
-        "1/3, 2/5, 3/8",
-        "3/8, 1/3, 2/5"
-      ],
-      "correctAnswer": "1/3, 3/8, 2/5",
-      "explanation": null,
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:23:20.199Z",
-      "updatedAt": "2026-07-18T06:20:50.154Z"
-    },
-    {
-      "id": 549,
-      "syllabusId": 9,
-      "questionType": "TEXT",
-      "questionText": "Subtract 1 3/8 from 4 1/4, giving your answer in its simplest form.",
-      "questionImage": null,
-      "options": [
-        "2 1/8",
-        "2 7/8",
-        "3 1/8",
-        "3 7/8"
-      ],
-      "correctAnswer": "2 7/8",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:23:59.418Z",
-      "updatedAt": "2026-07-18T06:20:50.156Z"
-    },
-    {
-      "id": 5419,
-      "syllabusId": 9,
-      "questionType": "TEXT",
-      "questionText": "Simplify the fraction 8/16 to its simplest form. (Variation: 153)",
-      "questionImage": null,
-      "options": [
-        "1/2",
-        "3/8",
-        "2/7",
-        "1/5"
-      ],
-      "correctAnswer": "1/2",
-      "explanation": "Dividing numerator and denominator by their HCF gives 1/2.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:51.177Z"
-    },
-    {
-      "id": 3888,
-      "syllabusId": 14,
-      "questionType": "TEXT",
-      "questionText": "Find 5/6 of £180",
-      "questionImage": null,
-      "options": [
-        "£140",
-        "£150",
-        "£180",
-        "£160"
-      ],
-      "correctAnswer": "£150",
-      "explanation": "Divide £180 by 6 and multiply by 5 = £150.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:51.179Z"
-    },
-    {
-      "id": 5608,
-      "syllabusId": 14,
-      "questionType": "TEXT",
-      "questionText": "Calculate 2/3 of £180. (Variation: 180)",
-      "questionImage": null,
-      "options": [
-        "£110",
-        "£180",
-        "£130",
-        "£120"
-      ],
-      "correctAnswer": "£120",
-      "explanation": "Divide £180 by 3 and multiply by 2 = £120.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:51.180Z"
-    },
-    {
-      "id": 3172,
-      "syllabusId": 12,
-      "questionType": "TEXT",
-      "questionText": "If 15% of a number is 1812, what is 100% of the number?",
-      "questionImage": null,
-      "options": [
-        "12130",
-        "12080",
-        "12030",
-        "11980"
-      ],
-      "correctAnswer": "12080",
-      "explanation": "Since 15% is 1812, 1% is 120.8. Thus 100% is 12080 = 12080.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:53.293Z"
-    },
-    {
-      "id": 5294,
-      "syllabusId": 10,
-      "questionType": "TEXT",
-      "questionText": "Evaluate: 60% of 80 + 0.30 of 200 - 1/4 of 40",
-      "questionImage": null,
-      "options": [
-        "102",
-        "108",
-        "93",
-        "98"
-      ],
-      "correctAnswer": "98",
-      "explanation": "60% of 80 = 48. 0.30 of 200 = 60. 1/4 of 40 = 10. Combining gives 48 + 60 - 10 = 98.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:53.297Z"
-    },
-    {
-      "id": 4418,
-      "syllabusId": 13,
-      "questionType": "TEXT",
-      "questionText": "Decrease £530 by 15%.",
-      "questionImage": null,
-      "options": [
-        "£477.00",
-        "£450.50",
-        "£530",
-        "£424.00"
-      ],
-      "correctAnswer": "£450.50",
-      "explanation": "15% of £530 is £79.5. Subtracting gives £450.50.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:30.140Z",
-      "updatedAt": "2026-07-18T06:20:54.815Z"
     },
     {
       "id": 3809,
@@ -242721,26 +243076,6 @@
       "updatedAt": "2026-07-18T06:20:45.969Z"
     },
     {
-      "id": 5678,
-      "syllabusId": 20,
-      "questionType": "TEXT",
-      "questionText": "Which of the following is a factor of 52? (Variation: 100)",
-      "questionImage": null,
-      "options": [
-        "5",
-        "7",
-        "4",
-        "9"
-      ],
-      "correctAnswer": "4",
-      "explanation": "52 divides perfectly by 4.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:45.969Z"
-    },
-    {
       "id": 5954,
       "syllabusId": 22,
       "questionType": "TEXT",
@@ -243495,66 +243830,6 @@
       "updatedAt": "2026-07-18T06:20:51.180Z"
     },
     {
-      "id": 4990,
-      "syllabusId": 11,
-      "questionType": "TEXT",
-      "questionText": "Calculate: 3.3 + 1.55",
-      "questionImage": null,
-      "options": [
-        "4.85",
-        "4.75",
-        "5.85",
-        "4.949999999999999"
-      ],
-      "correctAnswer": "4.85",
-      "explanation": "Aligning decimal points: 3.3 + 1.55 = 4.85.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:52.275Z"
-    },
-    {
-      "id": 5021,
-      "syllabusId": 11,
-      "questionType": "TEXT",
-      "questionText": "Calculate: 6.4 + 3.10",
-      "questionImage": null,
-      "options": [
-        "9.5",
-        "9.6",
-        "9.4",
-        "10.5"
-      ],
-      "correctAnswer": "9.5",
-      "explanation": "Aligning decimal points: 6.4 + 3.10 = 9.5.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:52.275Z"
-    },
-    {
-      "id": 3037,
-      "syllabusId": 12,
-      "questionType": "TEXT",
-      "questionText": "Find 10% of £320",
-      "questionImage": null,
-      "options": [
-        "£64",
-        "£16",
-        "£48",
-        "£32"
-      ],
-      "correctAnswer": "£32",
-      "explanation": "10% of £320 is 10/100 × 320 = £32.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:52.278Z"
-    },
-    {
       "id": 3176,
       "syllabusId": 12,
       "questionType": "TEXT",
@@ -244229,26 +244504,6 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:27:44.826Z",
       "updatedAt": "2026-07-18T06:20:44.890Z"
-    },
-    {
-      "id": 999,
-      "syllabusId": 20,
-      "questionType": "TEXT",
-      "questionText": "The nth triangular number is n(n+1)/2. Find n if the nth triangular number is 105.",
-      "questionImage": null,
-      "options": [
-        "13",
-        "14",
-        "15",
-        "21"
-      ],
-      "correctAnswer": "14",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:45.965Z"
     },
     {
       "id": 5722,
@@ -245551,46 +245806,6 @@
       "updatedAt": "2026-07-18T06:20:54.812Z"
     },
     {
-      "id": 4430,
-      "syllabusId": 13,
-      "questionType": "TEXT",
-      "questionText": "Decrease £590 by 15%.",
-      "questionImage": null,
-      "options": [
-        "£531.00",
-        "£590",
-        "£501.50",
-        "£472.00"
-      ],
-      "correctAnswer": "£501.50",
-      "explanation": "15% of £590 is £88.5. Subtracting gives £501.50.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:30.140Z",
-      "updatedAt": "2026-07-18T06:20:54.815Z"
-    },
-    {
-      "id": 1295,
-      "syllabusId": 30,
-      "questionType": "TEXT",
-      "questionText": "If the 1st of a month falls on a Sunday, what day of the week is the 9th of that month?",
-      "questionImage": null,
-      "options": [
-        "Monday",
-        "Tuesday",
-        "Sunday",
-        "Saturday"
-      ],
-      "correctAnswer": "Monday",
-      "explanation": null,
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:25.213Z",
-      "updatedAt": "2026-07-18T06:20:54.816Z"
-    },
-    {
       "id": 3810,
       "syllabusId": 30,
       "questionType": "TEXT",
@@ -246189,26 +246404,6 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:33.244Z",
       "updatedAt": "2026-07-18T06:21:00.400Z"
-    },
-    {
-      "id": 6207,
-      "syllabusId": 24,
-      "questionType": "TEXT",
-      "questionText": "Calculate the cube of 2: (Variation: 139)",
-      "questionImage": null,
-      "options": [
-        "100",
-        "-7",
-        "23",
-        "8"
-      ],
-      "correctAnswer": "8",
-      "explanation": "2³ = 8.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:33.244Z",
-      "updatedAt": "2026-07-18T06:20:48.950Z"
     },
     {
       "id": 998,
@@ -247511,66 +247706,6 @@
       "updatedAt": "2026-07-18T06:20:52.276Z"
     },
     {
-      "id": 5563,
-      "syllabusId": 11,
-      "questionType": "TEXT",
-      "questionText": "Perform the division: 4.8 ÷ 0.08. (Variation: 198)",
-      "questionImage": null,
-      "options": [
-        "60",
-        "30",
-        "6",
-        "120"
-      ],
-      "correctAnswer": "60",
-      "explanation": "4.8 ÷ 0.08 is equivalent to 480 ÷ 8 = 60.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:52.277Z"
-    },
-    {
-      "id": 3068,
-      "syllabusId": 12,
-      "questionType": "TEXT",
-      "questionText": "Find 10% of £940",
-      "questionImage": null,
-      "options": [
-        "£94",
-        "£47",
-        "£188",
-        "£141"
-      ],
-      "correctAnswer": "£94",
-      "explanation": "10% of £940 is 10/100 × 940 = £94.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:52.279Z"
-    },
-    {
-      "id": 3117,
-      "syllabusId": 12,
-      "questionType": "TEXT",
-      "questionText": "Find 35% of £1920",
-      "questionImage": null,
-      "options": [
-        "£672",
-        "£768",
-        "£576",
-        "£480"
-      ],
-      "correctAnswer": "£672",
-      "explanation": "35% of £1920 is 35/100 × 1920 = £672.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:28.841Z",
-      "updatedAt": "2026-07-18T06:20:53.291Z"
-    },
-    {
       "id": 4487,
       "syllabusId": 13,
       "questionType": "TEXT",
@@ -248129,6 +248264,26 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:33.244Z",
       "updatedAt": "2026-07-18T06:21:00.401Z"
+    },
+    {
+      "id": 5213,
+      "syllabusId": 10,
+      "questionType": "TEXT",
+      "questionText": "Convert the decimal 0.25 into a percentage.",
+      "questionImage": null,
+      "options": [
+        "25%",
+        "27%",
+        "2.5%",
+        "35%"
+      ],
+      "correctAnswer": "25%",
+      "explanation": "To convert a decimal to a percentage, multiply by 100. 0.25 × 100 = 25%.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:53.295Z"
     },
     {
       "id": 2642,
@@ -248791,26 +248946,6 @@
       "updatedAt": "2026-07-18T06:20:53.295Z"
     },
     {
-      "id": 5213,
-      "syllabusId": 10,
-      "questionType": "TEXT",
-      "questionText": "Convert the decimal 0.25 into a percentage.",
-      "questionImage": null,
-      "options": [
-        "25%",
-        "27%",
-        "2.5%",
-        "35%"
-      ],
-      "correctAnswer": "25%",
-      "explanation": "To convert a decimal to a percentage, multiply by 100. 0.25 × 100 = 25%.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:53.295Z"
-    },
-    {
       "id": 6472,
       "syllabusId": 30,
       "questionType": "TEXT",
@@ -249311,6 +249446,66 @@
       "updatedAt": "2026-07-18T06:20:57.171Z"
     },
     {
+      "id": 5335,
+      "syllabusId": 10,
+      "questionType": "TEXT",
+      "questionText": "Determine the percentage value of the fraction 7/36. (Hint: Convert to percentage)",
+      "questionImage": null,
+      "options": [
+        "29.44%",
+        "17.44%",
+        "19.44%",
+        "24.44%"
+      ],
+      "correctAnswer": "19.44%",
+      "explanation": "7/36 as a percentage is 19.44%.",
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:31.832Z",
+      "updatedAt": "2026-07-18T06:20:53.297Z"
+    },
+    {
+      "id": 4404,
+      "syllabusId": 13,
+      "questionType": "TEXT",
+      "questionText": "Decrease £460 by 15%.",
+      "questionImage": null,
+      "options": [
+        "£414.00",
+        "£368.00",
+        "£460",
+        "£391.00"
+      ],
+      "correctAnswer": "£391.00",
+      "explanation": "15% of £460 is £69. Subtracting gives £391.00.",
+      "difficulty": "MEDIUM",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:30.140Z",
+      "updatedAt": "2026-07-18T06:20:54.814Z"
+    },
+    {
+      "id": 4469,
+      "syllabusId": 13,
+      "questionType": "TEXT",
+      "questionText": "A ticket price was increased by 25% to £1962.50. What was the original price?",
+      "questionImage": null,
+      "options": [
+        "£1580.00",
+        "£100.00",
+        "£1560.00",
+        "£1570.00"
+      ],
+      "correctAnswer": "£1570.00",
+      "explanation": "Original Price = £1962.50 ÷ 1.25 = £1570.00.",
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-11T13:34:30.140Z",
+      "updatedAt": "2026-07-18T06:20:54.815Z"
+    },
+    {
       "id": 2280,
       "syllabusId": 29,
       "questionType": "TEXT",
@@ -249809,66 +250004,6 @@
       "isActive": true,
       "createdAt": "2026-07-11T13:34:28.841Z",
       "updatedAt": "2026-07-18T06:20:53.290Z"
-    },
-    {
-      "id": 5335,
-      "syllabusId": 10,
-      "questionType": "TEXT",
-      "questionText": "Determine the percentage value of the fraction 7/36. (Hint: Convert to percentage)",
-      "questionImage": null,
-      "options": [
-        "29.44%",
-        "17.44%",
-        "19.44%",
-        "24.44%"
-      ],
-      "correctAnswer": "19.44%",
-      "explanation": "7/36 as a percentage is 19.44%.",
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:31.832Z",
-      "updatedAt": "2026-07-18T06:20:53.297Z"
-    },
-    {
-      "id": 4404,
-      "syllabusId": 13,
-      "questionType": "TEXT",
-      "questionText": "Decrease £460 by 15%.",
-      "questionImage": null,
-      "options": [
-        "£414.00",
-        "£368.00",
-        "£460",
-        "£391.00"
-      ],
-      "correctAnswer": "£391.00",
-      "explanation": "15% of £460 is £69. Subtracting gives £391.00.",
-      "difficulty": "MEDIUM",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:30.140Z",
-      "updatedAt": "2026-07-18T06:20:54.814Z"
-    },
-    {
-      "id": 4469,
-      "syllabusId": 13,
-      "questionType": "TEXT",
-      "questionText": "A ticket price was increased by 25% to £1962.50. What was the original price?",
-      "questionImage": null,
-      "options": [
-        "£1580.00",
-        "£100.00",
-        "£1560.00",
-        "£1570.00"
-      ],
-      "correctAnswer": "£1570.00",
-      "explanation": "Original Price = £1962.50 ÷ 1.25 = £1570.00.",
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-11T13:34:30.140Z",
-      "updatedAt": "2026-07-18T06:20:54.815Z"
     },
     {
       "id": 3773,
@@ -352953,6 +353088,26 @@
       "updatedAt": "2026-07-18T07:12:24.026Z"
     },
     {
+      "id": 10455,
+      "syllabusId": 56,
+      "questionType": "TEXT",
+      "questionText": "Choose the best phrase to complete the sentence. The path wound through the woods, ______.",
+      "questionImage": null,
+      "options": [
+        "very long",
+        "near the river",
+        "carpeted with fallen leaves",
+        "with trees"
+      ],
+      "correctAnswer": "C) carpeted with fallen leaves",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-17T12:28:40.609Z",
+      "updatedAt": "2026-07-17T12:28:40.609Z"
+    },
+    {
       "id": 5940,
       "syllabusId": 33,
       "questionType": "TEXT",
@@ -354833,6 +354988,26 @@
       "updatedAt": "2026-07-18T07:13:07.302Z"
     },
     {
+      "id": 10446,
+      "syllabusId": 56,
+      "questionType": "TEXT",
+      "questionText": "Why did the author describe the flower as \"a brilliant red that seemed to glow\"?",
+      "questionImage": null,
+      "options": [
+        "To help the reader imagine how vivid the colour was.",
+        "To compare the flower to a light bulb.",
+        "To tell the reader the flower was red.",
+        "To say the flower was on fire."
+      ],
+      "correctAnswer": "A) To help the reader imagine how vivid the colour was.",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-17T12:28:39.225Z",
+      "updatedAt": "2026-07-17T12:28:39.225Z"
+    },
+    {
       "id": 6105,
       "syllabusId": 34,
       "questionType": "TEXT",
@@ -356151,6 +356326,26 @@
       "isActive": true,
       "createdAt": "2026-07-16T12:41:48.994Z",
       "updatedAt": "2026-07-18T07:13:47.565Z"
+    },
+    {
+      "id": 5605,
+      "syllabusId": 32,
+      "questionType": "TEXT",
+      "questionText": "Change to active voice: The song was sung by the choir.",
+      "questionImage": null,
+      "options": [
+        "The song sang the choir.",
+        "The choir sang the song.",
+        "The song was sung by the choir.",
+        "The choir sings the song."
+      ],
+      "correctAnswer": "The choir sang the song.",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-16T12:21:22.533Z",
+      "updatedAt": "2026-07-18T07:11:42.347Z"
     },
     {
       "id": 6232,
@@ -375733,6 +375928,26 @@
       "updatedAt": "2026-07-17T12:19:12.552Z"
     },
     {
+      "id": 10447,
+      "syllabusId": 56,
+      "questionType": "TEXT",
+      "questionText": "Which sentence uses imagery more effectively?",
+      "questionImage": null,
+      "options": [
+        "The dog was happy.",
+        "The dog barked.",
+        "The dog wagged its tail and jumped up and down.",
+        "The dog was excited."
+      ],
+      "correctAnswer": "C) The dog wagged its tail and jumped up and down.",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-17T12:28:39.382Z",
+      "updatedAt": "2026-07-17T12:28:39.382Z"
+    },
+    {
       "id": 7802,
       "syllabusId": 43,
       "questionType": "TEXT",
@@ -376371,6 +376586,26 @@
       "isActive": true,
       "createdAt": "2026-07-17T05:51:24.730Z",
       "updatedAt": "2026-07-17T05:51:24.730Z"
+    },
+    {
+      "id": 10448,
+      "syllabusId": 56,
+      "questionType": "TEXT",
+      "questionText": "Which sentence appeals to BOTH touch and sight?",
+      "questionImage": null,
+      "options": [
+        "The food smelled wonderful.",
+        "The warm, golden sand slipped through my fingers.",
+        "The sky was blue.",
+        "The music was loud and fast."
+      ],
+      "correctAnswer": "B) The warm, golden sand slipped through my fingers.",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-17T12:28:39.537Z",
+      "updatedAt": "2026-07-17T12:28:39.537Z"
     },
     {
       "id": 7832,
@@ -377951,6 +378186,26 @@
       "isActive": true,
       "createdAt": "2026-07-17T05:51:36.602Z",
       "updatedAt": "2026-07-17T05:51:36.602Z"
+    },
+    {
+      "id": 10449,
+      "syllabusId": 56,
+      "questionType": "TEXT",
+      "questionText": "Which sentence contains the strongest imagery?",
+      "questionImage": null,
+      "options": [
+        "The village was peaceful.",
+        "The village was quiet.",
+        "The village had no lights on.",
+        "The village slept beneath a blanket of stars."
+      ],
+      "correctAnswer": "D) The village slept beneath a blanket of stars.",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-17T12:28:39.690Z",
+      "updatedAt": "2026-07-17T12:28:39.690Z"
     },
     {
       "id": 7908,
@@ -380933,6 +381188,26 @@
       "updatedAt": "2026-07-17T07:43:42.807Z"
     },
     {
+      "id": 10450,
+      "syllabusId": 56,
+      "questionType": "TEXT",
+      "questionText": "Which sense is mainly used in the sentence? \"The blazing fire warmed my frozen fingers as the flames danced and crackled.\"",
+      "questionImage": null,
+      "options": [
+        "Sight",
+        "Both sight and hearing",
+        "Smell",
+        "Hearing"
+      ],
+      "correctAnswer": "B) Both sight and hearing",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-17T12:28:39.843Z",
+      "updatedAt": "2026-07-17T12:28:39.843Z"
+    },
+    {
       "id": 8052,
       "syllabusId": 44,
       "questionType": "TEXT",
@@ -382131,6 +382406,26 @@
       "isActive": true,
       "createdAt": "2026-07-17T07:32:29.884Z",
       "updatedAt": "2026-07-17T07:43:57.113Z"
+    },
+    {
+      "id": 10451,
+      "syllabusId": 56,
+      "questionType": "TEXT",
+      "questionText": "Which sentence does NOT contain imagery?",
+      "questionImage": null,
+      "options": [
+        "The rain drummed against the roof.",
+        "The mist swirled around the old castle.",
+        "The apple was crisp and juicy.",
+        "The game started at 3 o'clock."
+      ],
+      "correctAnswer": "D) The game started at 3 o'clock.",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-17T12:28:39.996Z",
+      "updatedAt": "2026-07-17T12:28:39.996Z"
     },
     {
       "id": 8111,
@@ -383831,6 +384126,26 @@
       "isActive": true,
       "createdAt": "2026-07-17T12:28:33.590Z",
       "updatedAt": "2026-07-17T12:28:33.590Z"
+    },
+    {
+      "id": 10452,
+      "syllabusId": 56,
+      "questionType": "TEXT",
+      "questionText": "Which sentence creates the clearest picture in the reader's mind?",
+      "questionImage": null,
+      "options": [
+        "The tree had leaves.",
+        "The tree was big.",
+        "The tree's branches stretched out like crooked fingers against the grey sky.",
+        "The tree was old."
+      ],
+      "correctAnswer": "C) The tree's branches stretched out like crooked fingers against the grey sky.",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-17T12:28:40.152Z",
+      "updatedAt": "2026-07-17T12:28:40.152Z"
     },
     {
       "id": 10411,
@@ -388553,6 +388868,26 @@
       "updatedAt": "2026-07-17T08:14:56.163Z"
     },
     {
+      "id": 10453,
+      "syllabusId": 56,
+      "questionType": "TEXT",
+      "questionText": "The sentence below mainly uses which literary device? \"The gentle breeze carried the scent of honeysuckle through the open window.\"",
+      "questionImage": null,
+      "options": [
+        "Imagery",
+        "Hyperbole",
+        "Metaphor",
+        "Simile"
+      ],
+      "correctAnswer": "A) Imagery",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-17T12:28:40.304Z",
+      "updatedAt": "2026-07-17T12:28:40.304Z"
+    },
+    {
       "id": 8405,
       "syllabusId": 46,
       "questionType": "TEXT",
@@ -389891,6 +390226,26 @@
       "isActive": true,
       "createdAt": "2026-07-17T08:15:09.631Z",
       "updatedAt": "2026-07-17T08:15:09.631Z"
+    },
+    {
+      "id": 10454,
+      "syllabusId": 56,
+      "questionType": "TEXT",
+      "questionText": "Which sentence appeals to the sense of taste?",
+      "questionImage": null,
+      "options": [
+        "The music was beautiful.",
+        "The blanket was warm.",
+        "The sky was clear.",
+        "The chocolate was rich and creamy."
+      ],
+      "correctAnswer": "D) The chocolate was rich and creamy.",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-17T12:28:40.457Z",
+      "updatedAt": "2026-07-17T12:28:40.457Z"
     },
     {
       "id": 8473,
@@ -424833,206 +425188,6 @@
       "updatedAt": "2026-07-17T12:28:39.072Z"
     },
     {
-      "id": 10446,
-      "syllabusId": 56,
-      "questionType": "TEXT",
-      "questionText": "Why did the author describe the flower as \"a brilliant red that seemed to glow\"?",
-      "questionImage": null,
-      "options": [
-        "To help the reader imagine how vivid the colour was.",
-        "To compare the flower to a light bulb.",
-        "To tell the reader the flower was red.",
-        "To say the flower was on fire."
-      ],
-      "correctAnswer": "A) To help the reader imagine how vivid the colour was.",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-17T12:28:39.225Z",
-      "updatedAt": "2026-07-17T12:28:39.225Z"
-    },
-    {
-      "id": 10447,
-      "syllabusId": 56,
-      "questionType": "TEXT",
-      "questionText": "Which sentence uses imagery more effectively?",
-      "questionImage": null,
-      "options": [
-        "The dog was happy.",
-        "The dog barked.",
-        "The dog wagged its tail and jumped up and down.",
-        "The dog was excited."
-      ],
-      "correctAnswer": "C) The dog wagged its tail and jumped up and down.",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-17T12:28:39.382Z",
-      "updatedAt": "2026-07-17T12:28:39.382Z"
-    },
-    {
-      "id": 10448,
-      "syllabusId": 56,
-      "questionType": "TEXT",
-      "questionText": "Which sentence appeals to BOTH touch and sight?",
-      "questionImage": null,
-      "options": [
-        "The food smelled wonderful.",
-        "The warm, golden sand slipped through my fingers.",
-        "The sky was blue.",
-        "The music was loud and fast."
-      ],
-      "correctAnswer": "B) The warm, golden sand slipped through my fingers.",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-17T12:28:39.537Z",
-      "updatedAt": "2026-07-17T12:28:39.537Z"
-    },
-    {
-      "id": 10449,
-      "syllabusId": 56,
-      "questionType": "TEXT",
-      "questionText": "Which sentence contains the strongest imagery?",
-      "questionImage": null,
-      "options": [
-        "The village was peaceful.",
-        "The village was quiet.",
-        "The village had no lights on.",
-        "The village slept beneath a blanket of stars."
-      ],
-      "correctAnswer": "D) The village slept beneath a blanket of stars.",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-17T12:28:39.690Z",
-      "updatedAt": "2026-07-17T12:28:39.690Z"
-    },
-    {
-      "id": 10450,
-      "syllabusId": 56,
-      "questionType": "TEXT",
-      "questionText": "Which sense is mainly used in the sentence? \"The blazing fire warmed my frozen fingers as the flames danced and crackled.\"",
-      "questionImage": null,
-      "options": [
-        "Sight",
-        "Both sight and hearing",
-        "Smell",
-        "Hearing"
-      ],
-      "correctAnswer": "B) Both sight and hearing",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-17T12:28:39.843Z",
-      "updatedAt": "2026-07-17T12:28:39.843Z"
-    },
-    {
-      "id": 10451,
-      "syllabusId": 56,
-      "questionType": "TEXT",
-      "questionText": "Which sentence does NOT contain imagery?",
-      "questionImage": null,
-      "options": [
-        "The rain drummed against the roof.",
-        "The mist swirled around the old castle.",
-        "The apple was crisp and juicy.",
-        "The game started at 3 o'clock."
-      ],
-      "correctAnswer": "D) The game started at 3 o'clock.",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-17T12:28:39.996Z",
-      "updatedAt": "2026-07-17T12:28:39.996Z"
-    },
-    {
-      "id": 10452,
-      "syllabusId": 56,
-      "questionType": "TEXT",
-      "questionText": "Which sentence creates the clearest picture in the reader's mind?",
-      "questionImage": null,
-      "options": [
-        "The tree had leaves.",
-        "The tree was big.",
-        "The tree's branches stretched out like crooked fingers against the grey sky.",
-        "The tree was old."
-      ],
-      "correctAnswer": "C) The tree's branches stretched out like crooked fingers against the grey sky.",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-17T12:28:40.152Z",
-      "updatedAt": "2026-07-17T12:28:40.152Z"
-    },
-    {
-      "id": 10453,
-      "syllabusId": 56,
-      "questionType": "TEXT",
-      "questionText": "The sentence below mainly uses which literary device? \"The gentle breeze carried the scent of honeysuckle through the open window.\"",
-      "questionImage": null,
-      "options": [
-        "Imagery",
-        "Hyperbole",
-        "Metaphor",
-        "Simile"
-      ],
-      "correctAnswer": "A) Imagery",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-17T12:28:40.304Z",
-      "updatedAt": "2026-07-17T12:28:40.304Z"
-    },
-    {
-      "id": 10454,
-      "syllabusId": 56,
-      "questionType": "TEXT",
-      "questionText": "Which sentence appeals to the sense of taste?",
-      "questionImage": null,
-      "options": [
-        "The music was beautiful.",
-        "The blanket was warm.",
-        "The sky was clear.",
-        "The chocolate was rich and creamy."
-      ],
-      "correctAnswer": "D) The chocolate was rich and creamy.",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-17T12:28:40.457Z",
-      "updatedAt": "2026-07-17T12:28:40.457Z"
-    },
-    {
-      "id": 10455,
-      "syllabusId": 56,
-      "questionType": "TEXT",
-      "questionText": "Choose the best phrase to complete the sentence. The path wound through the woods, ______.",
-      "questionImage": null,
-      "options": [
-        "very long",
-        "near the river",
-        "carpeted with fallen leaves",
-        "with trees"
-      ],
-      "correctAnswer": "C) carpeted with fallen leaves",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-17T12:28:40.609Z",
-      "updatedAt": "2026-07-17T12:28:40.609Z"
-    },
-    {
       "id": 10456,
       "syllabusId": 56,
       "questionType": "TEXT",
@@ -426473,6 +426628,26 @@
       "updatedAt": "2026-07-17T12:28:52.124Z"
     },
     {
+      "id": 10552,
+      "syllabusId": 56,
+      "questionType": "TEXT",
+      "questionText": "Which sentence does NOT contain imagery?",
+      "questionImage": null,
+      "options": [
+        "The wind howled through the trees.",
+        "The blanket was rough and scratchy.",
+        "The train departed at 6 pm.",
+        "The fire crackled and spat."
+      ],
+      "correctAnswer": "C) The train departed at 6 pm.",
+      "explanation": null,
+      "difficulty": "HARD",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-17T12:28:56.068Z",
+      "updatedAt": "2026-07-17T12:28:56.068Z"
+    },
+    {
       "id": 10528,
       "syllabusId": 56,
       "questionType": "TEXT",
@@ -426951,26 +427126,6 @@
       "isActive": true,
       "createdAt": "2026-07-17T12:28:55.915Z",
       "updatedAt": "2026-07-17T12:28:55.915Z"
-    },
-    {
-      "id": 10552,
-      "syllabusId": 56,
-      "questionType": "TEXT",
-      "questionText": "Which sentence does NOT contain imagery?",
-      "questionImage": null,
-      "options": [
-        "The wind howled through the trees.",
-        "The blanket was rough and scratchy.",
-        "The train departed at 6 pm.",
-        "The fire crackled and spat."
-      ],
-      "correctAnswer": "C) The train departed at 6 pm.",
-      "explanation": null,
-      "difficulty": "HARD",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-17T12:28:56.068Z",
-      "updatedAt": "2026-07-17T12:28:56.068Z"
     },
     {
       "id": 10553,
@@ -427951,26 +428106,6 @@
       "isActive": true,
       "createdAt": "2026-07-17T12:29:04.528Z",
       "updatedAt": "2026-07-17T12:29:04.528Z"
-    },
-    {
-      "id": 5605,
-      "syllabusId": 32,
-      "questionType": "TEXT",
-      "questionText": "Change to active voice: The song was sung by the choir.",
-      "questionImage": null,
-      "options": [
-        "The song sang the choir.",
-        "The choir sang the song.",
-        "The song was sung by the choir.",
-        "The choir sings the song."
-      ],
-      "correctAnswer": "The choir sang the song.",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-16T12:21:22.533Z",
-      "updatedAt": "2026-07-18T07:11:42.347Z"
     },
     {
       "id": 5609,
@@ -434653,6 +434788,26 @@
       "updatedAt": "2026-07-18T07:14:18.477Z"
     },
     {
+      "id": 6204,
+      "syllabusId": 35,
+      "questionType": "TEXT",
+      "questionText": "Convert to indirect speech: She said, \"I will come.\"",
+      "questionImage": null,
+      "options": [
+        "She said, \"I will come.\"",
+        "She told that she would come.",
+        "She said that she would come.",
+        "She said that she will come."
+      ],
+      "correctAnswer": "She said that she would come.",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-16T12:41:44.732Z",
+      "updatedAt": "2026-07-18T07:14:28.642Z"
+    },
+    {
       "id": 6319,
       "syllabusId": 35,
       "questionType": "TEXT",
@@ -435311,6 +435466,26 @@
       "isActive": true,
       "createdAt": "2026-07-16T12:42:13.822Z",
       "updatedAt": "2026-07-18T07:14:26.517Z"
+    },
+    {
+      "id": 5644,
+      "syllabusId": 32,
+      "questionType": "TEXT",
+      "questionText": "Change to active voice: The books were returned by the students.",
+      "questionImage": null,
+      "options": [
+        "The books returned the students.",
+        "The books were returned by the students.",
+        "The students returned the books.",
+        "The students returns the books."
+      ],
+      "correctAnswer": "The students returned the books.",
+      "explanation": null,
+      "difficulty": "EASY",
+      "marks": 1,
+      "isActive": true,
+      "createdAt": "2026-07-16T12:21:29.496Z",
+      "updatedAt": "2026-07-18T07:11:46.202Z"
     },
     {
       "id": 6387,
@@ -436431,46 +436606,6 @@
       "isActive": true,
       "createdAt": "2026-07-16T12:35:52.861Z",
       "updatedAt": "2026-07-18T07:13:44.033Z"
-    },
-    {
-      "id": 6204,
-      "syllabusId": 35,
-      "questionType": "TEXT",
-      "questionText": "Convert to indirect speech: She said, \"I will come.\"",
-      "questionImage": null,
-      "options": [
-        "She said, \"I will come.\"",
-        "She told that she would come.",
-        "She said that she would come.",
-        "She said that she will come."
-      ],
-      "correctAnswer": "She said that she would come.",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-16T12:41:44.732Z",
-      "updatedAt": "2026-07-18T07:14:28.642Z"
-    },
-    {
-      "id": 5644,
-      "syllabusId": 32,
-      "questionType": "TEXT",
-      "questionText": "Change to active voice: The books were returned by the students.",
-      "questionImage": null,
-      "options": [
-        "The books returned the students.",
-        "The books were returned by the students.",
-        "The students returned the books.",
-        "The students returns the books."
-      ],
-      "correctAnswer": "The students returned the books.",
-      "explanation": null,
-      "difficulty": "EASY",
-      "marks": 1,
-      "isActive": true,
-      "createdAt": "2026-07-16T12:21:29.496Z",
-      "updatedAt": "2026-07-18T07:11:46.202Z"
     },
     {
       "id": 5647,
@@ -440597,1794 +440732,10 @@
   ],
   "nVRQuestion": [],
   "assignment": [],
-  "test": [
-    {
-      "id": 1,
-      "teacherId": 1,
-      "subjectId": 1,
-      "title": "Maths General Mock Challenge",
-      "type": "MOCK",
-      "description": null,
-      "duration": 120,
-      "totalMarks": 49,
-      "status": "ACTIVE",
-      "assignedDate": "2026-06-26T10:16:15.775Z",
-      "dueDate": "2026-06-29T10:16:15.756Z",
-      "createdAt": "2026-06-26T10:16:15.777Z",
-      "updatedAt": "2026-06-26T10:16:15.777Z"
-    },
-    {
-      "id": 2,
-      "teacherId": 1,
-      "subjectId": 1,
-      "title": "Fractions Quick Mock",
-      "type": "MOCK",
-      "description": null,
-      "duration": 20,
-      "totalMarks": 15,
-      "status": "ACTIVE",
-      "assignedDate": "2026-07-09T16:20:15.328Z",
-      "dueDate": "2026-07-16T16:20:14.806Z",
-      "createdAt": "2026-07-09T16:20:15.329Z",
-      "updatedAt": "2026-07-09T16:20:15.329Z"
-    },
-    {
-      "id": 3,
-      "teacherId": 1,
-      "subjectId": 2,
-      "title": "Applied Grammar Weekly Challenge",
-      "type": "WEEKLY",
-      "description": null,
-      "duration": 30,
-      "totalMarks": 10,
-      "status": "ACTIVE",
-      "assignedDate": "2026-07-17T07:21:22.064Z",
-      "dueDate": "2026-07-20T07:21:24.635Z",
-      "createdAt": "2026-07-17T07:21:22.065Z",
-      "updatedAt": "2026-07-17T07:21:22.065Z"
-    },
-    {
-      "id": 4,
-      "teacherId": 1,
-      "subjectId": 1,
-      "title": "Palindromes Weekly Challenge",
-      "type": "WEEKLY",
-      "description": null,
-      "duration": 30,
-      "totalMarks": 10,
-      "status": "ACTIVE",
-      "assignedDate": "2026-07-17T15:24:43.511Z",
-      "dueDate": "2026-07-20T15:23:22.235Z",
-      "createdAt": "2026-07-17T15:24:43.512Z",
-      "updatedAt": "2026-07-17T15:24:43.512Z"
-    },
-    {
-      "id": 5,
-      "teacherId": 1,
-      "subjectId": 1,
-      "title": "Counting Weekly Challenge",
-      "type": "WEEKLY",
-      "description": null,
-      "duration": 30,
-      "totalMarks": 10,
-      "status": "ACTIVE",
-      "assignedDate": "2026-07-18T07:38:50.674Z",
-      "dueDate": "2026-07-21T07:38:51.445Z",
-      "createdAt": "2026-07-18T07:38:50.678Z",
-      "updatedAt": "2026-07-18T07:38:50.678Z"
-    },
-    {
-      "id": 6,
-      "teacherId": 1,
-      "subjectId": 1,
-      "title": "Counting Daily Challenge",
-      "type": "DAILY",
-      "description": null,
-      "duration": 30,
-      "totalMarks": 10,
-      "status": "ACTIVE",
-      "assignedDate": "2026-07-18T09:05:52.489Z",
-      "dueDate": "2026-07-21T09:04:29.757Z",
-      "createdAt": "2026-07-18T09:05:52.490Z",
-      "updatedAt": "2026-07-18T09:05:52.490Z"
-    }
-  ],
-  "testQuestion": [
-    {
-      "id": 1,
-      "testId": 1,
-      "questionId": 292,
-      "subjectId": 1,
-      "questionOrder": 0
-    },
-    {
-      "id": 2,
-      "testId": 1,
-      "questionId": 296,
-      "subjectId": 1,
-      "questionOrder": 1
-    },
-    {
-      "id": 3,
-      "testId": 1,
-      "questionId": 276,
-      "subjectId": 1,
-      "questionOrder": 2
-    },
-    {
-      "id": 4,
-      "testId": 1,
-      "questionId": 475,
-      "subjectId": 1,
-      "questionOrder": 3
-    },
-    {
-      "id": 5,
-      "testId": 1,
-      "questionId": 407,
-      "subjectId": 1,
-      "questionOrder": 4
-    },
-    {
-      "id": 6,
-      "testId": 1,
-      "questionId": 361,
-      "subjectId": 1,
-      "questionOrder": 5
-    },
-    {
-      "id": 7,
-      "testId": 1,
-      "questionId": 268,
-      "subjectId": 1,
-      "questionOrder": 6
-    },
-    {
-      "id": 8,
-      "testId": 1,
-      "questionId": 21,
-      "subjectId": 1,
-      "questionOrder": 7
-    },
-    {
-      "id": 9,
-      "testId": 1,
-      "questionId": 177,
-      "subjectId": 1,
-      "questionOrder": 8
-    },
-    {
-      "id": 10,
-      "testId": 1,
-      "questionId": 271,
-      "subjectId": 1,
-      "questionOrder": 9
-    },
-    {
-      "id": 11,
-      "testId": 1,
-      "questionId": 397,
-      "subjectId": 1,
-      "questionOrder": 10
-    },
-    {
-      "id": 12,
-      "testId": 1,
-      "questionId": 434,
-      "subjectId": 1,
-      "questionOrder": 11
-    },
-    {
-      "id": 13,
-      "testId": 1,
-      "questionId": 10,
-      "subjectId": 1,
-      "questionOrder": 12
-    },
-    {
-      "id": 14,
-      "testId": 1,
-      "questionId": 671,
-      "subjectId": 1,
-      "questionOrder": 13
-    },
-    {
-      "id": 15,
-      "testId": 1,
-      "questionId": 19,
-      "subjectId": 1,
-      "questionOrder": 14
-    },
-    {
-      "id": 16,
-      "testId": 1,
-      "questionId": 114,
-      "subjectId": 1,
-      "questionOrder": 15
-    },
-    {
-      "id": 17,
-      "testId": 1,
-      "questionId": 554,
-      "subjectId": 1,
-      "questionOrder": 16
-    },
-    {
-      "id": 18,
-      "testId": 1,
-      "questionId": 180,
-      "subjectId": 1,
-      "questionOrder": 17
-    },
-    {
-      "id": 19,
-      "testId": 1,
-      "questionId": 184,
-      "subjectId": 1,
-      "questionOrder": 18
-    },
-    {
-      "id": 20,
-      "testId": 1,
-      "questionId": 437,
-      "subjectId": 1,
-      "questionOrder": 19
-    },
-    {
-      "id": 21,
-      "testId": 1,
-      "questionId": 195,
-      "subjectId": 1,
-      "questionOrder": 20
-    },
-    {
-      "id": 22,
-      "testId": 1,
-      "questionId": 433,
-      "subjectId": 1,
-      "questionOrder": 21
-    },
-    {
-      "id": 23,
-      "testId": 1,
-      "questionId": 413,
-      "subjectId": 1,
-      "questionOrder": 22
-    },
-    {
-      "id": 24,
-      "testId": 1,
-      "questionId": 620,
-      "subjectId": 1,
-      "questionOrder": 23
-    },
-    {
-      "id": 25,
-      "testId": 1,
-      "questionId": 548,
-      "subjectId": 1,
-      "questionOrder": 24
-    },
-    {
-      "id": 26,
-      "testId": 1,
-      "questionId": 412,
-      "subjectId": 1,
-      "questionOrder": 25
-    },
-    {
-      "id": 27,
-      "testId": 1,
-      "questionId": 15,
-      "subjectId": 1,
-      "questionOrder": 26
-    },
-    {
-      "id": 28,
-      "testId": 1,
-      "questionId": 140,
-      "subjectId": 1,
-      "questionOrder": 27
-    },
-    {
-      "id": 29,
-      "testId": 1,
-      "questionId": 428,
-      "subjectId": 1,
-      "questionOrder": 28
-    },
-    {
-      "id": 30,
-      "testId": 1,
-      "questionId": 36,
-      "subjectId": 1,
-      "questionOrder": 29
-    },
-    {
-      "id": 31,
-      "testId": 1,
-      "questionId": 685,
-      "subjectId": 1,
-      "questionOrder": 30
-    },
-    {
-      "id": 32,
-      "testId": 1,
-      "questionId": 32,
-      "subjectId": 1,
-      "questionOrder": 31
-    },
-    {
-      "id": 33,
-      "testId": 1,
-      "questionId": 690,
-      "subjectId": 1,
-      "questionOrder": 32
-    },
-    {
-      "id": 34,
-      "testId": 1,
-      "questionId": 360,
-      "subjectId": 1,
-      "questionOrder": 33
-    },
-    {
-      "id": 35,
-      "testId": 1,
-      "questionId": 295,
-      "subjectId": 1,
-      "questionOrder": 34
-    },
-    {
-      "id": 36,
-      "testId": 1,
-      "questionId": 697,
-      "subjectId": 1,
-      "questionOrder": 35
-    },
-    {
-      "id": 37,
-      "testId": 1,
-      "questionId": 89,
-      "subjectId": 1,
-      "questionOrder": 36
-    },
-    {
-      "id": 38,
-      "testId": 1,
-      "questionId": 395,
-      "subjectId": 1,
-      "questionOrder": 37
-    },
-    {
-      "id": 39,
-      "testId": 1,
-      "questionId": 367,
-      "subjectId": 1,
-      "questionOrder": 38
-    },
-    {
-      "id": 40,
-      "testId": 1,
-      "questionId": 423,
-      "subjectId": 1,
-      "questionOrder": 39
-    },
-    {
-      "id": 41,
-      "testId": 1,
-      "questionId": 363,
-      "subjectId": 1,
-      "questionOrder": 40
-    },
-    {
-      "id": 42,
-      "testId": 1,
-      "questionId": 368,
-      "subjectId": 1,
-      "questionOrder": 41
-    },
-    {
-      "id": 43,
-      "testId": 1,
-      "questionId": 24,
-      "subjectId": 1,
-      "questionOrder": 42
-    },
-    {
-      "id": 44,
-      "testId": 1,
-      "questionId": 5,
-      "subjectId": 1,
-      "questionOrder": 43
-    },
-    {
-      "id": 45,
-      "testId": 1,
-      "questionId": 682,
-      "subjectId": 1,
-      "questionOrder": 44
-    },
-    {
-      "id": 46,
-      "testId": 1,
-      "questionId": 568,
-      "subjectId": 1,
-      "questionOrder": 45
-    },
-    {
-      "id": 47,
-      "testId": 1,
-      "questionId": 42,
-      "subjectId": 1,
-      "questionOrder": 46
-    },
-    {
-      "id": 48,
-      "testId": 1,
-      "questionId": 628,
-      "subjectId": 1,
-      "questionOrder": 47
-    },
-    {
-      "id": 49,
-      "testId": 1,
-      "questionId": 424,
-      "subjectId": 1,
-      "questionOrder": 48
-    },
-    {
-      "id": 50,
-      "testId": 2,
-      "questionId": 536,
-      "subjectId": 1,
-      "questionOrder": 0
-    },
-    {
-      "id": 51,
-      "testId": 2,
-      "questionId": 430,
-      "subjectId": 1,
-      "questionOrder": 1
-    },
-    {
-      "id": 52,
-      "testId": 2,
-      "questionId": 447,
-      "subjectId": 1,
-      "questionOrder": 2
-    },
-    {
-      "id": 53,
-      "testId": 2,
-      "questionId": 472,
-      "subjectId": 1,
-      "questionOrder": 3
-    },
-    {
-      "id": 54,
-      "testId": 2,
-      "questionId": 583,
-      "subjectId": 1,
-      "questionOrder": 4
-    },
-    {
-      "id": 55,
-      "testId": 2,
-      "questionId": 574,
-      "subjectId": 1,
-      "questionOrder": 5
-    },
-    {
-      "id": 56,
-      "testId": 2,
-      "questionId": 402,
-      "subjectId": 1,
-      "questionOrder": 6
-    },
-    {
-      "id": 57,
-      "testId": 2,
-      "questionId": 469,
-      "subjectId": 1,
-      "questionOrder": 7
-    },
-    {
-      "id": 58,
-      "testId": 2,
-      "questionId": 479,
-      "subjectId": 1,
-      "questionOrder": 8
-    },
-    {
-      "id": 59,
-      "testId": 2,
-      "questionId": 528,
-      "subjectId": 1,
-      "questionOrder": 9
-    },
-    {
-      "id": 60,
-      "testId": 2,
-      "questionId": 491,
-      "subjectId": 1,
-      "questionOrder": 10
-    },
-    {
-      "id": 61,
-      "testId": 2,
-      "questionId": 512,
-      "subjectId": 1,
-      "questionOrder": 11
-    },
-    {
-      "id": 62,
-      "testId": 2,
-      "questionId": 473,
-      "subjectId": 1,
-      "questionOrder": 12
-    },
-    {
-      "id": 63,
-      "testId": 2,
-      "questionId": 407,
-      "subjectId": 1,
-      "questionOrder": 13
-    },
-    {
-      "id": 64,
-      "testId": 2,
-      "questionId": 506,
-      "subjectId": 1,
-      "questionOrder": 14
-    },
-    {
-      "id": 65,
-      "testId": 3,
-      "questionId": 6266,
-      "subjectId": 2,
-      "questionOrder": 0
-    },
-    {
-      "id": 66,
-      "testId": 3,
-      "questionId": 6231,
-      "subjectId": 2,
-      "questionOrder": 1
-    },
-    {
-      "id": 67,
-      "testId": 3,
-      "questionId": 6232,
-      "subjectId": 2,
-      "questionOrder": 2
-    },
-    {
-      "id": 68,
-      "testId": 3,
-      "questionId": 6244,
-      "subjectId": 2,
-      "questionOrder": 3
-    },
-    {
-      "id": 69,
-      "testId": 3,
-      "questionId": 6215,
-      "subjectId": 2,
-      "questionOrder": 4
-    },
-    {
-      "id": 70,
-      "testId": 3,
-      "questionId": 6237,
-      "subjectId": 2,
-      "questionOrder": 5
-    },
-    {
-      "id": 71,
-      "testId": 3,
-      "questionId": 6238,
-      "subjectId": 2,
-      "questionOrder": 6
-    },
-    {
-      "id": 72,
-      "testId": 3,
-      "questionId": 6337,
-      "subjectId": 2,
-      "questionOrder": 7
-    },
-    {
-      "id": 73,
-      "testId": 3,
-      "questionId": 6351,
-      "subjectId": 2,
-      "questionOrder": 8
-    },
-    {
-      "id": 74,
-      "testId": 3,
-      "questionId": 6304,
-      "subjectId": 2,
-      "questionOrder": 9
-    },
-    {
-      "id": 75,
-      "testId": 4,
-      "questionId": 1683,
-      "subjectId": 1,
-      "questionOrder": 0
-    },
-    {
-      "id": 76,
-      "testId": 4,
-      "questionId": 1599,
-      "subjectId": 1,
-      "questionOrder": 1
-    },
-    {
-      "id": 77,
-      "testId": 4,
-      "questionId": 1656,
-      "subjectId": 1,
-      "questionOrder": 2
-    },
-    {
-      "id": 78,
-      "testId": 4,
-      "questionId": 1619,
-      "subjectId": 1,
-      "questionOrder": 3
-    },
-    {
-      "id": 79,
-      "testId": 4,
-      "questionId": 1665,
-      "subjectId": 1,
-      "questionOrder": 4
-    },
-    {
-      "id": 80,
-      "testId": 4,
-      "questionId": 1641,
-      "subjectId": 1,
-      "questionOrder": 5
-    },
-    {
-      "id": 81,
-      "testId": 4,
-      "questionId": 1650,
-      "subjectId": 1,
-      "questionOrder": 6
-    },
-    {
-      "id": 82,
-      "testId": 4,
-      "questionId": 1677,
-      "subjectId": 1,
-      "questionOrder": 7
-    },
-    {
-      "id": 83,
-      "testId": 4,
-      "questionId": 1601,
-      "subjectId": 1,
-      "questionOrder": 8
-    },
-    {
-      "id": 84,
-      "testId": 4,
-      "questionId": 1671,
-      "subjectId": 1,
-      "questionOrder": 9
-    },
-    {
-      "id": 85,
-      "testId": 5,
-      "questionId": 7205,
-      "subjectId": 1,
-      "questionOrder": 0
-    },
-    {
-      "id": 86,
-      "testId": 5,
-      "questionId": 7250,
-      "subjectId": 1,
-      "questionOrder": 1
-    },
-    {
-      "id": 87,
-      "testId": 5,
-      "questionId": 7177,
-      "subjectId": 1,
-      "questionOrder": 2
-    },
-    {
-      "id": 88,
-      "testId": 5,
-      "questionId": 7289,
-      "subjectId": 1,
-      "questionOrder": 3
-    },
-    {
-      "id": 89,
-      "testId": 5,
-      "questionId": 7227,
-      "subjectId": 1,
-      "questionOrder": 4
-    },
-    {
-      "id": 90,
-      "testId": 5,
-      "questionId": 7170,
-      "subjectId": 1,
-      "questionOrder": 5
-    },
-    {
-      "id": 91,
-      "testId": 5,
-      "questionId": 7120,
-      "subjectId": 1,
-      "questionOrder": 6
-    },
-    {
-      "id": 92,
-      "testId": 5,
-      "questionId": 7191,
-      "subjectId": 1,
-      "questionOrder": 7
-    },
-    {
-      "id": 93,
-      "testId": 5,
-      "questionId": 7237,
-      "subjectId": 1,
-      "questionOrder": 8
-    },
-    {
-      "id": 94,
-      "testId": 5,
-      "questionId": 7128,
-      "subjectId": 1,
-      "questionOrder": 9
-    },
-    {
-      "id": 95,
-      "testId": 6,
-      "questionId": 7124,
-      "subjectId": 1,
-      "questionOrder": 0
-    },
-    {
-      "id": 96,
-      "testId": 6,
-      "questionId": 7134,
-      "subjectId": 1,
-      "questionOrder": 1
-    },
-    {
-      "id": 97,
-      "testId": 6,
-      "questionId": 7163,
-      "subjectId": 1,
-      "questionOrder": 2
-    },
-    {
-      "id": 98,
-      "testId": 6,
-      "questionId": 7135,
-      "subjectId": 1,
-      "questionOrder": 3
-    },
-    {
-      "id": 99,
-      "testId": 6,
-      "questionId": 7123,
-      "subjectId": 1,
-      "questionOrder": 4
-    },
-    {
-      "id": 100,
-      "testId": 6,
-      "questionId": 7191,
-      "subjectId": 1,
-      "questionOrder": 5
-    },
-    {
-      "id": 101,
-      "testId": 6,
-      "questionId": 7195,
-      "subjectId": 1,
-      "questionOrder": 6
-    },
-    {
-      "id": 102,
-      "testId": 6,
-      "questionId": 7143,
-      "subjectId": 1,
-      "questionOrder": 7
-    },
-    {
-      "id": 103,
-      "testId": 6,
-      "questionId": 7127,
-      "subjectId": 1,
-      "questionOrder": 8
-    },
-    {
-      "id": 104,
-      "testId": 6,
-      "questionId": 7244,
-      "subjectId": 1,
-      "questionOrder": 9
-    }
-  ],
-  "studentTest": [
-    {
-      "id": 1,
-      "studentId": 1,
-      "testId": 1,
-      "startedAt": "2026-06-26T10:16:15.797Z",
-      "submittedAt": "2026-06-26T10:23:44.927Z",
-      "obtainedMarks": 7,
-      "totalMarks": 49,
-      "percentage": 14.28571428571428,
-      "grade": null,
-      "status": "SUBMITTED"
-    },
-    {
-      "id": 2,
-      "studentId": 1,
-      "testId": 2,
-      "startedAt": "2026-07-09T16:20:15.532Z",
-      "submittedAt": null,
-      "obtainedMarks": null,
-      "totalMarks": 15,
-      "percentage": null,
-      "grade": null,
-      "status": "STARTED"
-    },
-    {
-      "id": 4,
-      "studentId": 1,
-      "testId": 4,
-      "startedAt": "2026-07-17T15:24:43.718Z",
-      "submittedAt": "2026-07-17T15:30:01.332Z",
-      "obtainedMarks": 0,
-      "totalMarks": 10,
-      "percentage": 0,
-      "grade": null,
-      "status": "SUBMITTED"
-    },
-    {
-      "id": 3,
-      "studentId": 1,
-      "testId": 3,
-      "startedAt": "2026-07-17T07:21:22.270Z",
-      "submittedAt": "2026-07-17T15:33:40.404Z",
-      "obtainedMarks": 0,
-      "totalMarks": 10,
-      "percentage": 0,
-      "grade": null,
-      "status": "SUBMITTED"
-    },
-    {
-      "id": 5,
-      "studentId": 2,
-      "testId": 5,
-      "startedAt": "2026-07-18T07:38:50.886Z",
-      "submittedAt": "2026-07-18T07:41:43.197Z",
-      "obtainedMarks": 6,
-      "totalMarks": 10,
-      "percentage": 60,
-      "grade": null,
-      "status": "SUBMITTED"
-    },
-    {
-      "id": 6,
-      "studentId": 1,
-      "testId": 6,
-      "startedAt": "2026-07-18T09:05:52.700Z",
-      "submittedAt": "2026-07-18T09:09:09.931Z",
-      "obtainedMarks": 3,
-      "totalMarks": 10,
-      "percentage": 30,
-      "grade": null,
-      "status": "SUBMITTED"
-    }
-  ],
-  "studentTestAnswer": [
-    {
-      "id": 1,
-      "studentTestId": 1,
-      "questionId": 292,
-      "subjectId": 1,
-      "selectedAnswer": "5",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 2,
-      "studentTestId": 1,
-      "questionId": 296,
-      "subjectId": 1,
-      "selectedAnswer": "x = 4",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 3,
-      "studentTestId": 1,
-      "questionId": 276,
-      "subjectId": 1,
-      "selectedAnswer": "7a² + a",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 4,
-      "studentTestId": 1,
-      "questionId": 475,
-      "subjectId": 1,
-      "selectedAnswer": "5/8",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 5,
-      "studentTestId": 1,
-      "questionId": 407,
-      "subjectId": 1,
-      "selectedAnswer": "1/2",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 6,
-      "studentTestId": 1,
-      "questionId": 361,
-      "subjectId": 1,
-      "selectedAnswer": "x = 4",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 7,
-      "studentTestId": 1,
-      "questionId": 268,
-      "subjectId": 1,
-      "selectedAnswer": "2a + 7b",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 8,
-      "studentTestId": 1,
-      "questionId": 21,
-      "subjectId": 1,
-      "selectedAnswer": "backwards",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 9,
-      "studentTestId": 1,
-      "questionId": 177,
-      "subjectId": 1,
-      "selectedAnswer": "0.01",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 10,
-      "studentTestId": 1,
-      "questionId": 271,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 11,
-      "studentTestId": 1,
-      "questionId": 397,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 12,
-      "studentTestId": 1,
-      "questionId": 434,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 13,
-      "studentTestId": 1,
-      "questionId": 10,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 14,
-      "studentTestId": 1,
-      "questionId": 671,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 15,
-      "studentTestId": 1,
-      "questionId": 19,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 16,
-      "studentTestId": 1,
-      "questionId": 114,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 17,
-      "studentTestId": 1,
-      "questionId": 554,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 18,
-      "studentTestId": 1,
-      "questionId": 180,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 19,
-      "studentTestId": 1,
-      "questionId": 184,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 20,
-      "studentTestId": 1,
-      "questionId": 437,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 21,
-      "studentTestId": 1,
-      "questionId": 195,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 22,
-      "studentTestId": 1,
-      "questionId": 433,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 23,
-      "studentTestId": 1,
-      "questionId": 413,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 24,
-      "studentTestId": 1,
-      "questionId": 620,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 25,
-      "studentTestId": 1,
-      "questionId": 548,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 26,
-      "studentTestId": 1,
-      "questionId": 412,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 27,
-      "studentTestId": 1,
-      "questionId": 15,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 28,
-      "studentTestId": 1,
-      "questionId": 140,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 29,
-      "studentTestId": 1,
-      "questionId": 428,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 30,
-      "studentTestId": 1,
-      "questionId": 36,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 31,
-      "studentTestId": 1,
-      "questionId": 685,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 32,
-      "studentTestId": 1,
-      "questionId": 32,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 33,
-      "studentTestId": 1,
-      "questionId": 690,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 34,
-      "studentTestId": 1,
-      "questionId": 360,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 35,
-      "studentTestId": 1,
-      "questionId": 295,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 36,
-      "studentTestId": 1,
-      "questionId": 697,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 37,
-      "studentTestId": 1,
-      "questionId": 89,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 38,
-      "studentTestId": 1,
-      "questionId": 395,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 39,
-      "studentTestId": 1,
-      "questionId": 367,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 40,
-      "studentTestId": 1,
-      "questionId": 423,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 41,
-      "studentTestId": 1,
-      "questionId": 363,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 42,
-      "studentTestId": 1,
-      "questionId": 368,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 43,
-      "studentTestId": 1,
-      "questionId": 24,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 44,
-      "studentTestId": 1,
-      "questionId": 5,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 45,
-      "studentTestId": 1,
-      "questionId": 682,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 46,
-      "studentTestId": 1,
-      "questionId": 568,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 47,
-      "studentTestId": 1,
-      "questionId": 42,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 48,
-      "studentTestId": 1,
-      "questionId": 628,
-      "subjectId": 1,
-      "selectedAnswer": "262",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 49,
-      "studentTestId": 1,
-      "questionId": 424,
-      "subjectId": 1,
-      "selectedAnswer": "3/4",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-06-26T10:23:44.943Z"
-    },
-    {
-      "id": 50,
-      "studentTestId": 4,
-      "questionId": 1599,
-      "subjectId": 1,
-      "selectedAnswer": "33",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:30:01.433Z"
-    },
-    {
-      "id": 51,
-      "studentTestId": 4,
-      "questionId": 1601,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:30:01.433Z"
-    },
-    {
-      "id": 52,
-      "studentTestId": 4,
-      "questionId": 1619,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:30:01.433Z"
-    },
-    {
-      "id": 53,
-      "studentTestId": 4,
-      "questionId": 1641,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:30:01.433Z"
-    },
-    {
-      "id": 54,
-      "studentTestId": 4,
-      "questionId": 1650,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:30:01.433Z"
-    },
-    {
-      "id": 55,
-      "studentTestId": 4,
-      "questionId": 1656,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:30:01.433Z"
-    },
-    {
-      "id": 56,
-      "studentTestId": 4,
-      "questionId": 1665,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:30:01.433Z"
-    },
-    {
-      "id": 57,
-      "studentTestId": 4,
-      "questionId": 1671,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:30:01.433Z"
-    },
-    {
-      "id": 58,
-      "studentTestId": 4,
-      "questionId": 1677,
-      "subjectId": 1,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:30:01.433Z"
-    },
-    {
-      "id": 59,
-      "studentTestId": 4,
-      "questionId": 1683,
-      "subjectId": 1,
-      "selectedAnswer": "80",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:30:01.433Z"
-    },
-    {
-      "id": 60,
-      "studentTestId": 3,
-      "questionId": 6215,
-      "subjectId": 2,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:33:40.505Z"
-    },
-    {
-      "id": 61,
-      "studentTestId": 3,
-      "questionId": 6231,
-      "subjectId": 2,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:33:40.505Z"
-    },
-    {
-      "id": 62,
-      "studentTestId": 3,
-      "questionId": 6232,
-      "subjectId": 2,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:33:40.505Z"
-    },
-    {
-      "id": 63,
-      "studentTestId": 3,
-      "questionId": 6237,
-      "subjectId": 2,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:33:40.505Z"
-    },
-    {
-      "id": 64,
-      "studentTestId": 3,
-      "questionId": 6238,
-      "subjectId": 2,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:33:40.505Z"
-    },
-    {
-      "id": 65,
-      "studentTestId": 3,
-      "questionId": 6244,
-      "subjectId": 2,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:33:40.505Z"
-    },
-    {
-      "id": 66,
-      "studentTestId": 3,
-      "questionId": 6266,
-      "subjectId": 2,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:33:40.505Z"
-    },
-    {
-      "id": 67,
-      "studentTestId": 3,
-      "questionId": 6304,
-      "subjectId": 2,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:33:40.505Z"
-    },
-    {
-      "id": 68,
-      "studentTestId": 3,
-      "questionId": 6337,
-      "subjectId": 2,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:33:40.505Z"
-    },
-    {
-      "id": 69,
-      "studentTestId": 3,
-      "questionId": 6351,
-      "subjectId": 2,
-      "selectedAnswer": "",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-17T15:33:40.505Z"
-    },
-    {
-      "id": 70,
-      "studentTestId": 5,
-      "questionId": 7120,
-      "subjectId": 1,
-      "selectedAnswer": "60",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-07-18T07:41:43.300Z"
-    },
-    {
-      "id": 71,
-      "studentTestId": 5,
-      "questionId": 7128,
-      "subjectId": 1,
-      "selectedAnswer": "27",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-07-18T07:41:43.300Z"
-    },
-    {
-      "id": 72,
-      "studentTestId": 5,
-      "questionId": 7170,
-      "subjectId": 1,
-      "selectedAnswer": "24",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-07-18T07:41:43.300Z"
-    },
-    {
-      "id": 73,
-      "studentTestId": 5,
-      "questionId": 7177,
-      "subjectId": 1,
-      "selectedAnswer": "450",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-07-18T07:41:43.300Z"
-    },
-    {
-      "id": 74,
-      "studentTestId": 5,
-      "questionId": 7191,
-      "subjectId": 1,
-      "selectedAnswer": "300",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-07-18T07:41:43.300Z"
-    },
-    {
-      "id": 75,
-      "studentTestId": 5,
-      "questionId": 7205,
-      "subjectId": 1,
-      "selectedAnswer": "250",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-18T07:41:43.300Z"
-    },
-    {
-      "id": 76,
-      "studentTestId": 5,
-      "questionId": 7227,
-      "subjectId": 1,
-      "selectedAnswer": "-26",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-07-18T07:41:43.300Z"
-    },
-    {
-      "id": 77,
-      "studentTestId": 5,
-      "questionId": 7237,
-      "subjectId": 1,
-      "selectedAnswer": "64",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-18T07:41:43.300Z"
-    },
-    {
-      "id": 78,
-      "studentTestId": 5,
-      "questionId": 7250,
-      "subjectId": 1,
-      "selectedAnswer": "840",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-18T07:41:43.300Z"
-    },
-    {
-      "id": 79,
-      "studentTestId": 5,
-      "questionId": 7289,
-      "subjectId": 1,
-      "selectedAnswer": "15",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-18T07:41:43.300Z"
-    },
-    {
-      "id": 80,
-      "studentTestId": 6,
-      "questionId": 7123,
-      "subjectId": 1,
-      "selectedAnswer": "14",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-18T09:09:10.034Z"
-    },
-    {
-      "id": 81,
-      "studentTestId": 6,
-      "questionId": 7124,
-      "subjectId": 1,
-      "selectedAnswer": "14",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-07-18T09:09:10.034Z"
-    },
-    {
-      "id": 82,
-      "studentTestId": 6,
-      "questionId": 7127,
-      "subjectId": 1,
-      "selectedAnswer": "102",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-18T09:09:10.034Z"
-    },
-    {
-      "id": 83,
-      "studentTestId": 6,
-      "questionId": 7134,
-      "subjectId": 1,
-      "selectedAnswer": "12",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-07-18T09:09:10.034Z"
-    },
-    {
-      "id": 84,
-      "studentTestId": 6,
-      "questionId": 7135,
-      "subjectId": 1,
-      "selectedAnswer": "55",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-18T09:09:10.034Z"
-    },
-    {
-      "id": 85,
-      "studentTestId": 6,
-      "questionId": 7143,
-      "subjectId": 1,
-      "selectedAnswer": "24",
-      "isCorrect": true,
-      "marksAwarded": 1,
-      "answeredAt": "2026-07-18T09:09:10.034Z"
-    },
-    {
-      "id": 86,
-      "studentTestId": 6,
-      "questionId": 7163,
-      "subjectId": 1,
-      "selectedAnswer": "30",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-18T09:09:10.034Z"
-    },
-    {
-      "id": 87,
-      "studentTestId": 6,
-      "questionId": 7191,
-      "subjectId": 1,
-      "selectedAnswer": "250",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-18T09:09:10.034Z"
-    },
-    {
-      "id": 88,
-      "studentTestId": 6,
-      "questionId": 7195,
-      "subjectId": 1,
-      "selectedAnswer": "32",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-18T09:09:10.034Z"
-    },
-    {
-      "id": 89,
-      "studentTestId": 6,
-      "questionId": 7244,
-      "subjectId": 1,
-      "selectedAnswer": "13",
-      "isCorrect": false,
-      "marksAwarded": 0,
-      "answeredAt": "2026-07-18T09:09:10.034Z"
-    }
-  ],
+  "test": [],
+  "testQuestion": [],
+  "studentTest": [],
+  "studentTestAnswer": [],
   "studentSubjectProgress": [],
   "report": []
 }

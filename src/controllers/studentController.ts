@@ -54,6 +54,7 @@ export class StudentController {
           subject: subject?.name || 'General',
           difficulty: q.difficulty,
           marks: q.marks,
+          questionImage: q.questionImage || null,
         }));
 
         res.status(200).json(mapped);
@@ -113,6 +114,7 @@ export class StudentController {
         subject: q._subjectName || 'General',
         difficulty: q.difficulty,
         marks: q.marks,
+        questionImage: q.questionImage || null,
       }));
 
       res.status(200).json(mapped);
@@ -190,6 +192,7 @@ export class StudentController {
               topic: q?.syllabus?.topic || 'General',
               difficulty: q?.difficulty || null,
               marks: q?.marks || 1,
+              questionImage: q?.questionImage || null,
             };
           });
 
@@ -292,6 +295,7 @@ export class StudentController {
               topic: q?.syllabus?.topic || 'General',
               difficulty: q?.difficulty || null,
               marks: q?.marks || 1,
+              questionImage: q?.questionImage || null,
             };
           });
 

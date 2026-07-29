@@ -99,6 +99,7 @@ export class TeacherController {
         difficulty: q.difficulty,
         marks: q.marks,
         isActive: q.isActive,
+        questionImage: q.questionImage,
       }));
 
       res.status(200).json(mapped);
@@ -275,6 +276,7 @@ export class TeacherController {
             topic: q?.syllabus?.topic || 'General',
             difficulty: q?.difficulty || null,
             marks: q?.marks || 1,
+            questionImage: q?.questionImage || null,
           };
         });
 
