@@ -132,6 +132,74 @@ class AuthService {
             token,
         };
     }
+    static async validateEmailForRole(email, role, currentUserId) {
+        const normalizedEmail = email.toLowerCase().trim();
+        // 1. Check Teacher Profiles
+        const teacherWithEmail = await database_1.default.teacherProfile.findFirst({
+            where: {
+                email: { equals: normalizedEmail, mode: 'insensitive' },
+                ...(currentUserId ? { userId: { not: currentUserId } } : {})
+            }
+        });
+        if (teacherWithEmail) {
+            const error = new Error('Email is already registered by a teacher');
+            error.statusCode = 400;
+            throw error;
+        }
+        if (role === client_1.Role.TEACHER) {
+            // Teachers cannot share email with anyone
+            const parentWithEmail = await database_1.default.parentProfile.findFirst({
+                where: { email: { equals: normalizedEmail, mode: 'insensitive' } }
+            });
+            if (parentWithEmail) {
+                const error = new Error('Email is already registered by a parent');
+                error.statusCode = 400;
+                throw error;
+            }
+            const studentWithEmail = await database_1.default.studentProfile.findFirst({
+                where: { email: { equals: normalizedEmail, mode: 'insensitive' } }
+            });
+            if (studentWithEmail) {
+                const error = new Error('Email is already registered by a student');
+                error.statusCode = 400;
+                throw error;
+            }
+        }
+        else if (role === client_1.Role.PARENT) {
+            // Parents cannot share email with another parent
+            const parentWithEmail = await database_1.default.parentProfile.findFirst({
+                where: {
+                    email: { equals: normalizedEmail, mode: 'insensitive' },
+                    ...(currentUserId ? { userId: { not: currentUserId } } : {})
+                }
+            });
+            if (parentWithEmail) {
+                const error = new Error('Email is already registered by another parent');
+                error.statusCode = 400;
+                throw error;
+            }
+        }
+        else if (role === client_1.Role.STUDENT) {
+            // Students can share email with their parent, but not with other students of different parents
+            const parentWithEmail = await database_1.default.parentProfile.findFirst({
+                where: { email: { equals: normalizedEmail, mode: 'insensitive' } }
+            });
+            if (!parentWithEmail) {
+                // If there is no parent owning this email, it must be unique among student profiles
+                const studentWithEmail = await database_1.default.studentProfile.findFirst({
+                    where: {
+                        email: { equals: normalizedEmail, mode: 'insensitive' },
+                        ...(currentUserId ? { userId: { not: currentUserId } } : {})
+                    }
+                });
+                if (studentWithEmail) {
+                    const error = new Error('Email is already registered by another student');
+                    error.statusCode = 400;
+                    throw error;
+                }
+            }
+        }
+    }
     /**
      * Admin creating user accounts for Teacher, Student, Parent, or another Admin.
      * Can optionally connect them upon account creation.
@@ -151,28 +219,9 @@ class AuthService {
             error.statusCode = 400;
             throw error;
         }
-        // Role-specific email uniqueness validation (Teachers and Parents must be unique, Students can share)
+        // Role-specific email uniqueness validation
         if (email) {
-            if (role === client_1.Role.TEACHER) {
-                const existingEmail = await database_1.default.teacherProfile.findFirst({
-                    where: { email },
-                });
-                if (existingEmail) {
-                    const error = new Error('Email is already registered by another teacher');
-                    error.statusCode = 400;
-                    throw error;
-                }
-            }
-            else if (role === client_1.Role.PARENT) {
-                const existingEmail = await database_1.default.parentProfile.findFirst({
-                    where: { email },
-                });
-                if (existingEmail) {
-                    const error = new Error('Email is already registered by another parent');
-                    error.statusCode = 400;
-                    throw error;
-                }
-            }
+            await this.validateEmailForRole(email, role);
         }
         const hashedPassword = await bcryptjs_1.default.hash(password, 10);
         // Create user and associated profile in a transaction
@@ -439,34 +488,9 @@ class AuthService {
                 throw error;
             }
         }
-        // Validate email uniqueness if it's changing for TEACHER or PARENT (Students can duplicate emails)
+        // Validate email according to the user's role on profile update
         if (email) {
-            if (currentUser.role === client_1.Role.TEACHER) {
-                const existingEmail = await database_1.default.teacherProfile.findFirst({
-                    where: {
-                        email,
-                        userId: { not: userId }
-                    },
-                });
-                if (existingEmail) {
-                    const error = new Error('Email is already registered by another teacher');
-                    error.statusCode = 400;
-                    throw error;
-                }
-            }
-            else if (currentUser.role === client_1.Role.PARENT) {
-                const existingEmail = await database_1.default.parentProfile.findFirst({
-                    where: {
-                        email,
-                        userId: { not: userId }
-                    },
-                });
-                if (existingEmail) {
-                    const error = new Error('Email is already registered by another parent');
-                    error.statusCode = 400;
-                    throw error;
-                }
-            }
+            await this.validateEmailForRole(email, currentUser.role, userId);
         }
         // Build user update object
         const userUpdateData = {};

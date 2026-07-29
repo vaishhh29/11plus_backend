@@ -36,7 +36,7 @@ class EmailService {
         const fromField = process.env.EMAIL_FROM && process.env.EMAIL_FROM.includes('@')
             ? process.env.EMAIL_FROM
             : `"${(process.env.EMAIL_FROM || '11Plus Academy').replace(/"/g, '')}" <${fromEmail}>`;
-        const loginUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/login`;
+        const loginUrl = `${process.env.FRONTEND_URL || 'https://11plus-academy.vercel.app/'}login`;
         const mailOptions = {
             from: fromField,
             to,
