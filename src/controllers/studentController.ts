@@ -3,6 +3,27 @@ import prisma from '../config/database';
 import { AuthenticatedRequest } from '../middlewares/authMiddleware';
 import { getQuestionModel, getQuestionsByIds, getQuestionById, findQuestions, getSyllabusModel, SUBJECT_IDS } from '../utils/subjectResolver';
 
+function answersMatch(ans1: string | undefined | null, ans2: string | undefined | null): boolean {
+  if (ans1 === undefined || ans1 === null || ans2 === undefined || ans2 === null) return false;
+  const clean1 = String(ans1).trim().toLowerCase();
+  const clean2 = String(ans2).trim().toLowerCase();
+  if (clean1 === clean2) return true;
+  
+  const parse = (val: string) => {
+    const match = val.match(/^([a-d])\s*[\)|:]\s*(.*)$/);
+    return match ? { letter: match[1], text: match[2].trim() } : { letter: null, text: val };
+  };
+  
+  const p1 = parse(clean1);
+  const p2 = parse(clean2);
+  
+  if (p1.letter && p2.letter && p1.letter === p2.letter) return true;
+  if (p1.letter && clean2 === p1.letter) return true;
+  if (p2.letter && clean1 === p2.letter) return true;
+  if (p1.text && p2.text && p1.text === p2.text) return true;
+  return false;
+}
+
 export class StudentController {
   /**
    * Get random practice questions from the DB for student self-study modes.
@@ -415,7 +436,7 @@ export class StudentController {
         if (!q) continue;
 
         const studentSelected = answers[String(q.id)] || '';
-        const isCorrect = studentSelected.trim() === q.correctAnswer.trim();
+        const isCorrect = answersMatch(studentSelected, q.correctAnswer);
         if (isCorrect) {
           correctCount += 1;
         }
