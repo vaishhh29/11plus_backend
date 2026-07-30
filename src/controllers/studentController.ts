@@ -31,17 +31,51 @@ export class StudentController {
    */
   static async getPracticeQuestions(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
     try {
+      if (!req.user) {
+        res.status(401).json({ message: 'Unauthorized' });
+        return;
+      }
+
+      const studentProfile = await prisma.studentProfile.findUnique({
+        where: { userId: req.user.userId },
+      });
+
+      if (!studentProfile) {
+        res.status(404).json({ message: 'Student profile not found.' });
+        return;
+      }
+
       const subjectId = req.query.subjectId ? parseInt(req.query.subjectId as string, 10) : undefined;
       const syllabusId = req.query.syllabusId ? parseInt(req.query.syllabusId as string, 10) : undefined;
       const topic = req.query.topic as string | undefined;
       const limit = req.query.limit ? parseInt(req.query.limit as string, 10) : 5;
+
+      // Fetch correct answers to exclude
+      const correctAnswers = await prisma.studentTestAnswer.findMany({
+        where: {
+          studentTest: { studentId: studentProfile.id },
+          isCorrect: true,
+        },
+        select: { questionId: true, subjectId: true },
+      });
+
+      const correctIdsBySubject: Record<number, number[]> = { 1: [], 2: [], 3: [], 4: [] };
+      for (const ans of correctAnswers) {
+        if (correctIdsBySubject[ans.subjectId]) {
+          correctIdsBySubject[ans.subjectId].push(ans.questionId);
+        }
+      }
 
       // If subjectId is provided, query that specific table
       if (subjectId) {
         const questionModel = getQuestionModel(subjectId);
         const syllabusModel = getSyllabusModel(subjectId);
 
+        const correctIds = correctIdsBySubject[subjectId] || [];
         const where: any = { isActive: true };
+        if (correctIds.length > 0) {
+          where.id = { notIn: correctIds };
+        }
         if (syllabusId) where.syllabusId = syllabusId;
         if (topic) {
           // Find the syllabus entry first, then filter by its ID
@@ -89,7 +123,11 @@ export class StudentController {
       for (const sid of [SUBJECT_IDS.MATHS, SUBJECT_IDS.ENGLISH, SUBJECT_IDS.VR, SUBJECT_IDS.NVR]) {
         try {
           const questionModel = getQuestionModel(sid);
+          const correctIds = correctIdsBySubject[sid] || [];
           const where: any = { isActive: true };
+          if (correctIds.length > 0) {
+            where.id = { notIn: correctIds };
+          }
 
           if (topic) {
             const syllabusModel = getSyllabusModel(sid);
@@ -482,6 +520,209 @@ export class StudentController {
         correctCount,
         totalQuestions: testQuestions.length,
       });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * Get dynamic progress percentages for each topic based on overall correct answers.
+   */
+  static async getTopicProgress(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      if (!req.user) {
+        res.status(401).json({ message: 'Unauthorized' });
+        return;
+      }
+
+      const studentProfile = await prisma.studentProfile.findUnique({
+        where: { userId: req.user.userId },
+      });
+
+      if (!studentProfile) {
+        res.status(404).json({ message: 'Student profile not found.' });
+        return;
+      }
+
+      // 1. Fetch all correct questions for the student
+      const correctAnswers = await prisma.studentTestAnswer.findMany({
+        where: {
+          studentTest: { studentId: studentProfile.id },
+          isCorrect: true,
+        },
+        select: { questionId: true, subjectId: true },
+      });
+
+      const correctSet = new Set<string>();
+      for (const ans of correctAnswers) {
+        correctSet.add(`${ans.subjectId}_${ans.questionId}`);
+      }
+
+      const progressData: Record<string, any[]> = {
+        "Maths": [],
+        "English": [],
+        "VR": [],
+        "NVR": []
+      };
+
+      // 2. Query Math syllabus & questions
+      const mathsList = await prisma.mathsSyllabus.findMany({
+        where: { status: 'ACTIVE' },
+        include: { questions: { where: { isActive: true } } },
+      });
+      for (const topic of mathsList) {
+        const total = topic.questions.length;
+        const correct = topic.questions.filter((q: any) => correctSet.has(`1_${q.id}`)).length;
+        const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
+        progressData["Maths"].push({
+          id: topic.id,
+          topic: topic.topic,
+          subTopic: topic.subTopic || '',
+          description: topic.description || '',
+          totalQuestions: total,
+          correctAnswers: correct,
+          percentage: percent,
+        });
+      }
+
+      // 3. Query English syllabus & questions
+      const englishList = await prisma.englishSyllabus.findMany({
+        where: { status: 'ACTIVE' },
+        include: { questions: { where: { isActive: true } } },
+      });
+      for (const topic of englishList) {
+        const total = topic.questions.length;
+        const correct = topic.questions.filter((q: any) => correctSet.has(`2_${q.id}`)).length;
+        const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
+        progressData["English"].push({
+          id: topic.id,
+          topic: topic.topic,
+          subTopic: topic.subTopic || '',
+          description: topic.description || '',
+          totalQuestions: total,
+          correctAnswers: correct,
+          percentage: percent,
+        });
+      }
+
+      // 4. Query VR syllabus & questions
+      const vrList = await prisma.vRSyllabus.findMany({
+        where: { status: 'ACTIVE' },
+        include: { questions: { where: { isActive: true } } },
+      });
+      for (const topic of vrList) {
+        const total = topic.questions.length;
+        const correct = topic.questions.filter((q: any) => correctSet.has(`3_${q.id}`)).length;
+        const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
+        progressData["VR"].push({
+          id: topic.id,
+          topic: topic.topic,
+          subTopic: topic.subTopic || '',
+          description: topic.description || '',
+          totalQuestions: total,
+          correctAnswers: correct,
+          percentage: percent,
+        });
+      }
+
+      // 5. Query NVR syllabus & questions
+      const nvrList = await prisma.nVRSyllabus.findMany({
+        where: { status: 'ACTIVE' },
+        include: { questions: { where: { isActive: true } } },
+      });
+      for (const topic of nvrList) {
+        const total = topic.questions.length;
+        const correct = topic.questions.filter((q: any) => correctSet.has(`4_${q.id}`)).length;
+        const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
+        progressData["NVR"].push({
+          id: topic.id,
+          topic: topic.topic,
+          subTopic: topic.subTopic || '',
+          description: topic.description || '',
+          totalQuestions: total,
+          correctAnswers: correct,
+          percentage: percent,
+        });
+      }
+
+      res.status(200).json(progressData);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * Get 60 random questions for standard mock test (no exclusion filters).
+   * Pulls 15 questions from each subject table. If a table has fewer, backfills from others.
+   */
+  static async getMockTestQuestions(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const subjectPools: Record<number, any[]> = { 1: [], 2: [], 3: [], 4: [] };
+      const subjectNames: Record<number, string> = {
+        1: 'Maths',
+        2: 'English',
+        3: 'Verbal Reasoning',
+        4: 'Non-Verbal Reasoning'
+      };
+
+      // 1. Fetch active questions from all subjects
+      for (const sid of [1, 2, 3, 4]) {
+        const model = getQuestionModel(sid);
+        const questions = await model.findMany({
+          where: { isActive: true },
+          include: { syllabus: true },
+        });
+        subjectPools[sid] = questions;
+      }
+
+      const selectedQuestions: any[] = [];
+      const targetCountPerSubject = 15;
+      
+      // Select random 15 from each subject pool first
+      const remainderPools: any[] = [];
+      
+      for (const sid of [1, 2, 3, 4]) {
+        const pool = subjectPools[sid];
+        const shuffled = pool.sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, targetCountPerSubject);
+        const remainder = shuffled.slice(targetCountPerSubject);
+        
+        for (const q of selected) {
+          selectedQuestions.push({ ...q, _subjectId: sid, _subjectName: subjectNames[sid] });
+        }
+        for (const q of remainder) {
+          remainderPools.push({ ...q, _subjectId: sid, _subjectName: subjectNames[sid] });
+        }
+      }
+
+      // If we don't have 60 total questions due to small pools, fill from the remainders
+      if (selectedQuestions.length < 60 && remainderPools.length > 0) {
+        const shuffledRemainders = remainderPools.sort(() => 0.5 - Math.random());
+        const extraNeeded = 60 - selectedQuestions.length;
+        const extras = shuffledRemainders.slice(0, extraNeeded);
+        for (const q of extras) {
+          selectedQuestions.push(q);
+        }
+      }
+
+      // Finally, shuffle the combined mock test questions list
+      const finalShuffled = selectedQuestions.sort(() => 0.5 - Math.random());
+
+      const mapped = finalShuffled.map((q: any) => ({
+        id: String(q.id),
+        question: q.questionText,
+        questionText: q.questionText,
+        options: q.options,
+        answer: q.correctAnswer,
+        correctAnswer: q.correctAnswer,
+        topic: q.syllabus?.topic || 'General',
+        subject: q._subjectName || 'General',
+        difficulty: q.difficulty,
+        marks: q.marks,
+        questionImage: q.questionImage || null,
+      }));
+
+      res.status(200).json(mapped);
     } catch (error) {
       next(error);
     }

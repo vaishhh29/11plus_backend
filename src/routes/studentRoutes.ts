@@ -10,6 +10,8 @@ router.use(authMiddleware as any);
 router.use(studentMiddleware as any);
 
 router.get('/questions/practice', StudentController.getPracticeQuestions);
+router.get('/topics/progress', StudentController.getTopicProgress);
+router.get('/mock-test/questions', StudentController.getMockTestQuestions);
 router.get('/tests/pending', StudentController.getPendingTests);
 router.get('/tests/completed', StudentController.getCompletedTests);
 router.post('/tests/:id/submit', StudentController.submitTest);
